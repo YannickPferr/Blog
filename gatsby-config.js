@@ -4,7 +4,10 @@ const dotenv = require("dotenv");
   dotenv.config();
 //}
 
-const { spaceId, accessToken } = process.env;
+//const { spaceId, accessToken } = process.env;
+
+const spaceId = process.env.CONTENTFUL_SPACE_ID;
+const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
 
 module.exports = {
   siteMetadata: {
@@ -24,8 +27,8 @@ module.exports = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        process.env.CONTENTFUL_SPACE_ID,
-        process.env.CONTENTFUL_ACCESS_TOKEN
+        spaceId,
+		accessToken
       }
     },
     `gatsby-transformer-sharp`,
