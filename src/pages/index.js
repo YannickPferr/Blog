@@ -1,56 +1,124 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
-import { Helmet } from 'react-helmet'
-import Hero from '../components/hero'
-import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
+import React from "react";
+import { graphql } from "gatsby";
 
-class RootIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
-    return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet title={siteTitle} />
-          <Hero data={author.node} />
-          <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
-              {posts.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-      </Layout>
-    )
-  }
-}
+import Banner from "../components/banner";
+import About from "../components/about";
+import Service from "../components/service";
+import Work from "../components/work";
+import Blogs from "../components/blogs";
+import Testimonial from "../components/testimonial";
+import Contact from "../components/contact";
+import Photos from "../components/photos";
 
-export default RootIndex
+const IndexPage = ({ data }) => (
+  <Layout header="home">
+    <SEO
+      title={data.contentfulAboutMe.designation}
+      keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`]}
+    />
+    <Banner data={data.contentfulAboutMe}></Banner>
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "About")
+      .map(t => {
+        return <About data={data.contentfulAboutMe}></About>;
+      })}
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "Service")
+      .map(t => {
+        return <Service data={data.allContentfulService}></Service>;
+      })}
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "Blogs")
+      .map(t => {
+        return <Blogs data={data.allContentfulBlogs}></Blogs>;
+      })}
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "Work")
+      .map(t => {
+        return <Work data={data.allContentfulWorks}></Work>;
+      })}
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "Testimonials")
+      .map(t => {
+        return (
+          <Testimonial data={data.allContentfulTestimonials}></Testimonial>
+        );
+      })}
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "Photos")
+      .map(t => {
+        return <Photos data={data.contentfulPhotos}></Photos>;
+      })}
+
+    {data.contentfulSiteInformation.menus
+      .filter(item => item === "Contact")
+      .map(t => {
+        return <Contact data={data.contentfulAboutMe.gmail}></Contact>;
+      })}
+  </Layout>
+);
+
+export default IndexPage;
 
 export const pageQuery = graphql`
-  query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+  query AboutQuery {
+    contentfulAboutMe {
+      name
+      photo {
+        file {
+          url
+        }
+        fluid {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+        }
+      }
+      designation
+      age
+      facebook
+      github
+      gmail
+      id
+      instagram
+      linkdin
+      twitter
+      location
+      description {
+        childMarkdownRemark {
+          html
+        }
+      }
+      bannerImage {
+        fluid(maxWidth: 1500) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+        }
+      }
+      bannerList
+    }
+    allContentfulService {
       edges {
         node {
           title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
           description {
             childMarkdownRemark {
               html
@@ -59,28 +127,84 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulPerson(
-      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-    ) {
+    allContentfulBlogs(limit: 5, sort: {fields: createdAt, order: DESC}) {
+      edges {
+        node {
+          title
+          slug
+          featureImage {
+            fluid(maxWidth: 600) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+          createdAt
+        }
+      }
+    }
+    allContentfulTestimonials {
       edges {
         node {
           name
-          shortBio {
-            shortBio
+          subTitle
+          description {
+            childMarkdownRemark {
+              html
+            }
           }
-          title
-          heroImage: image {
-            fluid(
-              maxWidth: 1180
-              maxHeight: 480
-              resizingBehavior: PAD
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulFluid_tracedSVG
+          avatarImage {
+            fluid(maxWidth: 200) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
             }
           }
         }
       }
     }
+    allContentfulWorks {
+      edges {
+        node {
+          siteName
+          url
+          image {
+            fluid(maxWidth: 600) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+        }
+      }
+    }
+    contentfulPhotos {
+      photos {
+        fluid(maxWidth: 600) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+        }
+      }
+    }
+    contentfulSiteInformation {
+      menus
+    }
   }
-`
+`;

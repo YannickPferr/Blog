@@ -1,64 +1,90 @@
-# Contentful Gatsby Starter Blog
+  <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+  <p align="center">
+    <a href="https://rg-portfolio.netlify.com/">
+      <img alt="rg-portfolio" src="https://github.com/rohitguptab/rg-portfolio/blob/master/src/images/fev_icon.png" width="50" />
+    </a>
+  </p>
+  <h1 align="center">
+    RG-Portfolio
+  </h1>
+  <img src="https://github.com/rohitguptab/rg-portfolio/blob/master/docs/screenshot.jpg" />
 
-Create a [Gatsby](http://gatsbyjs.com/) blog powered by [Contentful](https://www.contentful.com). This is a simplified version of the [Gatsby Contentful Starter](https://github.com/contentful-userland/gatsby-contentful-starter) which is maintained by our Community.
+Kick-off your Portfolio website with RG-Portfolio gatsby starter. We have used [Gatsby](https://www.gatsbyjs.org/) + [Contenful](https://www.gatsbyjs.org/packages/gatsby-source-contentful/?=Contenful).
 
-![The index page of the starter blog](https://rawgit.com/contentful-userland/gatsby-contentful-starter/master/screenshot.jpg "The index page of the starter blog")
+### Live Demo:
 
-Static sites are scalable, secure and have very little required maintenance. They come with a drawback though. Not everybody feels good editing files, building a project and uploading it somewhere. This is where Contentful comes into play.
+https://rg-portfolio.netlify.com/
 
-With Contentful and Gatsby you can connect your favorite static site generator with an API that provides an easy to use interface for people writing content and automate the publishing using services like [Travis CI](https://travis-ci.org/) or [Netlify](https://www.netlify.com/).
+### Feature:
 
-## Features
+- Blogs listing with each blog post.
+- Contact form with Email notification using formspree.io.
+- Photos and Blogs page listing.
+- Different types of sections like About, Service, Blogs, Work, Testimonials, Photos, and contact.
+- All settings manage from contentful for example Header Menu, Homepage sections, blogs, and photos, etc.
+- Social share in blog details pages with comment ( Disqus ).
+- PWA
 
-- Simple content model and structure. Easy to adjust to your needs.
-- Use the [synchronization feature](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/synchronization) of our [Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/).
-- Responsive/adaptive images via [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/) and our [Images API](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/synchronization/initial-synchronization-of-entries-of-a-specific-content-type).
+## 🚀 Quick start
 
-## Getting started
+1.  **Setup this site.**
 
-See our [official Contentful getting started guide](https://www.contentful.com/developers/docs/tutorials/general/get-started/).
+    Use the Gatsby CLI to Clone this site.
 
-### Get the source code and install dependencies.
+    ```sh
+    # Clone this Repositories
+    gatsby new rg-portfolio https://github.com/Rohitguptab/rg-portfolio.git
+    ```
 
-```
-$ git clone https://github.com/contentful/starter-gatsby-blog.git
-$ npm install
-```
+1.  **Setup Contentful Models**
 
-Or use the [Gatsby CLI](https://www.npmjs.com/package/gatsby-cli).
+    Use [contentful-cli](https://github.com/contentful/contentful-cli) to import the models from contentful-data.json
 
-```
-$ gatsby new contentful-starter-blog https://github.com/contentful/starter-gatsby-blog/
-```
+    ```
+    contentful space --space-id <CONTENTFUL_SPACE_ID> import --content-file contentful-data.json
+    ```
+    
+    Checkout my below blog how to Import and Export data from ContentFul
+    
+    [https://rohitgupta.netlify.app/import-and-export-data-with-contentful-cli](https://rohitgupta.netlify.app/import-and-export-data-with-contentful-cli)
 
-### Set up of the needed content model and create a configuration file
+1.  **Start developing.**
 
-This project comes with a Contentful setup command `npm run setup`.
+    Navigate into your new site’s directory and start it up.
 
-This command will ask you for a space ID, and access tokens for the Contentful Management and Delivery API and then import the needed content model into the space you define and write a config file (`./.contentful.json`).
+    ```sh
+    cd rg-portfolio
+    npm install
+    gatsby develop
+    ```
 
-`npm run setup` automates that for you but if you want to do it yourself rename `.contentful.json.sample` to `.contentful.json` and add your configuration in this file.
+1.  **Setup your Own Configure Projects.**
 
-## Crucial Commands
+    Enter your own key
 
-### `npm run dev`
+    [ContentFul](https://be.contentful.com/login):
 
-Run the project locally with live reload in development mode.
+    - spaceId = **Key**
+    - accessToken = **Key**
 
-### `npm run build`
+1.  **Open the source code and start editing!**
 
-Run a production build into `./public`. The result is ready to be put on any static hosting you prefer.
+    Your site is now running at `http://localhost:8000`!
 
-### `npm run serve`
+    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-Spin up a production-ready server with your blog. Don't forget to build your page beforehand.
+    Open the `rg-portfolio` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
-## Deployment
+## 🎓 Learning Gatsby
 
-See the [official Contentful getting started guide](https://www.contentful.com/developers/docs/tutorials/general/get-started/).
+Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
 
-## Contribution
+- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
-Feel free to open pull requests to fix bugs. If you want to add features, please have a look at the [original version](https://github.com/contentful-userland/gatsby-contentful-starter). It is always open to contributions and pull requests.
+- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
 
-You can learn more about how Contentful userland is organized by visiting [our about repository](https://github.com/contentful-userland/about).
+## 💫 Deploy
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Rohitguptab/rg-portfolio)
+
+  <!-- AUTO-GENERATED-CONTENT:END -->
