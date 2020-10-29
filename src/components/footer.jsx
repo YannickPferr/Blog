@@ -23,19 +23,7 @@ const Footer = () => {
     <div className={styles.footerWrapper}>
       <footer className={styles.footer}>
         <div className={styles.footerColumnName}>
-          <span className={styles.name}>Voyager</span>
-          <p className="f5">
-            Gatsby Starter Voyager is MIT Licensed.
-          </p>
-          <div>
-            <a
-              href="https://github.com/gregdferrell/gatsby-starter-voyager"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub className="icon" alt="github icon link" />
-            </a>
-          </div>
+          <span className={styles.name}>No Calories, No Problem</span>
         </div>
         <div className={styles.footerColumnLinks}>
           <Link to="/" className={styles.navItem}>
