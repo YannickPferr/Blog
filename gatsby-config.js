@@ -4,14 +4,16 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+require("dotenv").config();
+
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://gatsby-starter-voyager.netlify.com",
-    author: "gregdferrell",
-    publisher: "gatsby-starter-voyager.netlify.com",
-    title: "Voyager",
-    description:
-      "Gatsby Starter Voyager is feature-rich starter blog. It's MIT licensed and ready to be used as-is or as a starting point from which to build something tailored to your needs. Use it, learn from it, build on it & enjoy.",
+    siteUrl: "https://blog50086.gtsb.io/",
+    author: "Yannick Pferr",
+    publisher: "Netlify",
+    title: "No Calories, No Problem",
+    shortTitle: "NCNP",
+    description: "No Calories, No Problem is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious. Never be hungry again!",
     image: "/images/logo.jpg",
     bannerImage: "/images/banner.png",
     blogPostsPerPage: 5,
@@ -23,34 +25,14 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-source-contentful`,
       options: {
-        name: "posts",
-        path: `${__dirname}/content/copy/blog-posts/`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "pages",
-        path: `${__dirname}/content/copy/pages/`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: `${__dirname}/content/images/`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "data",
-        path: `${__dirname}/content/data`,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
     "gatsby-plugin-sass",
+    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-transformer-remark",
       options: {
@@ -63,8 +45,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 1000,
-              linkImagesToOriginal: false,
+              maxWidth: 1000
             },
           },
           {
@@ -80,7 +61,6 @@ module.exports = {
         ],
       },
     },
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-plugin-feed",
@@ -99,39 +79,45 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+            serialize: ({ query: { site, allContentfulPost } }) => {
+              return allContentfulPost.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
-                  custom_elements: [{ "content:encoded": edge.node.html }],
-                  date: edge.node.frontmatter.date,
-                  description: edge.node.frontmatter.excerpt,
+                  custom_elements: [{ "content:encoded": edge.node.content.childMarkdownRemark.html }],
+                  date: edge.node.date,
+                  description: edge.node.previewText,
                   guid:
                     site.siteMetadata.siteUrl +
                     "/blog/" +
-                    edge.node.fields.slug,
+                    edge.node.title,
                   url:
                     site.siteMetadata.siteUrl +
                     "/blog/" +
-                    edge.node.fields.slug,
+                    edge.node.title,
                 })
               })
             },
             query: `
               {
-                allMarkdownRemark(
-                  filter: { frontmatter: { type: { eq: "post" } } published: { eq: true }}
-                  sort: { order: DESC, fields: [frontmatter___date] }
-                ) {
+                allContentfulPost(  
+                  limit: $limit
+                  skip: $skip
+                  sort: { fields: date, order: DESC }
+                  ){
                   edges {
                     node {
-                      fields { slug }
-                      html
-                      frontmatter {
-                        title
-                        author
-                        date
-                        tags
-                        excerpt
+                      title
+                      author {
+                        name
+                      }
+                      date
+                      previewText
+                      tags{
+                        name
+                      }
+                      content {
+                        childMarkdownRemark{
+                          html
+                        }
                       }
                     }
                   }
@@ -170,8 +156,8 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         // req props
-        name: "Gatsby Starter Voyager",
-        short_name: "Voyager",
+        name: "No Calories, No Problem",
+        short_name: "NCNP",
         start_url: "/",
         background_color: "#fff",
         theme_color: "#9c7c38",

@@ -8,37 +8,43 @@ import Button from "../components/button"
 
 export const query = graphql`
   query($author: String!, $skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      filter: {
-        frontmatter: { type: { eq: "post" }, author: { in: [$author] } }
-        published: { eq: true }
-      }
+    allContentfulPost(
+      filter: {author: {name: {eq: $author}}}  
       limit: $limit
       skip: $skip
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      totalCount
+      sort: { fields: date, order: DESC }
+      ){
       edges {
         node {
-          fields {
-            slug
+          title
+          previewText
+          author {
+            name
           }
-          frontmatter {
-            title
-            author
-            date(formatString: "MMMM Do, YYYY")
-            tags
-            excerpt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 750, quality: 75) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+          date(formatString: "MMMM Do, YYYY")
+          tags {
+            name
+          }
+          author {
+            name
+          }
+          content {
+            childMarkdownRemark{
+              html
             }
-            imageAlt
           }
-          id
+          image {
+            fluid {
+              aspectRatio
+              base64
+              sizes
+              src
+              srcSet
+              srcSetWebp
+              srcWebp
+              tracedSVG
+            }
+          }
         }
       }
     }
@@ -80,7 +86,7 @@ const Authors = ({ data, pageContext }) => {
           <Button linkUrl="/blog/authors" linkText="All Authors" />
         </div>
       </header>
-      <BlogList data={data.allMarkdownRemark} />
+      <BlogList data={data.allContentfulPost} />
       <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
     </Layout>
   )

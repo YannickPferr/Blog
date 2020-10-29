@@ -13,9 +13,10 @@ import styles from "./index.module.scss"
 
 const IndexPage = ({ data }) => {
   // Create sublist of featured tags where feature flag is set and a valid image is present
-  let featuredTags = data.tagDetails.frontmatter.tag_details.filter(obj => {
-    return obj.featured === true && obj.featured_image
+  let featuredTags = data.tagDetails.edges.filter(obj => {
+    return obj.node.featured === true && obj.node.featuredImage
   })
+  console.log(featuredTags)
 
   return (
     <Layout layoutFullWidth title="Home">
@@ -24,27 +25,27 @@ const IndexPage = ({ data }) => {
         <div className={styles.heroColumnFirst}>
           <Img
             fluid={
-              data.heroSectionMarkdown.frontmatter.leftImage.childImageSharp
+              data.heroSectionMarkdown.leftImage
                 .fluid
             }
-            alt={data.heroSectionMarkdown.frontmatter.leftImageAlt}
+            alt={data.heroSectionMarkdown.leftImageAlt}
           />
         </div>
         <div className={styles.heroColumnSecond}>
           <h1 className={styles.heroTitle}>
-            {data.heroSectionMarkdown.frontmatter.title}
+            {data.heroSectionMarkdown.title}
           </h1>
           <p className={styles.heroSubtitle}>
-            {data.heroSectionMarkdown.frontmatter.subtitle}
+            {data.heroSectionMarkdown.subtitle}
           </p>
         </div>
         <div className={styles.heroColumnThird}>
           <Img
             fluid={
-              data.heroSectionMarkdown.frontmatter.rightImage.childImageSharp
+              data.heroSectionMarkdown.rightImage
                 .fluid
             }
-            alt={data.heroSectionMarkdown.frontmatter.rightImageAlt}
+            alt={data.heroSectionMarkdown.rightImageAlt}
           />
         </div>
       </section>
@@ -52,16 +53,16 @@ const IndexPage = ({ data }) => {
       {/* Main Feature*/}
       <section className={styles.mainFeatureSection}>
         <h2 className="section-heading">
-          {data.mainFeatureSectionMarkdown.frontmatter.heading}
+          {data.mainFeatureSectionMarkdown.heading}
         </h2>
         <div
           dangerouslySetInnerHTML={{
-            __html: data.mainFeatureSectionMarkdown.html,
+            __html: data.mainFeatureSectionMarkdown.content.childMarkdownRemark.html,
           }}
         ></div>
         <Button
-          linkUrl={data.mainFeatureSectionMarkdown.frontmatter.linkUrl}
-          linkText={data.mainFeatureSectionMarkdown.frontmatter.linkText}
+          linkUrl={data.mainFeatureSectionMarkdown.linkUrl}
+          linkText={data.mainFeatureSectionMarkdown.linkText}
         />
       </section>
 
@@ -84,12 +85,12 @@ const IndexPage = ({ data }) => {
       {/* About Me Blurb */}
       <section className={styles.aboutMeSection}>
         <AboutContent
-          heading={data.aboutSectionMarkdown.frontmatter.heading}
-          copy={data.aboutSectionMarkdown.html}
+          heading={data.aboutSectionMarkdown.heading}
+          copy={data.aboutSectionMarkdown.text.childMarkdownRemark.html}
           image={
-            data.aboutSectionMarkdown.frontmatter.image.childImageSharp.fluid
+            data.aboutSectionMarkdown.image.fluid
           }
-          imageAlt={data.aboutSectionMarkdown.frontmatter.imageAlt}
+          imageAlt={data.aboutSectionMarkdown.imageAlt}
           imageFirst={true}
           button={{ text: "Read More", url: "/about" }}
         />
@@ -100,117 +101,110 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    latestPosts: allMarkdownRemark(
-      filter: {
-        frontmatter: { type: { eq: "post" } }
-        published: { eq: true }
-      }
-      limit: 3
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
+    latestPosts: allContentfulPost{
       edges {
         node {
-          fields {
-            slug
+          title
+          author {
+            name
           }
-          frontmatter {
-            title
-            author
-            date(formatString: "MMMM Do, YYYY")
-            tags
-            excerpt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 750, quality: 75) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-            imageAlt
+          date
+          previewText
+          tags{
+            name
           }
-          id
+          image {
+            fluid(maxWidth: 750, quality: 75) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            } 
+          }
         }
       }
     }
+    
 
-    tagDetails: markdownRemark(
-      frontmatter: { type: { eq: "data" }, name: { eq: "tags" } }
-    ) {
-      frontmatter {
-        tag_details {
+    tagDetails: allContentfulTag{
+      edges {
+        node {
           name
-          description
           featured
-          featured_image {
-            childImageSharp {
-              fluid(maxWidth: 800, quality: 90) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
+          featuredImage {
+            fluid(maxWidth: 800, quality: 90) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            } 
           }
-          featured_image_alt
         }
       }
     }
 
-    heroSectionMarkdown: markdownRemark(
-      frontmatter: { type: { eq: "page-content" }, name: { eq: "index-hero" } }
-    ) {
-      frontmatter {
-        title
-        subtitle
-        leftImage {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-          publicURL
+    heroSectionMarkdown: contentfulHomeBanner  {
+      title
+      subtitle
+      leftImage{
+        fluid(maxWidth: 800, quality: 90) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
         }
-        leftImageAlt
-        rightImage {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-          publicURL
+      } 
+      rightImage {
+        fluid(maxWidth: 800, quality: 90) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
         }
-        rightImageAlt
       }
-      html
     }
 
-    mainFeatureSectionMarkdown: markdownRemark(
-      frontmatter: {
-        type: { eq: "page-content" }
-        name: { eq: "index-main-feature" }
+    mainFeatureSectionMarkdown: contentfulFeature{
+      heading
+      linkUrl
+      linkText 
+      content {
+        childMarkdownRemark {
+          html
+        }
       }
-    ) {
-      frontmatter {
-        heading
-        linkUrl
-        linkText
-      }
-      html
     }
 
-    aboutSectionMarkdown: markdownRemark(
-      frontmatter: { type: { eq: "page-content" }, name: { eq: "index-about" } }
-    ) {
-      frontmatter {
-        heading
-        image {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-          publicURL
+    aboutSectionMarkdown: contentfulAboutContent  {
+      heading
+      image{
+        fluid(maxWidth: 800, quality: 90) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
         }
-        imageAlt
+      } 
+      text {
+        childMarkdownRemark {
+          html
+        }
       }
-      html
     }
   }
 `

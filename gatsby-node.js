@@ -2,48 +2,6 @@ const path = require("path")
 
 const { GraphQLBoolean } = require("gatsby/graphql")
 
-// Add `published` property to MarkdownRemark nodes to indicate if this markdown is to be published.
-module.exports.setFieldsOnGraphQLNodeType = ({ type }) => {
-  if ("MarkdownRemark" === type.name) {
-    return {
-      published: {
-        type: GraphQLBoolean,
-        resolve: ({ frontmatter }) => {
-          // Always set `published` field to true when not in production mode
-          // or if frontmatter.draft is not set.
-          if (
-            process.env.NODE_ENV !== "production" ||
-            frontmatter.draft == undefined
-          ) {
-            return true
-          }
-
-          return !frontmatter.draft
-        },
-      },
-    }
-  }
-  return {}
-}
-
-module.exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
-
-  // For all "MarkdownRemark" nodes of type "post", add a slug to the node based
-  // on the filename
-  if (node.internal.type === "MarkdownRemark") {
-    if (node.frontmatter.type === "post") {
-      const slug = path.basename(node.fileAbsolutePath, ".md")
-
-      createNodeField({
-        node,
-        name: "slug",
-        value: slug,
-      })
-    }
-  }
-}
-
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const blogPostTemplate = path.resolve(
@@ -61,60 +19,29 @@ module.exports.createPages = async ({ graphql, actions }) => {
 
   const res = await graphql(`
     query {
-      postsRemark: allMarkdownRemark(
-        filter: {
-          frontmatter: { type: { eq: "post" } }
-          published: { eq: true }
-        }
-        sort: { fields: frontmatter___date, order: DESC }
-      ) {
+      postsRemark: allContentfulPost {
         edges {
           node {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
+            title
           }
           next {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
+            title
           }
           previous {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
+            title
           }
         }
       }
 
-      tagsGroup: allMarkdownRemark(
-        filter: {
-          frontmatter: { type: { eq: "post" } }
-          published: { eq: true }
-        }
-      ) {
-        group(field: frontmatter___tags) {
+      tagsGroup: allContentfulPost {
+        group(field: tags___name) {
           fieldValue
           totalCount
         }
       }
 
-      authorsGroup: allMarkdownRemark(
-        filter: {
-          frontmatter: { type: { eq: "post" } }
-          published: { eq: true }
-        }
-      ) {
-        group(field: frontmatter___author) {
+      authorsGroup:  allContentfulPost {
+        group(field: author___name) {
           fieldValue
           totalCount
         }
@@ -139,9 +66,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
   posts.forEach(({ node, next, previous }) => {
     createPage({
       component: blogPostTemplate,
-      path: `/blog/${node.fields.slug}`,
+      path: `/blog/${node.title}`,
       context: {
-        slug: node.fields.slug,
+        slug: node.title,
         prev: next, // prev = next is on purpose. in the context of the blog post template, the next post is the one posted later, not before
         next: previous, // see above comment
       },

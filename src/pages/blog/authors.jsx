@@ -8,8 +8,8 @@ import styles from "./authors.module.scss"
 const Authors = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: { frontmatter: { type: { eq: "post" } } published: { eq: true } }) {
-        group(field: frontmatter___author) {
+      allContentfulPost {
+        group(field: author___name) {
           fieldValue
           totalCount
         }
@@ -21,7 +21,7 @@ const Authors = () => {
     <Layout title="All Blog Authors" pathName="/blog/authors">
       <h1 className="page-heading">Authors</h1>
       <section className={styles.authorSection}>
-        {data.allMarkdownRemark.group.map(author => (
+        {data.allContentfulPost.group.map(author => (
           <div key={author.fieldValue}>
             <Link to={`/blog/authors/${author.fieldValue}`}>
               <div className={styles.authorWrapper}>

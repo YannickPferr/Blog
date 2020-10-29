@@ -10,35 +10,36 @@ import SocialShare from "../components/social-share"
 import styles from "./blog-post-template.module.scss"
 
 export const queryPostBySlug = graphql`
-  query($slug: String!) {
-    post: markdownRemark(
-      frontmatter: { type: { eq: "post" } }
-      fields: { slug: { eq: $slug } }
-    ) {
-      frontmatter {
-        title
-        author
-        date
-        dateFormattedPretty: date(formatString: "MMMM Do, YYYY")
-        draft
-        tags
-        excerpt
-        image {
-          childImageSharp {
-            fluid(maxWidth: 1000, quality: 75) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-          publicURL
-        }
-        imageAlt
+  query($slug: String!){
+    post: contentfulPost(title: {eq: $slug}) {
+      date
+      previewText
+      title
+      tags {
+        name
       }
-      html
-      id
-      fields {
-        slug
+      author {
+        name
+      }
+      content {
+        childMarkdownRemark{
+          html
+        }
+      }
+      image {
+        fluid {
+          aspectRatio
+          base64
+          sizes
+          src
+          srcSet
+          srcSetWebp
+          srcWebp
+          tracedSVG
+        }
       }
     }
+    
     site: site {
       siteMetadata {
         siteUrl
@@ -57,73 +58,70 @@ const BlogPosts = ({ data, pageContext }) => {
   const nextDetails = !next
     ? null
     : {
-        titleText: "Next Post",
-        linkPath: "/blog/" + next.fields.slug,
-        linkText: next.frontmatter.title,
-      }
+      titleText: "Next Post",
+      linkPath: "/blog/" + next.title,
+      linkText: next.title,
+    }
 
   const prevDetails = !prev
     ? null
     : {
-        titleText: "Previous Post",
-        linkPath: "/blog/" + prev.fields.slug,
-        linkText: prev.frontmatter.title,
-      }
+      titleText: "Previous Post",
+      linkPath: "/blog/" + prev.title,
+      linkText: prev.title,
+    }
+
+
 
   return (
     <Layout
       isArticle={true}
-      title={post.frontmatter.title}
-      description={post.frontmatter.excerpt}
-      image={post.frontmatter.image.publicURL}
-      author={post.frontmatter.author}
-      pathName={`/blog/${post.fields.slug}`}
-      datePublished={post.frontmatter.date}
+      title={post.title}
+      description={post.description}
+      image={post.image.fluid}
+      author={post.author.name}
+      pathName={`/blog/${post.title}`}
+      datePublished={post.date}
     >
       <article className="ph4">
         <header className={styles.header}>
-          <h1 className={styles.title}>{post.frontmatter.title}</h1>
-          {post.frontmatter.draft && (
-            <div className={styles.draft}>
-              <span>! This post is a draft and will not be published in production !</span>
-            </div>
-          )}
+          <h1 className={styles.title}>{post.title}</h1>
           <div>
             <span className={styles.subtitle}>
               by{" "}
-              <Link to={`/blog/authors/${post.frontmatter.author}`}>
-                {post.frontmatter.author}
+              <Link to={`/blog/authors/${post.author.name}`}>
+                {post.author.name}
               </Link>{" "}
-              on {post.frontmatter.dateFormattedPretty}
+              on {post.date}
             </span>
           </div>
           <SocialShare
             text="SHARE THIS POST"
-            shareTitle={post.frontmatter.title}
-            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.fields.slug}`}
+            shareTitle={post.title}
+            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.title}`}
           />
           <div className={styles.tagListContainer}>
-            {post.frontmatter.tags.map(tag => (
-              <Button key={tag} linkUrl={`/blog/tags/${tag}`} linkText={tag} />
+            {post.tags.map(tag => (
+              <Button key={tag.name} linkUrl={`/blog/tags/${tag.name}`} linkText={tag.name} />
             ))}
           </div>
         </header>
         <Img
-          fluid={post.frontmatter.image.childImageSharp.fluid}
-          alt={post.frontmatter.imageAlt}
+          fluid={post.image.fluid}
+          alt={post.imageAlt}
         />
 
         <div
           className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: post.html }}
+          dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html}}
         ></div>
 
         <div className={styles.postEnd}>
           <h3 className="section-sub-heading">Thanks for reading!</h3>
           <SocialShare
             text="SHARE THIS POST"
-            shareTitle={post.frontmatter.title}
-            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.fields.slug}`}
+            shareTitle={post.title}
+            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.title}`}
           />
         </div>
 

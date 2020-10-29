@@ -8,48 +8,48 @@ import Button from "../components/button"
 
 export const query = graphql`
   query($tag: String!, $skip: Int!, $limit: Int!) {
-    tagDetails: markdownRemark(
-      frontmatter: { type: { eq: "data" }, name: { eq: "tags" } }
-    ) {
-      frontmatter {
-        tag_details {
-          description
-          name
-        }
-      }
+    tag: contentfulTag(name: {eq: $tag}) {
+      name
+      description
     }
 
-    posts: allMarkdownRemark(
-      filter: {
-        frontmatter: { type: { eq: "post" }, tags: { in: [$tag] } }
-        published: { eq: true }
-      }
+    posts:  allContentfulPost(
+      filter: {tags: {elemMatch: {name: {eq: $tag}}}}
       limit: $limit
       skip: $skip
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      totalCount
+      sort: { fields: date, order: DESC }
+      ) {
       edges {
         node {
-          fields {
-            slug
+          title
+          previewText
+          author {
+            name
           }
-          frontmatter {
-            title
-            author
-            date(formatString: "MMMM Do, YYYY")
-            tags
-            excerpt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 750, quality: 75) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+          date(formatString: "MMMM Do, YYYY")
+          tags {
+            name
+          }
+          author {
+            name
+          }
+          content {
+            childMarkdownRemark{
+              html
             }
-            imageAlt
           }
-          id
+          image {
+            fluid {
+              aspectRatio
+              base64
+              sizes
+              src
+              srcSet
+              srcSetWebp
+              srcWebp
+              tracedSVG
+            }
+          }
         }
       }
     }
@@ -80,11 +80,6 @@ const Tags = ({ data, pageContext }) => {
         linkText: "Next Page",
       }
 
-  let tagDetails = data.tagDetails.frontmatter.tag_details.filter(obj => {
-    return obj.name === tag
-  })
-  tagDetails = tagDetails.length > 0 ? tagDetails[0] : null
-
   return (
     <Layout
       title={`Articles tagged ${tag} - Page ${currentPage}`}
@@ -94,9 +89,9 @@ const Tags = ({ data, pageContext }) => {
         <h1 className="page-heading">Articles Tagged "{tag}"</h1>
       </header>
 
-      {tagDetails && tagDetails.description && (
+      {data.tag.name && data.tag.description && (
         <div className="mh6-l mt4 ph4 tc">
-          <p>{tagDetails.description}</p>
+          <p>{data.tag.description}</p>
         </div>
       )}
 

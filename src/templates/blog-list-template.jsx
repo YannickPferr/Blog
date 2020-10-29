@@ -9,33 +9,33 @@ import styles from "./blog-list-template.module.scss"
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      filter: { frontmatter: { type: { eq: "post" } } published: { eq: true } }
+    allContentfulPost(  
       limit: $limit
       skip: $skip
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
+      sort: { fields: date, order: DESC }
+      ){
       edges {
         node {
-          fields {
-            slug
+          title
+          author {
+            name
           }
-          frontmatter {
-            title
-            author
-            date(formatString: "MMMM Do, YYYY")
-            tags
-            excerpt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 750, quality: 75) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-            imageAlt
+          date
+          previewText
+          tags{
+            name
           }
-          id
+          image {
+            fluid(maxWidth: 750, quality: 75) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            } 
+          }
         }
       }
     }
@@ -69,7 +69,7 @@ const BlogListTemplate = ({ data, pageContext }) => {
       <header className={styles.header}>
         <h1 className={styles.title}>Blog</h1>
       </header>
-      <BlogList data={data.allMarkdownRemark} />
+      <BlogList data={data.allContentfulPost} />
       <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
     </Layout>
   )

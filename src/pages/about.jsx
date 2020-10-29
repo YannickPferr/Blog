@@ -11,33 +11,23 @@ const AboutPage = ({ data }) => {
     <Layout title="About" pathName="/about">
       <h1 className="page-heading">About</h1>
 
-      <AboutContent
-        heading={data.aboutSectionOne.frontmatter.heading}
-        copy={data.aboutSectionOne.html}
-        image={data.aboutSectionOne.frontmatter.image.childImageSharp.fluid}
-        imageAlt={data.aboutSectionOne.frontmatter.imageAlt}
-      />
-
-      <AboutContent
-        heading={data.aboutSectionTwo.frontmatter.heading}
-        copy={data.aboutSectionTwo.html}
-        image={data.aboutSectionTwo.frontmatter.image.childImageSharp.fluid}
-        imageAlt={data.aboutSectionTwo.frontmatter.imageAlt}
-      />
-
-      <AboutContent
-        heading={data.aboutSectionThree.frontmatter.heading}
-        copy={data.aboutSectionThree.html}
-        image={data.aboutSectionThree.frontmatter.image.childImageSharp.fluid}
-        imageAlt={data.aboutSectionThree.frontmatter.imageAlt}
-      />
+      {
+        data.aboutSections.edges.map(obj => {
+          return <AboutContent
+            heading={obj.node.heading}
+            copy={obj.node.text.childMarkdownRemark.html}
+            image={obj.node.image.fluid}
+            imageAlt={obj.node.imageAlt}
+          />;
+        })
+      }
 
       <section className={styles.finalSectionWrapper}>
         <div>
-          <h2 className="section-heading">Thanks for stopping by!</h2>
+          <h2 className="section-heading">{data.aboutSectionFinal.heading}</h2>
           <div
             dangerouslySetInnerHTML={{
-              __html: data.aboutSectionFinal.html,
+              __html: data.aboutSectionFinal.footerText.childMarkdownRemark.html,
             }}
           ></div>
         </div>
@@ -48,70 +38,37 @@ const AboutPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    aboutSectionOne: markdownRemark(
-      frontmatter: {
-        type: { eq: "page-content" }
-        name: { eq: "about-1" }
-      }
-    ) {
-      frontmatter {
-        heading
-        image {
-          childImageSharp {
+    aboutSections: allContentfulAboutContent  {
+      edges{
+        node{
+          heading
+          image{
             fluid(maxWidth: 900, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          } 
+          text {
+            childMarkdownRemark {
+              html
             }
           }
-          publicURL
         }
-        imageAlt
       }
-      html
     }
-    aboutSectionTwo: markdownRemark(
-      frontmatter: { type: { eq: "page-content" }, name: { eq: "about-2" } }
-    ) {
-      frontmatter {
-        heading
-        image {
-          childImageSharp {
-            fluid(maxWidth: 900, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-          publicURL
+
+    aboutSectionFinal: contentfulAboutFooter  {
+      heading
+      footerText {
+        childMarkdownRemark{
+          html
         }
-        imageAlt
       }
-      html
-    }
-    aboutSectionThree: markdownRemark(
-      frontmatter: {
-        type: { eq: "page-content" }
-        name: { eq: "about-3" }
-      }
-    ) {
-      frontmatter {
-        heading
-        image {
-          childImageSharp {
-            fluid(maxWidth: 900, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-          publicURL
-        }
-        imageAlt
-      }
-      html
-    }
-    aboutSectionFinal: markdownRemark(
-      frontmatter: {
-        type: { eq: "page-content" }
-        name: { eq: "about-final" }
-      }
-    ) {
-      html
     }
   }
 `
