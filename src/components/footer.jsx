@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa"
+import { FaInstagram, FaTwitter } from "react-icons/fa"
 
 import styles from "./footer.module.scss"
 

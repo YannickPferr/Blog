@@ -9,7 +9,7 @@ const NotFound = ({ data }) => {
     <Layout title="Oops. Page not found.">
       <h1 className="page-heading">Oops. Page not found.</h1>
       <Img
-        fluid={data.photo404.childImageSharp.fluid}
+        fluid={data.photo404.fluid}
         alt="Monkey, not found!"
         className="mb5"
       />
@@ -19,11 +19,16 @@ const NotFound = ({ data }) => {
 
 export const query = graphql`
   query {
-    photo404: file(relativePath: { eq: "jamie-haughton-Z05GiksmqYU-unsplash.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 900, quality: 90) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+    photo404: contentfulAsset(title: {eq: "404"}) {
+      fluid {
+        aspectRatio
+        base64
+        sizes
+        src
+        srcSet
+        srcSetWebp
+        srcWebp
+        tracedSVG
       }
     }
   }
