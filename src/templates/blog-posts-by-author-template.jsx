@@ -12,16 +12,17 @@ export const query = graphql`
       filter: {author: {name: {eq: $author}}}  
       limit: $limit
       skip: $skip
-      sort: { fields: date, order: DESC }
+      sort: { fields: createdAt, order: DESC }
       ){
       edges {
         node {
+          id
           title
           previewText
           author {
             name
           }
-          date(formatString: "MMMM Do, YYYY")
+          createdAt(formatString: "MMMM Do, YYYY")
           tags {
             name
           }

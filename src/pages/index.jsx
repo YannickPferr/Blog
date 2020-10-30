@@ -16,37 +16,26 @@ const IndexPage = ({ data }) => {
   let featuredTags = data.tagDetails.edges.filter(obj => {
     return obj.node.featured === true && obj.node.featuredImage
   })
-  console.log(featuredTags)
 
   return (
     <Layout layoutFullWidth title="Home">
       {/* Hero Section */}
       <section className={styles.heroSection}>
-        <div className={styles.heroColumnFirst}>
-          <Img
-            fluid={
-              data.heroSectionMarkdown.leftImage
-                .fluid
-            }
-            alt={data.heroSectionMarkdown.leftImageAlt}
-          />
-        </div>
-        <div className={styles.heroColumnSecond}>
-          <h1 className={styles.heroTitle}>
-            {data.heroSectionMarkdown.title}
-          </h1>
-          <p className={styles.heroSubtitle}>
-            {data.heroSectionMarkdown.subtitle}
-          </p>
-        </div>
-        <div className={styles.heroColumnThird}>
-          <Img
-            fluid={
-              data.heroSectionMarkdown.rightImage
-                .fluid
-            }
-            alt={data.heroSectionMarkdown.rightImageAlt}
-          />
+        <div className={styles.heroBanner}>
+          <div className={styles.heroImage}>
+            <Img
+              fluid={data.heroSectionMarkdown.rightImage.fluid}
+              className={styles.heroImage}
+            />
+            <div className={styles.heroTextWrap}>
+              <h1 className={styles.heroTitle}>{data.heroSectionMarkdown.title}</h1>
+              <p className={styles.heroSubtitle}>{data.heroSectionMarkdown.subtitle}</p>
+              <Button
+                linkUrl={data.heroSectionMarkdown.buttonLink}
+                linkText={data.heroSectionMarkdown.buttonText}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -104,11 +93,12 @@ export const query = graphql`
     latestPosts: allContentfulPost{
       edges {
         node {
+          id
           title
           author {
             name
           }
-          date
+          createdAt(formatString: "MMMM Do, YYYY")
           previewText
           tags{
             name
@@ -152,17 +142,8 @@ export const query = graphql`
     heroSectionMarkdown: contentfulHomeBanner  {
       title
       subtitle
-      leftImage{
-        fluid(maxWidth: 800, quality: 90) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
-      } 
+      buttonText
+      buttonLink
       rightImage {
         fluid(maxWidth: 800, quality: 90) {
           base64

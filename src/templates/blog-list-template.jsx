@@ -12,15 +12,16 @@ export const query = graphql`
     allContentfulPost(  
       limit: $limit
       skip: $skip
-      sort: { fields: date, order: DESC }
+      sort: { fields: createdAt, order: DESC }
       ){
       edges {
         node {
+          id
           title
           author {
             name
           }
-          date
+          createdAt(formatString: "MMMM Do, YYYY")
           previewText
           tags{
             name

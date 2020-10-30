@@ -9,6 +9,7 @@ const Header = () => {
     query {
       siteMetadata: site {
         siteMetadata {
+          title
           social {
             instagram
             twitter
@@ -24,7 +25,7 @@ const Header = () => {
         <nav className={styles.navMain}>
           <span>
             <Link to="/" className={styles.navHomeLink}>
-              No Calories, No Problem
+              {data.siteMetadata.siteMetadata.title}
             </Link>
           </span>
 

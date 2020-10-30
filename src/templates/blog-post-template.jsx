@@ -12,7 +12,7 @@ import styles from "./blog-post-template.module.scss"
 export const queryPostBySlug = graphql`
   query($slug: String!){
     post: contentfulPost(title: {eq: $slug}) {
-      date
+      createdAt(formatString: "MMMM Do, YYYY")
       previewText
       title
       tags {
@@ -81,7 +81,7 @@ const BlogPosts = ({ data, pageContext }) => {
       image={post.image.fluid}
       author={post.author.name}
       pathName={`/blog/${post.title}`}
-      datePublished={post.date}
+      datePublished={post.createdAt}
     >
       <article className="ph4">
         <header className={styles.header}>
@@ -92,7 +92,7 @@ const BlogPosts = ({ data, pageContext }) => {
               <Link to={`/blog/authors/${post.author.name}`}>
                 {post.author.name}
               </Link>{" "}
-              on {post.date}
+              on {post.createdAt}
             </span>
           </div>
           <SocialShare

@@ -9,6 +9,7 @@ const Footer = () => {
     query {
       site {
         siteMetadata {
+          title
           social {
             instagram
             twitter
@@ -23,7 +24,7 @@ const Footer = () => {
     <div className={styles.footerWrapper}>
       <footer className={styles.footer}>
         <div className={styles.footerColumnName}>
-          <span className={styles.name}>No Calories, No Problem</span>
+  <span className={styles.name}>{data.site.siteMetadata.title}</span>
         </div>
         <div className={styles.footerColumnLinks}>
           <Link to="/" className={styles.navItem}>

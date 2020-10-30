@@ -11,9 +11,8 @@ module.exports = {
     siteUrl: "https://blog50086.gtsb.io/",
     author: "Yannick Pferr",
     publisher: "Netlify",
-    title: "No Calories, No Problem",
-    shortTitle: "NCNP",
-    description: "No Calories, No Problem is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious. Never be hungry again!",
+    title: "The Filling Food Spot",
+    description: "The Filling Food Spot is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious. Never be hungry again!",
     image: "/images/logo.jpg",
     bannerImage: "/images/banner.png",
     blogPostsPerPage: 5,
@@ -154,8 +153,8 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         // req props
-        name: "No Calories, No Problem",
-        short_name: "NCNP",
+        name: "Filling Food Farm",
+        short_name: "FFF",
         start_url: "/",
         background_color: "#fff",
         theme_color: "#9c7c38",

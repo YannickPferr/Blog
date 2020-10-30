@@ -2,6 +2,22 @@
 
 // Hero section
 
+.hero-banner{
+  @extend .center;
+  @extend .w-100;
+}
+
+/* The hero image */
+.hero-image{
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 50vh;
+}
+
 .hero-section {
   @extend .bg-very-light-gray;
 
@@ -34,19 +50,26 @@
   @extend .order-3-l, .pb0-l;
 }
 
+.hero-text-wrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 .hero-title {
   @extend .text-color-secondary;
 
   @extend .dn, .f1, .fw5, .lh-copy, .ph4;
   @extend .db-l;
 
-  font-family: "Rock Salt", cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 .hero-subtitle {
-  @extend .f2, .lh-copy, .ph4;
+  @extend .f3, .lh-copy, .ph4, .fw8, .white;
 
-  font-family: "Mansalva", cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 // Main feature section

@@ -5,9 +5,9 @@
 // ********** Colors
 
 $color-primary: #e6eaf3;
-$color-secondary: #9c7c38;
-$color-tertiary: #38589c;
-$color-tertiary-light: #cdd5e6;
+$color-secondary: #ee6f57;
+$color-tertiary: #1f3c88;
+$color-tertiary-light: #44588a;
 
 // ********** Fonts
 
@@ -102,19 +102,19 @@ blockquote:before {
 // custom headings
 
 h1.page-heading {
-  @extend .f1, .fw1, .mb4, .mt6, .tc;
+  @extend .f1, .fw8, .mb4, .mt6, .tc;
 
-  font-family: "Mansalva", cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 h2.section-heading {
-  @extend .db, .f2, .fw1, .lh-copy, .mb3, .tc;
+  @extend .db, .f2, .fw8, .lh-copy, .mb3, .tc;
 
-  font-family: "Mansalva", cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 h3.section-sub-heading {
-  font-family: "Mansalva", cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 // links and buttons
@@ -124,13 +124,8 @@ h3.section-sub-heading {
 }
 
 .button-base {
-  @extend .br2, .ba, .f5, .pa3, .white;
+  @extend .br2, .f5, .pa3, .white;
   background-color: $color-tertiary;
-
-  &:hover {
-    border-color: $color-secondary;
-    color: white;
-  }
 }
 
 .icon-base {
