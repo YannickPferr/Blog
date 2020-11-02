@@ -9,7 +9,7 @@ const Header = () => {
     query {
       siteMetadata: site {
         siteMetadata {
-          title
+          logoTitle
           social {
             instagram
             twitter
@@ -25,7 +25,9 @@ const Header = () => {
         <nav className={styles.navMain}>
           <span>
             <Link to="/" className={styles.navHomeLink}>
-              {data.siteMetadata.siteMetadata.title}
+              <span className={styles.rwdLine}>the </span>
+              <span className={styles.rwdLine}>FILLING FOOD</span>
+              <span className={styles.rwdLine}> spot</span>
             </Link>
           </span>
 

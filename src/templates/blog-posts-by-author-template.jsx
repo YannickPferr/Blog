@@ -30,9 +30,7 @@ export const query = graphql`
             name
           }
           content {
-            childMarkdownRemark{
-              html
-            }
+            json
           }
           image {
             fluid {

@@ -3,14 +3,17 @@ import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+
 import PrevNext from "../components/prev-next"
 import Button from "../components/button"
 import SocialShare from "../components/social-share"
 
 import styles from "./blog-post-template.module.scss"
 
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+
 export const queryPostBySlug = graphql`
-  query($slug: String!){
+  query($tags: [String], $slug: String!){
     post: contentfulPost(title: {eq: $slug}) {
       createdAt(formatString: "MMMM Do, YYYY")
       previewText
@@ -22,9 +25,7 @@ export const queryPostBySlug = graphql`
         name
       }
       content {
-        childMarkdownRemark{
-          html
-        }
+        json
       }
       image {
         fluid {
@@ -36,6 +37,30 @@ export const queryPostBySlug = graphql`
           srcSetWebp
           srcWebp
           tracedSVG
+        }
+      }
+    }
+
+    latestPosts: allContentfulPost(filter: {tags: {elemMatch: {name: {in: $tags}}}}) {
+      edges {
+        node {
+          title
+          image {
+            fluid(maxWidth: 500, maxHeight: 500){
+              aspectRatio
+              base64
+              sizes
+              src
+              srcSet
+              srcSetWebp
+              srcWebp
+              tracedSVG
+            }
+          }
+          previewText
+          tags {
+            name
+          }
         }
       }
     }
@@ -71,8 +96,6 @@ const BlogPosts = ({ data, pageContext }) => {
       linkText: prev.title,
     }
 
-
-
   return (
     <Layout
       isArticle={true}
@@ -83,7 +106,7 @@ const BlogPosts = ({ data, pageContext }) => {
       pathName={`/blog/${post.title}`}
       datePublished={post.createdAt}
     >
-      <article className="ph4">
+      <article className={styles.article}>
         <header className={styles.header}>
           <h1 className={styles.title}>{post.title}</h1>
           <div>
@@ -111,10 +134,9 @@ const BlogPosts = ({ data, pageContext }) => {
           alt={post.imageAlt}
         />
 
-        <div
-          className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html}}
-        ></div>
+        <div className={styles.postContent}>
+          {documentToReactComponents(data.post.content.json)}
+        </div>
 
         <div className={styles.postEnd}>
           <h3 className="section-sub-heading">Thanks for reading!</h3>
@@ -127,6 +149,21 @@ const BlogPosts = ({ data, pageContext }) => {
 
         <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
       </article>
+      <div className={styles.sidebar}>
+        <h3>Similar recipes</h3>
+        {data.latestPosts.edges.map(node => (
+          <Link to={`/blog/${node.node.title}`} className="no-underline">
+            <div className={styles.recommendedPost}>
+              <Img
+                fluid={node.node.image.fluid} className={styles.recommendedPostImg} />
+              <div>
+                <h3>{node.node.title}</h3>
+                <p>{node.node.previewText}</p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </Layout>
   )
 }

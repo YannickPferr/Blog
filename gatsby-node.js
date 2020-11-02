@@ -23,6 +23,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             title
+            tags {
+              name
+            }
           }
           next {
             title
@@ -61,6 +64,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   const tags = res.data.tagsGroup.group
   const authors = res.data.authorsGroup.group
 
+
   // Create blog post detail pages
   // Example: /blog/my-first-post
   posts.forEach(({ node, next, previous }) => {
@@ -68,6 +72,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       component: blogPostTemplate,
       path: `/blog/${node.title}`,
       context: {
+        tags: node.tags.map(tag => tag.name),
         slug: node.title,
         prev: next, // prev = next is on purpose. in the context of the blog post template, the next post is the one posted later, not before
         next: previous, // see above comment

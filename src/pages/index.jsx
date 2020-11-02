@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
@@ -14,7 +14,7 @@ import styles from "./index.module.scss"
 const IndexPage = ({ data }) => {
   // Create sublist of featured tags where feature flag is set and a valid image is present
   let featuredTags = data.tagDetails.edges.filter(obj => {
-    return obj.node.featured === true && obj.node.featuredImage
+    return obj.node.featuredImage
   })
 
   return (
@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => {
               className={styles.heroImage}
             />
             <div className={styles.heroTextWrap}>
-              <h1 className={styles.heroTitle}>{data.heroSectionMarkdown.title}</h1>
+              <h2 className={styles.heroTitle}>{data.heroSectionMarkdown.title}</h2>
               <p className={styles.heroSubtitle}>{data.heroSectionMarkdown.subtitle}</p>
               <Button
                 linkUrl={data.heroSectionMarkdown.buttonLink}
@@ -40,6 +40,7 @@ const IndexPage = ({ data }) => {
       </section>
 
       {/* Main Feature*/}
+      {/*
       <section className={styles.mainFeatureSection}>
         <h2 className="section-heading">
           {data.mainFeatureSectionMarkdown.heading}
@@ -54,11 +55,16 @@ const IndexPage = ({ data }) => {
           linkText={data.mainFeatureSectionMarkdown.linkText}
         />
       </section>
+      */}
 
       {/* Latest Posts */}
       <section className={styles.latestPostsSection}>
         <h2 className="section-heading">Latest Posts</h2>
         <BlogList data={data.latestPosts} />
+        <Link to="/blog" className={styles.showAllLink}>
+          Show all posts
+        </Link>
+        
       </section>
 
       {/* Featured Tags */}
@@ -90,7 +96,10 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    latestPosts: allContentfulPost{
+    latestPosts: allContentfulPost(
+      limit: 3
+      sort: { fields: createdAt, order: DESC }
+    ){
       edges {
         node {
           id
@@ -119,11 +128,10 @@ export const query = graphql`
     }
     
 
-    tagDetails: allContentfulTag{
+    tagDetails: allContentfulTag(filter: {featured: {eq: true}}){
       edges {
         node {
           name
-          featured
           featuredImage {
             fluid(maxWidth: 800, quality: 90) {
               base64

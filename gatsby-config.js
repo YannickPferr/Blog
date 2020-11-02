@@ -11,11 +11,12 @@ module.exports = {
     siteUrl: "https://blog50086.gtsb.io/",
     author: "Yannick Pferr",
     publisher: "Netlify",
-    title: "The Filling Food Spot",
+    title: "The Filling Food Spot ",
+    logoTitle: "the FILLING FOOD spot",
     description: "The Filling Food Spot is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious. Never be hungry again!",
     image: "/images/logo.jpg",
     bannerImage: "/images/banner.png",
-    blogPostsPerPage: 5,
+    blogPostsPerPage: 3,
     social: {
       instagram: "",
       twitter: "",
@@ -153,8 +154,8 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         // req props
-        name: "Filling Food Farm",
-        short_name: "FFF",
+        name: "The Filling Food Spot",
+        short_name: "Filling Food Spot",
         start_url: "/",
         background_color: "#fff",
         theme_color: "#9c7c38",
