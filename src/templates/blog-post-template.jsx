@@ -46,7 +46,7 @@ export const queryPostBySlug = graphql`
         node {
           title
           image {
-            fluid(maxWidth: 500, maxHeight: 500){
+            fluid{
               aspectRatio
               base64
               sizes
