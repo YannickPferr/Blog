@@ -3,14 +3,14 @@ import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
-
+import RichText from "../components/rich-text"
 import PrevNext from "../components/prev-next"
 import Button from "../components/button"
 import SocialShare from "../components/social-share"
 
 import styles from "./blog-post-template.module.scss"
 
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+
 
 export const queryPostBySlug = graphql`
   query($tags: [String], $slug: String!){
@@ -36,14 +36,14 @@ export const queryPostBySlug = graphql`
           srcSet
           srcSetWebp
           srcWebp
-          tracedSVG
         }
       }
     }
 
-    latestPosts: allContentfulPost(filter: {tags: {elemMatch: {name: {in: $tags}}}}) {
+    relatedPosts: allContentfulPost(filter: {tags: {elemMatch: {name: {in: $tags}}}}) {
       edges {
         node {
+          id
           title
           image {
             fluid{
@@ -53,8 +53,7 @@ export const queryPostBySlug = graphql`
               src
               srcSet
               srcSetWebp
-              srcWebp
-              tracedSVG
+              srcWebp            
             }
           }
           previewText
@@ -135,7 +134,7 @@ const BlogPosts = ({ data, pageContext }) => {
         />
 
         <div className={styles.postContent}>
-          {documentToReactComponents(data.post.content.json)}
+          <RichText input={data.post.content} />
         </div>
 
         <div className={styles.postEnd}>
@@ -150,19 +149,21 @@ const BlogPosts = ({ data, pageContext }) => {
         <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
       </article>
       <div className={styles.sidebar}>
-        <h3>Similar recipes</h3>
-        {data.latestPosts.edges.map(node => (
-          <Link to={`/blog/${node.node.title}`} className="no-underline">
-            <div className={styles.recommendedPost}>
-              <Img
-                fluid={node.node.image.fluid} className={styles.recommendedPostImg} />
-              <div>
-                <h3>{node.node.title}</h3>
-                <p>{node.node.previewText}</p>
+        <div>
+          <h4 className={styles.sidebarTitle}>Related recipes</h4>
+          {data.relatedPosts.edges.map(node => (
+            <Link key={node.node.id} to={`/blog/${node.node.title}`} className="no-underline">
+              <div className={styles.recommendedPost}>
+                <Img
+                  fluid={node.node.image.fluid} className={styles.recommendedPostImg} />
+                <div>
+                  <h4>{node.node.title}</h4>
+                  <p>{node.node.previewText}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </Layout>
   )

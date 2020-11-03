@@ -27,8 +27,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        spaceId: "tgi35a6p4n2x",
+        accessToken: "HizkXmFOQq3I-VXPzcTN80isxu9AXsH9NP9ZCFeMbVE",
       },
     },
     "gatsby-plugin-sass",
@@ -99,7 +99,7 @@ module.exports = {
             query: `
               {
                 allContentfulPost(  
-                  sort: { fields: date, order: DESC }
+                  sort: { fields: createdAt, order: DESC }
                   ){
                   edges {
                     node {
@@ -107,15 +107,13 @@ module.exports = {
                       author {
                         name
                       }
-                      date
+                      createdAt
                       previewText
                       tags{
                         name
                       }
                       content {
-                        childMarkdownRemark{
-                          html
-                        }
+                        json
                       }
                     }
                   }
@@ -168,7 +166,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-offline",
       options: {
-        precachePages: ["", "/blog", "/about"],
+        precachePages: ["/blog", "/about"],
       },
     },
   ],

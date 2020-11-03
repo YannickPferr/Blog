@@ -3,6 +3,7 @@ import React from "react"
 import SEO from "./seo"
 import Header from "./header"
 import Footer from "./footer"
+//import Search from "./search"
 
 import "../styles/main.scss"
 import styles from "./layout.module.scss"

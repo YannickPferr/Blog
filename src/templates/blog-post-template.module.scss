@@ -65,7 +65,9 @@
   }
 }
 
-.sidebar h3{
+.sidebar-title{
+  @extend .ph4;
+  @extend .ph0-l;
   white-space: nowrap;
 }
 
@@ -76,6 +78,8 @@
 }
 
 .recommended-post-img{
+  height: 150px;
+  min-width: 267px;
   @extend .w-100, .dib, .tl, .v-mid;
   @extend .w-third-m, .dtc-m;
   @extend .w5-l, .db-l;
@@ -87,6 +91,6 @@
   @extend .db-l;
 }
 
-.recommended-post h3, .recommended-post p{
-  @extend .mv1;
+.recommended-post h4, .recommended-post p{
+  @extend .mv1, .f5;
 }

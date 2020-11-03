@@ -1,0 +1,28 @@
+@import "../styles/main.scss";
+
+.search-section {
+    @extend .tc;
+}
+
+.search-container{
+    @extend .bg-primary,
+    .tc,
+    .br-pill,
+    .bw0,
+    .outline-0,
+    .f4,
+    .input-reset,
+    .lh-solid,
+    .pa3,
+    .w-100;
+
+  /*text-align: center;
+  background-color: aliceblue;
+  /* border-style: solid; */
+  /* border-color: grey; */
+  /* border-width: 0.1em; */
+  /*border-radius: 1em;
+  /* outline-color: white; */
+  /* border-style: solid; */
+  /*outline: none; */
+}

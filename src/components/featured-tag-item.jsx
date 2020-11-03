@@ -9,7 +9,7 @@ const FeaturedTagItem = ({ tag, heading, image, imageAlt }) => {
     <div className={styles.featuredTagItem}>
       <Link to={`/blog/tags/${tag}`}>
         <h3 className="section-sub-heading">{heading}</h3>
-        <Img fluid={image} alt={imageAlt} />
+        <Img className={styles.featuredTagImg} fluid={image} alt={imageAlt} />
       </Link>
     </div>
   )
