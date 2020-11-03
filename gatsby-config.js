@@ -27,8 +27,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "tgi35a6p4n2x",
-        accessToken: "HizkXmFOQq3I-VXPzcTN80isxu9AXsH9NP9ZCFeMbVE",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     "gatsby-plugin-sass",
@@ -130,15 +130,15 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
     },
     "gatsby-plugin-robots-txt",
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: "", // Google Analytics Tracking ID
-    //     head: false,
-    //     respectDNT: true,
-    //     cookieDomain: "", // Your Domain
-    //   },
-    // },
+    {
+       resolve: `gatsby-plugin-google-analytics`,
+       options: {
+         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // Google Analytics Tracking ID
+         head: false,
+         respectDNT: true,
+         cookieDomain: "fillingfoodspot.netlify.app", // Your Domain
+       },
+    },
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-web-font-loader",
