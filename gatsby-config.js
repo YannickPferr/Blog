@@ -25,6 +25,15 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-gtag`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // Google Analytics Tracking ID
+        head: true,
+        respectDNT: true,
+        anonymize: true,
+      },
+    },
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -130,15 +139,6 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
     },
     "gatsby-plugin-robots-txt",
-    {
-       resolve: `gatsby-plugin-google-analytics`,
-       options: {
-         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // Google Analytics Tracking ID
-         head: false,
-         respectDNT: true,
-         cookieDomain: "fillingfoodspot.netlify.app", // Your Domain
-       },
-    },
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-web-font-loader",
