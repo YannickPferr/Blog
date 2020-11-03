@@ -3,9 +3,9 @@ import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import Button from "../components/button"
 import RichText from "../components/rich-text"
 import PrevNext from "../components/prev-next"
-import Button from "../components/button"
 import SocialShare from "../components/social-share"
 
 import styles from "./blog-post-template.module.scss"
