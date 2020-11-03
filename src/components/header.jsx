@@ -25,9 +25,7 @@ const Header = () => {
         <nav className={styles.navMain}>
           <span>
             <Link to="/" className={styles.navHomeLink}>
-              <span className={styles.rwdLine}>the </span>
-              <span className={styles.rwdLine}>FILLING FOOD</span>
-              <span className={styles.rwdLine}> spot</span>
+              the FILLING FOOD spot
             </Link>
           </span>
 

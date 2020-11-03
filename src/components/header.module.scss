@@ -19,7 +19,7 @@
     height: 102px;
   }
   @media screen and(max-width: 30em)  {
-    height: 174px;
+    height: 90px;
   }
 
   border-bottom: 1px solid $color-secondary;
@@ -46,8 +46,9 @@
 .nav-home-link {
   @extend .text-color-secondary;
 
-  @extend .bb, .db, .f3, .mb2, .no-underline, .pb2, .tc, .v-mid, .lh-copy;
-  @extend .bb-0-l, .dtc-l, .pb0-l, .tl-l, .nowrap-l, .lh-solid-l;
+  @extend .bb, .db, .f5, .mb2, .no-underline, .pb2, .tc, .v-mid, .lh-copy;
+  @extend .f3-m;
+  @extend .bb-0-l, .dtc-l, .pb0-l, .tl-l, .nowrap-l, .lh-solid-l, .f3-l;
 
   &:hover {
     @extend .text-color-secondary;

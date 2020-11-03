@@ -2,9 +2,9 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import Button from "../components/button"
 import BlogList from "../components/blog-list"
 import PrevNext from "../components/prev-next"
-import Button from "../components/button"
 
 export const query = graphql`
   query($author: String!, $skip: Int!, $limit: Int!) {
