@@ -62,7 +62,7 @@ module.exports = {
       },
     },
     "gatsby-transformer-sharp",
-    {
+    /*{
       resolve: "gatsby-plugin-feed",
       options: {
         query: `
@@ -125,7 +125,7 @@ module.exports = {
           },
         ],
       },
-    },
+    },*/
     {
       resolve: `gatsby-plugin-sitemap`,
     },
@@ -156,7 +156,7 @@ module.exports = {
         short_name: "Filling Food Spot",
         start_url: "/",
         background_color: "#fff",
-        theme_color: "#9c7c38",
+        theme_color: "#ee6f57",
         display: "minimal-ui",
         // optional
         icon: "static/images/logo.jpg",
