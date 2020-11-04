@@ -8,12 +8,12 @@ require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://blog50086.gtsb.io/",
+    siteUrl: "https://fillingfoodspot.netlify.app",
     author: "Yannick Pferr",
     publisher: "Netlify",
     title: "The Filling Food Spot ",
     logoTitle: "the FILLING FOOD spot",
-    description: "The Filling Food Spot is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious. Never be hungry again!",
+    description: "The Filling Food Spot is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious.",
     image: "/images/logo.jpg",
     bannerImage: "/images/banner.png",
     blogPostsPerPage: 3,
@@ -24,15 +24,6 @@ module.exports = {
     mailchimpUrl: "",
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-gtag`,
-      options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // Google Analytics Tracking ID
-        head: true,
-        respectDNT: true,
-        anonymize: true,
-      },
-    },
     {
       resolve: `gatsby-source-contentful`,
       options: {

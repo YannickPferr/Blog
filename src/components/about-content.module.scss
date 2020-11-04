@@ -3,22 +3,21 @@
 .section-wrapper {
   @extend .bg-primary;
 
-  @extend .center, .flex, .flex-column, .items-center, .mb5;
+  @extend .center, .flex, .flex-column, .items-center, .mb5, .br4;
   @extend .flex-row-l, .mb6-l;
 }
 
 .copy-wrapper {
   @extend .order-1, .pa2, .tc, .w-90;
-  @extend .pa4-l, .tl-l, .w-50-l;
+  @extend .pa4-l, .w-50-l;
 }
 
 .image-wrapper {
-  @extend .order-5, .pa2, .w-90;
+  @extend .order-5, .pa2, .w-90, .br4, .br--right;
   @extend .w-50-l;
 }
 
 .image-wrapper-first {
-  @extend .image-wrapper;
-
-  @extend .order-0-l;
+  @extend .order-5, .pa2, .w-90, .br4, .br--left;
+  @extend .w-50-l, .order-0-l;
 }

@@ -14,6 +14,7 @@ const AboutPage = ({ data }) => {
       {
         data.aboutSections.edges.map(obj => {
           return <AboutContent
+            key={obj.node.id}
             heading={obj.node.heading}
             copy={obj.node.text.childMarkdownRemark.html}
             image={obj.node.image.fluid}
@@ -41,6 +42,7 @@ export const query = graphql`
     aboutSections: allContentfulAboutContent  {
       edges{
         node{
+          id
           heading
           image{
             fluid(maxWidth: 900, quality: 90) {

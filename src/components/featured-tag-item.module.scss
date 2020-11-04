@@ -17,6 +17,7 @@
   }
 
   .featured-tag-img{
+    @extend .br4, .mb4;
     height: 280px;
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-voyager",
+  "name": "The Filling Food Spot",
   "private": true,
-  "description": "A feature-rich Gatsby starter blog.",
+  "description": "Blog about low calorie recipes",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {

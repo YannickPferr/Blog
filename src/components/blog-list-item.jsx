@@ -24,6 +24,7 @@ const BlogListItem = ({ node }) => {
           <div className={styles.postColumn}>
             <Img
               fluid={node.image.fluid}
+              className={styles.postImg}
               alt={node.imageAlt}
             />
           </div>

@@ -3,7 +3,7 @@
 .final-section-wrapper {
   background-color: $color-tertiary-light;
 
-  @extend .mb5, .pa5;
+  @extend .mb5, .pa5, .br4;
   @extend .mb6-l;
 
   p {

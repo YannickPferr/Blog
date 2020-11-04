@@ -72,7 +72,7 @@
 }
 
 .recommended-post{
-  @extend .dib, .mb4;
+  @extend .dib, .mb4, .w-90, .tl;
   @extend .dt-row-m;
   @extend .db-l;
 }
@@ -80,8 +80,8 @@
 .recommended-post-img{
   height: 150px;
   min-width: 267px;
-  @extend .w-90, .dib, .tl, .v-mid;
-  @extend .w-third-m, .dtc-m;
+  @extend .w-100, .dib, .tl, .v-mid;
+  @extend .w-50-m, .dtc-m;
   @extend .w5-l, .db-l;
 }
 
