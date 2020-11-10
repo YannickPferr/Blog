@@ -3,6 +3,8 @@ import { graphql, useStaticQuery } from "gatsby"
 
 import { FaFacebook, FaPinterest, FaTwitter } from "react-icons/fa"
 
+import styles from "./social-share.module.scss"
+
 const SocialShare = ({ text, shareTitle, shareUrl }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -17,7 +19,7 @@ const SocialShare = ({ text, shareTitle, shareUrl }) => {
   `)
 
   return (
-    <div className="mv3">
+    <div className={styles.container}>
       <span className="f6 gray">{text}</span>
       <a
         href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}&via=${data.site.siteMetadata.social.twitter}`}

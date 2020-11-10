@@ -85,7 +85,6 @@ const IndexPage = ({ data }) => {
           image={
             data.aboutSectionMarkdown.image.fluid
           }
-          imageAlt={data.aboutSectionMarkdown.imageAlt}
           imageFirst={true}
           button={{ text: "Read More", url: "/about" }}
         />
@@ -103,6 +102,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           author {
             name

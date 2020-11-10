@@ -1,13 +1,14 @@
 import React from "react"
+//import { Link, useStaticQuery } from "gatsby"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { FaInstagram, FaTwitter } from "react-icons/fa"
+//import { FaInstagram, FaTwitter } from "react-icons/fa"
 
 import styles from "./header.module.scss"
 
 const Header = () => {
   const data = useStaticQuery(graphql`
     query {
-      siteMetadata: site {
+      site {
         siteMetadata {
           logoTitle
           social {
@@ -25,18 +26,11 @@ const Header = () => {
         <nav className={styles.navMain}>
           <span>
             <Link to="/" className={styles.navHomeLink}>
-              the FILLING FOOD spot
+              {data.site.siteMetadata.logoTitle}
             </Link>
           </span>
 
           <div className={styles.navItemList}>
-            <Link
-              to="/"
-              className={styles.navItem}
-              activeClassName={styles.navItemActive}
-            >
-              Home
-            </Link>
             <Link
               to="/blog"
               className={styles.navItem}
@@ -52,7 +46,14 @@ const Header = () => {
             >
               About
             </Link>
-            <a
+            <Link
+              to="/contact"
+              className={styles.navItem}
+              activeClassName={styles.navItemActive}
+            >
+              Contact
+            </Link>
+            {/*<a
               href={`https://www.instagram.com/${data.siteMetadata.siteMetadata.social.instagram}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -67,7 +68,7 @@ const Header = () => {
               className="ml3 ml4-l"
             >
               <FaTwitter className="icon" alt="twitter icon link"/>
-            </a>
+            </a>*/}
           </div>
         </nav>
       </header>

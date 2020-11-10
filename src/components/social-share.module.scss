@@ -1,0 +1,7 @@
+@import "../styles/main.scss";
+
+.container{
+    @extend .tr;
+    margin-top: auto;
+    margin-bottom: auto;
+}

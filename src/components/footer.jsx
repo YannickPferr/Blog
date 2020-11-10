@@ -36,6 +36,9 @@ const Footer = () => {
           <Link to="/about" className={styles.navItem}>
             About
           </Link>
+          <Link to="/contact" className={styles.navItem}>
+            Contact
+          </Link>
           <hr />
           <div>
             <a

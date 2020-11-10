@@ -1,0 +1,33 @@
+@import "../styles/main.scss";
+
+.form {
+    @extend .center, .mw7;
+    @extend .br2-ns;
+  }
+  
+  .form-input {
+    @extend .br2,
+    .bn,
+    .bw1,
+    .outline-0,
+    .f4,
+    .input-reset,
+    .lh-solid,
+    .pa3,
+    .mv2,
+    .w-100;
+
+    background-color: white;
+    resize: none;
+  }
+  
+  .form-submit {
+    @extend .button-base;
+  
+    @extend .bn, .bg-animate, .button-reset, .dim, .pointer, .tc, .w-100;
+  
+    &:hover {
+      border-color: $color-secondary;
+      color: white;
+    }
+}

@@ -21,7 +21,7 @@ module.exports = {
       instagram: "",
       twitter: "",
     },
-    mailchimpUrl: "",
+    mailchimpUrl: "https://gmail.us2.list-manage.com/subscribe/post?u=4496257eb2519fb7538da613f&amp;id=3811aa9127",
   },
   plugins: [
     {

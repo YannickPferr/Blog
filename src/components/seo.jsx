@@ -3,13 +3,13 @@ import Helmet from "react-helmet"
 import { StaticQuery, graphql } from "gatsby"
 
 const SEO = ({
-  isArticle,
+  blogPost,
+  recipe,
   title,
   description,
   image,
   author,
   pathName,
-  datePublished,
 }) => {
   return (
     <StaticQuery
@@ -37,10 +37,11 @@ const SEO = ({
 
         let schemaOrgWebPage,
           schemaOrgBlogPosting,
+          schemaOrgRecipe,
           schemaOrgBreadcrumbList = null
 
         // Type WebPage: for all pages that aren't blog posts
-        if (!isArticle) {
+        if (!blogPost) {
           schemaOrgWebPage = {
             "@context": "http://schema.org",
             "@type": "WebPage",
@@ -57,7 +58,7 @@ const SEO = ({
               "@type": "Person",
               name: seo.author,
             },
-            copyrightYear: "2019",
+            copyrightYear: "2020",
             creator: {
               "@type": "Person",
               name: seo.author,
@@ -72,7 +73,7 @@ const SEO = ({
                 width: 600,
               },
             },
-            datePublished: "2019-10-13T00:00:00+02:00",
+            datePublished: "2020-11-5T00:00:00+02:00",
             dateModified: data.site.buildTime,
             image: {
               "@type": "ImageObject",
@@ -82,7 +83,7 @@ const SEO = ({
         }
 
         // Type BlogPosting: for all pages that are blog posts
-        if (isArticle) {
+        if (blogPost) {
           schemaOrgBlogPosting = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
@@ -90,14 +91,14 @@ const SEO = ({
               "@type": "WebPage",
               "@id": seo.url,
             },
-            headline: seo.title,
-            description: seo.description,
-            image: [seo.image],
-            datePublished: datePublished,
-            dateModified: datePublished,
+            headline: blogPost.title,
+            description: blogPost.description,
+            image: blogPost.image.fluid.src,
+            datePublished: blogPost.createdAt,
+            dateModified: blogPost.updatedAt,
             author: {
               "@type": "Person",
-              name: seo.author,
+              name: blogPost.author.name,
             },
             publisher: {
               "@type": "Organization",
@@ -108,6 +109,48 @@ const SEO = ({
                 height: 60,
                 width: 600,
               },
+            },
+          }
+        }
+
+        // Type Recipe: for all pages that include recipes
+        if (recipe) {
+          const recipeInstructions = []
+          recipe.recipeInstructions.forEach(howToStep => {
+            recipeInstructions.push({
+              "@type": "HowToStep",
+              name: howToStep.name,
+              text: howToStep.text.childMarkdownRemark.html,
+            })
+          })
+
+          schemaOrgRecipe = {
+            "@context": "https://schema.org",
+            "@type": "Recipe",
+            name: recipe.name,
+            description: recipe.description.childMarkdownRemark.html,
+            cookTime: recipe.cookTime,
+            nutrition: {
+              "@type": "NutritionInformation",
+              calories: recipe.nutrition.calories,
+              carbohydrateContent: recipe.nutrition.carbohydrateContent,
+              fatContent: recipe.nutrition.fatContent,
+              proteinContent: recipe.nutrition.proteinContent,
+              fiberContent: recipe.nutrition.fiberContent,
+              servingSize: recipe.nutrition.servingSize,
+            },
+            image: recipe.image.fluid.src,
+            recipeCategory: recipe.recipeCategory,
+            recipeCuisine: recipe.recipeCuisine,
+            recipeIngredient: recipe.recipeIngredient,
+            recipeInstructions: recipeInstructions,
+            recipeYield: recipe.recipeYield,
+            prepTime: recipe.prepTime,
+            totalTime: recipe.totalTime,
+            keywords: recipe.keywords.map(keyword => keyword.name),
+            author: {
+              "@type": "Person",
+              name: recipe.author.name,
             },
           }
         }
@@ -126,7 +169,7 @@ const SEO = ({
         ]
 
         // include blog post page if this is a blog post
-        if (isArticle) {
+        if (blogPost) {
           itemListElement.push({
             "@type": "ListItem",
             item: {
@@ -179,12 +222,17 @@ const SEO = ({
             <meta name="twitter:description" content={seo.description} />
             <meta name="twitter:image" content={seo.image} />
             {/* Schema Org */}
-            {!isArticle && (
+            {!blogPost && (
               <script type="application/ld+json">
                 {JSON.stringify(schemaOrgWebPage)}
               </script>
             )}
-            {isArticle && (
+            {recipe && (
+              <script type="application/ld+json">
+                {JSON.stringify(schemaOrgRecipe)}
+              </script>
+            )}
+            {blogPost && (
               <script type="application/ld+json">
                 {JSON.stringify(schemaOrgBlogPosting)}
               </script>

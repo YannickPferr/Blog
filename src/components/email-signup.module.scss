@@ -23,7 +23,8 @@
     .input-reset,
     .lh-solid,
     .pa3,
-    .w-100;
+    .w-100,
+    .outline-0;
   @extend .w-75-m;
   @extend .f5-l, .w-80-l;
   @extend .br2-ns, .br--left-ns;
@@ -32,7 +33,7 @@
 .form-submit {
   @extend .button-base;
 
-  @extend .bn, .bg-animate, .button-reset, .dim, .fl, .pointer, .tc, .w-100;
+  @extend .f6, .bn, .bg-animate, .button-reset, .dim, .fl, .pointer, .tc, .w-100;
   @extend .w-25-m;
   @extend .f5-l, .w-20-l;
   @extend .br2-ns, .br--right-ns;

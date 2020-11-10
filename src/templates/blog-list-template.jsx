@@ -18,6 +18,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           author {
             name
@@ -46,6 +47,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           author {
             name

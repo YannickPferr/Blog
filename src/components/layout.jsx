@@ -9,11 +9,11 @@ import "../styles/main.scss"
 import styles from "./layout.module.scss"
 
 const Layout = props => {
-  const { children, layoutFullWidth, isArticle, title, description, image, author, pathName, datePublished } = props
+  const { children, layoutFullWidth, blogPost, recipe, title, description, image, author, pathName } = props
 
   return (
     <>
-      <SEO isArticle={isArticle} title={title} description={description} image={image} author={author} pathName={pathName} datePublished={datePublished}/>
+      <SEO blogPost={blogPost} recipe={recipe} title={title} description={description} image={image} author={author} pathName={pathName} />
       <Header />
       {layoutFullWidth ? (
         <section className={styles.layout}>{children}</section>

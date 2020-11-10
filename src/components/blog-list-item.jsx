@@ -6,8 +6,8 @@ import styles from "./blog-list-item.module.scss"
 
 const BlogListItem = ({ node }) => {
   return (
-    <div key={node.title}>
-      <Link to={`/blog/${node.title}`} className="no-underline">
+    <div key={node.id}>
+      <Link to={`/blog/${node.slug}`} className="no-underline">
         <div className={styles.post}>
           <div className={styles.postColumn}>
             <h2 className={styles.title}>{node.title}</h2>
@@ -25,7 +25,6 @@ const BlogListItem = ({ node }) => {
             <Img
               fluid={node.image.fluid}
               className={styles.postImg}
-              alt={node.imageAlt}
             />
           </div>
         </div>

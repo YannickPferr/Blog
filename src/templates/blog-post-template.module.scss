@@ -94,3 +94,20 @@
 .recommended-post h4, .recommended-post p{
   @extend .mv1, .f5;
 }
+
+.recipe-section {
+  @extend .pa4, .ba;
+}
+
+.recipe-img{
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  margin: 0 auto;
+  border-style: solid;
+}
+
+.recipe-header{
+  @extend .tc, .mb4;
+}
+
