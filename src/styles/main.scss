@@ -29,6 +29,7 @@ body {
   @extend .bg-white, .dark-gray, .f4;
 
   font-family: "Open Sans", sans-serif;
+  word-break: break-word;
 }
 
 p {
@@ -102,13 +103,13 @@ blockquote:before {
 // custom headings
 
 h1.page-heading {
-  @extend .f1, .fw8, .mb4, .mt6, .tc;
+  @extend .fw8, .mb4, .mt6, .tc;
  
   font-family: "Open Sans", sans-serif;
 }
 
 h2.section-heading {
-  @extend .db, .f2, .fw8, .lh-copy, .mb3, .tc;
+  @extend .db, .fw8, .lh-copy, .mb3, .tc;
 
   font-family: "Open Sans", sans-serif;
 }

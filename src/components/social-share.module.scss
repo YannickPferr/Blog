@@ -1,7 +1,16 @@
 @import "../styles/main.scss";
 
 .container{
-    @extend .tr;
+    @extend .tc;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.container div{
+    @extend .di;
+}
+
+.container span{
+    @extend .db;
+    @extend .di-l;
 }

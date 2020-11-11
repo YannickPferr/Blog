@@ -2,12 +2,15 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import { format, parseISO } from "date-fns"
+import * as duration from 'duration-fns'
 
 import Layout from "../components/layout"
 import Button from "../components/button"
 import RichText from "../components/rich-text"
 import PrevNext from "../components/prev-next"
 import SocialShare from "../components/social-share"
+
+import { FaRegClock, FaUtensils } from "react-icons/fa"
 
 import styles from "./blog-post-template.module.scss"
 
@@ -118,7 +121,6 @@ export const queryPostBySlug = graphql`
     }
   }
 `
-
 const BlogPosts = ({ data, pageContext }) => {
   const { post } = data
   const { next, prev } = pageContext
@@ -179,32 +181,38 @@ const BlogPosts = ({ data, pageContext }) => {
         </div>
 
         {/* Recipe if available */}
-        {post.recipe && <section className={styles.recipeSection}>
+        {post.recipe && <section id="recipe" className={styles.recipeSection}>
           <header className={styles.recipeHeader}>
             <Img fluid={post.image.fluid} className={styles.recipeImg} />
-            <div><h1 className={styles.pageHeading}>{post.recipe.name}</h1></div>
+            <div><h2 className={styles.pageHeading}>{post.recipe.name}</h2></div>
             <div><p>RATING</p></div>
-            <div><p>Prep time: {post.recipe.prepTime} | Cook time: {post.recipe.cookTime} | Yields: {post.recipe.recipeYield}</p></div>
+            <div className={styles.infoContainer}>
+              <div><FaRegClock className="icon-medium" /><p><strong>Prep time:</strong> {duration.toMinutes(duration.parse(post.recipe.prepTime)) + " min"}</p></div>
+              <div><FaRegClock className="icon-medium" /><p><strong>Cook time:</strong> {duration.toMinutes(duration.parse(post.recipe.cookTime)) + " min"}</p></div>
+              <div><FaUtensils className="icon-medium" /><p><strong>Yields:</strong> {post.recipe.recipeYield}</p></div>
+            </div>
             <div><p>{post.recipe.nutrition.calories} Calories | {post.recipe.nutrition.proteinContent} g Protein | {post.recipe.nutrition.fatContent} g Fat | {post.recipe.nutrition.carbohydrateContent} g Carbs</p></div>
           </header>
-          <hr></hr>
-          <div>
+          <div className={styles.recipeMainSection}>
             <div dangerouslySetInnerHTML={{ __html: post.recipe.description.childMarkdownRemark.html }}></div>
+            <hr></hr>
             <div>
-              <p>Ingredients:</p>
+              <p><strong>Ingredients:</strong></p>
               <ul>
                 {post.recipe.recipeIngredient.map(ingredient => <li key={ingredient}>{ingredient}</li>)}
               </ul>
             </div>
+            <hr></hr>
             <div>
-              <p>Instructions:</p>
-              <ul>
+              <p><strong>Instructions:</strong></p>
+              <ol>
                 {post.recipe.recipeInstructions.map(obj => <li key={obj.name}>{obj.name}</li>)}
-              </ul>
+              </ol>
             </div>
-            <div><p>Tools: {post.recipe.tool}</p></div>
-            <div><p>Category: {post.recipe.recipeCategory} | Cuisine: {post.recipe.recipeCuisine}</p></div>
-            <div><p>Keywords: {post.recipe.keywords.map(obj => obj.name).join(", ")}</p></div>
+            <hr></hr>
+            <div><p><strong>Tools:</strong> {post.recipe.tool}</p></div>
+            <div><p><strong>Category:</strong> {post.recipe.recipeCategory} | Cuisine: {post.recipe.recipeCuisine}</p></div>
+            <div><p><strong>Keywords:</strong> {post.recipe.keywords.map(obj => obj.name).join(", ")}</p></div>
           </div>
         </section>}
 
