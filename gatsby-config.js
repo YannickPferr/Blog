@@ -131,27 +131,7 @@ module.exports = {
     },
     "gatsby-plugin-robots-txt",
     "gatsby-plugin-react-helmet",
-    {
-      resolve: `gatsby-plugin-webfonts`,
-      options: {
-        fonts: {
-          google: [
-            {
-              family: "Open Sans",
-              variants: ["400", "700", "800"],
-            },
-            {
-              family: "Rock Salt",
-              variants: ["400"],
-            },
-            {
-              family: "Lily Script One",
-              variants: ["400"],
-            },
-          ],
-        },
-      },
-    },
+    
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -171,6 +151,15 @@ module.exports = {
       resolve: "gatsby-plugin-offline",
       options: {
         precachePages: ["/blog", "/about"],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: ["Open Sans, Rock Salt"],
+          urls: ["/fonts/fonts.css"],
+        },
       },
     },
   ],
