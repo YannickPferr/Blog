@@ -1,0 +1,8 @@
+@import "../styles/main.scss";
+
+.privacy-policy{
+  @extend .mb5, .pa5, .tc, .br4;
+  @extend .mb6-l;
+
+  background-color: $color-primary;
+}

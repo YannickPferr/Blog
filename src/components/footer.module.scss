@@ -9,13 +9,27 @@
 .footer {
   @extend .standard-page-width;
 
-  @extend .center, .flex, .flex-column, .items-baseline, .ph2, .pv5;
-  @extend .flex-row-l, .justify-between-l;
+  @extend .center, .db, .pv5;
 }
 
 .footer-column {
   @extend .center, .w-100;
   @extend .w-third-l;
+}
+
+.footer-row {
+  @extend .center, .h-50, .w-100, .tc;
+}
+
+.footer-row-content{
+  @extend .footer-row;
+
+  @extend .center, .flex, .flex-column, .items-baseline, .ph2;
+  @extend .flex-row-l, .justify-between-l;
+}
+
+.footer-row-meta{
+  @extend .footer-row;
 }
 
 .footer-column-name {
@@ -28,7 +42,7 @@
 .footer-column-links {
   @extend .footer-column;
 
-  @extend .mv3, .tc;
+  @extend .mt3, .tc;
 }
 
 .nav-item {
@@ -40,7 +54,7 @@
 .footer-column-social {
   @extend .footer-column;
 
-  @extend .tc;
+  @extend .tc, .mb3;
   @extend .tr-l;
 
   a {
@@ -51,7 +65,7 @@
 .name {
   @extend .text-color-secondary;
 
-  @extend .f4, .fw5;
+  @extend .f4;
 
   font-family: "Rock Salt", cursive;
 }

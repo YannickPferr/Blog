@@ -16,6 +16,13 @@
   background-size: cover;
   position: relative;
   height: 50vh;
+
+  @media screen and (max-width: 60em) {
+    height: calc(100vh - 102px);
+  }
+  @media screen and(max-width: 30em)  {
+    height: calc(100vh - 90px);
+  }
 }
 
 .hero-section {

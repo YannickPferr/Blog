@@ -5,20 +5,26 @@ export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-DP143SBMCB"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DP143SBMCB');
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            function loadGAonConsent() {
+              if (parseInt(navigator.doNotTrack) !== 1 && parseInt(window.doNotTrack) !== 1 && parseInt(navigator.msDoNotTrack) !== 1){
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DP143SBMCB');
+                var gascript = document.createElement("script");
+                gascript.async = true;
+                gascript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP143SBMCB";
+                document.getElementsByTagName("head")[0].appendChild(gascript, document.getElementsByTagName("head")[0]);
+              }
+            }
+
+            if (document.cookie.split(';').filter(item => item.indexOf('gatsby-gdpr-google-analytics=true') >= 0).length) {
+                loadGAonConsent();
+            }
         `,
-          }}
-        />
+        }}/>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta

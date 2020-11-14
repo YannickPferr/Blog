@@ -58,7 +58,7 @@ blockquote {
 }
 
 blockquote p {
-  @extend .f2, .fw5, .tc;
+  @extend .f2, .tc;
 }
 
 blockquote cite {
@@ -103,13 +103,13 @@ blockquote:before {
 // custom headings
 
 h1.page-heading {
-  @extend .fw8, .mb4, .mt6, .tc;
+  @extend .mb4, .mt6, .tc;
  
   font-family: "Open Sans", sans-serif;
 }
 
 h2.section-heading {
-  @extend .db, .fw8, .lh-copy, .mb3, .tc;
+  @extend .db, .lh-copy, .mb3, .tc;
 
   font-family: "Open Sans", sans-serif;
 }

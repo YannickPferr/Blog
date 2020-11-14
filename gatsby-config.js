@@ -8,7 +8,7 @@ require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://fillingfoodspot.netlify.app",
+    siteUrl: "https://fillingfoodspot.com",
     author: "Yannick Pferr",
     publisher: "Netlify",
     title: "The Filling Food Spot ",
@@ -132,10 +132,23 @@ module.exports = {
     "gatsby-plugin-robots-txt",
     "gatsby-plugin-react-helmet",
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        google: {
-          families: ["Open Sans", "Rock Salt", "Mansalva", "Lily Script One"],
+        fonts: {
+          google: [
+            {
+              family: "Open Sans",
+              variants: ["400", "700", "800"],
+            },
+            {
+              family: "Rock Salt",
+              variants: ["400"],
+            },
+            {
+              family: "Lily Script One",
+              variants: ["400"],
+            },
+          ],
         },
       },
     },
