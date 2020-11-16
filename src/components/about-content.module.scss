@@ -13,11 +13,11 @@
 }
 
 .image-wrapper {
-  @extend .order-5, .pa2, .w-90, .br4, .br--right;
-  @extend .w-50-l;
+  @extend .order-5, .w-100, .br4, .br--bottom;
+  @extend .w-50-l, .br--right-l, .br4-l;
 }
 
 .image-wrapper-first {
-  @extend .order-5, .pa2, .w-90, .br4, .br--left;
-  @extend .w-50-l, .order-0-l;
+  @extend .order-5, .w-100, .br4, .br--bottom;
+  @extend .w-50-l, .br--left-l, .br4-l, .order-0-l;
 }

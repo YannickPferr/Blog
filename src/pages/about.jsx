@@ -11,17 +11,19 @@ const AboutPage = ({ data }) => {
     <Layout title="About" pathName="/about">
       <h1 className="page-heading">About</h1>
 
-      {
-        data.aboutSections.edges.map(obj => {
-          return <AboutContent
-            key={obj.node.id}
-            heading={obj.node.heading}
-            copy={obj.node.text.childMarkdownRemark.html}
-            image={obj.node.image.fluid}
-            imageAlt={obj.node.imageAlt}
-          />;
-        })
-      }
+      <div className={styles.mainSectionWrapper}>
+        {
+          data.aboutSections.edges.map(obj => {
+            return <AboutContent
+              key={obj.node.id}
+              heading={obj.node.heading}
+              copy={obj.node.text.childMarkdownRemark.html}
+              image={obj.node.image.fluid}
+              imageAlt={obj.node.imageAlt}
+            />;
+          })
+        }
+      </div>
 
       <section className={styles.finalSectionWrapper}>
         <div>

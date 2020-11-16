@@ -1,9 +1,16 @@
 @import "../styles/main.scss";
 
+.main-section-wrapper{
+  @extend .center, .mv5, .ph2;
+  @extend .mv6-l;
+
+  @extend .standard-page-width;
+}
+
 .final-section-wrapper {
   background-color: $color-tertiary-light;
 
-  @extend .mb5, .pa5, .br4;
+  @extend .mh2, .mb5, .pa5, .br4;
   @extend .mb6-l;
 
   p {

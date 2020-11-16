@@ -1,7 +1,7 @@
 @import "../styles/main.scss";
 
 .container {
-    @extend .flex, .flex-wrap, .tc;
+    @extend .flex, .flex-wrap, .tc, .mh2;
 
     justify-content: start;
 }

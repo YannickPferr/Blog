@@ -4,17 +4,20 @@
   @extend .bg-very-light-gray;
   @extend .br4, .dark-gray, .flex, .flex-column, .items-center, .mv2;
 
-  margin-left: 0.5%;
-  margin-right: 0.5%;
-
   @media screen and (min-width: 60em){
     flex: 0 1 32%;
+    margin-left: 0.66%;
+    margin-right: 0.66%;
   }
   @media screen and (min-width: 30em) and (max-width: 60em){
     flex: 0 1 49%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
   }
   @media screen and (max-width: 30em){
-    flex: 0 1 100%;
+    flex: 0 1 99%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
   }
 }
 

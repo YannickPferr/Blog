@@ -12,7 +12,7 @@ const ContactPage = ({ data }) => {
 
       <section id="contactUs" className={styles.contactSection}>
         <h2>Tell us whatever you want to tell us!</h2>
-        <p>Let us know your opinion about recipes you tried! Was it good? Was it horrible? Did it make you full?</p>
+        <p>Submit a recipe you want us to try or tell us your opinion about recipes you tried! Was it good? Was it horrible? Did it make you full? Let us know!</p>
         <ContactForm></ContactForm>
       </section>
     </Layout>

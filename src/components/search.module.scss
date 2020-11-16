@@ -1,7 +1,7 @@
 @import "../styles/main.scss";
 
 .search-section {
-    @extend .tc;
+    @extend .tc, .mh2;
 }
 
 .search-container{
@@ -15,14 +15,4 @@
     .lh-solid,
     .pa3,
     .w-100;
-
-  /*text-align: center;
-  background-color: aliceblue;
-  /* border-style: solid; */
-  /* border-color: grey; */
-  /* border-width: 0.1em; */
-  /*border-radius: 1em;
-  /* outline-color: white; */
-  /* border-style: solid; */
-  /*outline: none; */
 }

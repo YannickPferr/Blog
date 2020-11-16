@@ -91,7 +91,7 @@
 // Latest posts section
 
 .latest-posts-section {
-  @extend .center, .tc;
+  @extend .center, .tc, .mt4;
   @extend .standard-page-width;
 }
 
@@ -123,7 +123,7 @@
 // About me section
 
 .about-me-section {
-  @extend .center, .mv5;
+  @extend .center, .mv5, .ph2;
   @extend .mv6-l;
 
   @extend .standard-page-width;

@@ -1,7 +1,7 @@
 @import "../styles/main.scss";
 
 .contact-section{
-  @extend .mb5, .pa5, .tc, .br4;
+  @extend .mh2, .mb5, .pa5, .tc, .br4;
   @extend .mb6-l;
 
   background-color: $color-primary;
