@@ -1,9 +1,21 @@
 @import "../styles/main.scss";
 
-.featured-tag-item {
-  @extend .center, .mt3, .ph3, .w-100;
-  @extend .w-50-m;
-  @extend .w-25-l;
+.post {
+  @extend .bg-very-light-gray;
+  @extend .br4, .dark-gray, .flex, .flex-column, .items-center, .mv2;
+
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+
+  @media screen and (min-width: 60em){
+    flex: 0 1 32%;
+  }
+  @media screen and (min-width: 30em) and (max-width: 60em){
+    flex: 0 1 49%;
+  }
+  @media screen and (max-width: 30em){
+    flex: 0 1 100%;
+  }
 
   transition: all 0.3s ease-in-out;
 
@@ -15,9 +27,44 @@
     @extend .bg-primary, .br4;
     transform: scale(1.03);
   }
+}
 
-  .featured-tag-img{
-    @extend .br4, .mb4;
-    height: 280px;
+.featured-tag-item {
+  @extend .br4, .dark-gray, .flex, .flex-column, .items-center, .mv2;
+
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+
+  @media screen and (min-width: 60em){
+    flex: 0 1 32%;
   }
+  @media screen and (min-width: 30em) and (max-width: 60em){
+    flex: 0 1 49%;
+  }
+  @media screen and (max-width: 30em){
+    flex: 0 1 100%;
+  }
+
+  transition: all 0.3s ease-in-out;
+
+  a {
+    @extend .no-underline;
+  }
+
+  &:hover {
+    @extend .br4;
+    transform: scale(1.03);
+  }
+}
+
+.featured-tag-item a{
+  height: 100%;
+  width: 100%;
+}
+
+
+.featured-tag-img{
+  @extend .br4;
+  height: 0px;
+  padding-bottom: 50%;
 }

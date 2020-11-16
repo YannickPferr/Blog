@@ -16,7 +16,7 @@ module.exports = {
     description: "The Filling Food Spot is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious.",
     image: "/images/logo.jpg",
     bannerImage: "/images/banner.png",
-    blogPostsPerPage: 3,
+    blogPostsPerPage: 9,
     social: {
       instagram: "",
       twitter: "",
@@ -131,7 +131,6 @@ module.exports = {
     },
     "gatsby-plugin-robots-txt",
     "gatsby-plugin-react-helmet",
-    
     {
       resolve: "gatsby-plugin-manifest",
       options: {

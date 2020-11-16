@@ -1,2 +1,7 @@
-.posts {
+@import "../styles/main.scss";
+
+.container {
+    @extend .flex, .flex-wrap, .tc;
+
+    justify-content: start;
 }

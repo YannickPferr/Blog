@@ -20,7 +20,7 @@
   @media screen and (max-width: 60em) {
     height: calc(100vh - 102px);
   }
-  @media screen and(max-width: 30em)  {
+  @media screen and (max-width: 30em)  {
     height: calc(100vh - 90px);
   }
 }
@@ -61,7 +61,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-75%);
     width: 100%
 }
 
@@ -91,16 +91,24 @@
 // Latest posts section
 
 .latest-posts-section {
-  @extend .center, .mv6, .tc;
-
+  @extend .center, .tc;
   @extend .standard-page-width;
+}
+
+.latest-posts-section hr{
+  @extend .mt5;
+  border-style: solid;
+  border-color: lightgray;
+  border-bottom: 1px;
+  @media screen and (max-width: 60em) {
+    width: 90%
+  }
 }
 
 // Feature tags sections
 
 .featured-tags-section {
   @extend .mh2, .mt5;
-  @extend .mh4-l, .mt6-l;
 }
 
 // Subscribe section

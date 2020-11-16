@@ -2,37 +2,55 @@
 
 .post {
   @extend .bg-very-light-gray;
-  @extend .br4, .dark-gray, .flex, .flex-column, .items-center, .mv4;
-  @extend .flex-row-l;
+  @extend .br4, .dark-gray, .flex, .flex-column, .items-center, .mv2;
+
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+
+  @media screen and (min-width: 60em){
+    flex: 0 1 32%;
+  }
+  @media screen and (min-width: 30em) and (max-width: 60em){
+    flex: 0 1 49%;
+  }
+  @media screen and (max-width: 30em){
+    flex: 0 1 100%;
+  }
+}
+
+.post a{
+  height: 100%;
+  width: 100%;
 }
 
 .post:hover {
   @extend .text-color-secondary;
 
   background: $color-primary;
+
+  .subtitle{
+    @extend .text-color-secondary;
+  }
 }
 
-.post-column {
-  @extend .w-100, .tc;
-  @extend .w-50-l;
+.post-content {
+  @extend .w-100, .tl, .pa2;
 }
 
 .post-img {
   
-  @extend .br4;
-  @extend .br--right-l;
+  @extend .br4, .br--top;
+  height: 0px;
+  padding-bottom: 75%;
+  //@extend .br--right-l;
 }
 
 .title {
-  @extend .f2, .lh-copy, .ma0;
+  @extend .f4, .lh-copy, .ma0;
 
   font-family: "Open Sans", sans-serif;
 }
 
 .subtitle {
-  @extend .f4, .i, .ma0, .mt3;
-}
-
-.tags {
-  @extend .flex, .flex-wrap, .justify-center, .i, .ma0;
+  @extend .f6, .ma0, .text-color-gray;
 }

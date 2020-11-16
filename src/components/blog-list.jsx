@@ -6,7 +6,7 @@ import styles from "./blog-list.module.scss"
 
 const BlogList = ({ data }) => {
   return (
-    <section className={styles.posts}>
+    <section className={styles.container}>
       {data.edges.map(({ node }) => (
         <BlogListItem key={node.id} node={node} />
       ))}

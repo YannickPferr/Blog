@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => {
         <Link to="/blog" className={styles.showAllLink}>
           Show all posts
         </Link>
-        
+        <hr></hr>
       </section>
 
       {/* Featured Tags */}
@@ -96,7 +96,7 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   query {
     latestPosts: allContentfulPost(
-      limit: 3
+      limit: 9
       sort: { fields: createdAt, order: DESC }
     ){
       edges {
