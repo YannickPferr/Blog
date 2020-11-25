@@ -10,7 +10,6 @@ export const query = graphql`
   query($tag: String!, $skip: Int!, $limit: Int!) {
     tag: contentfulTag(name: {eq: $tag}) {
       name
-      description
     }
 
     posts:  allContentfulPost(

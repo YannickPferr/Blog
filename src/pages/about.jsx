@@ -41,7 +41,7 @@ const AboutPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    aboutSections: allContentfulAboutContent  {
+    aboutSections: allContentfulAboutContent(sort: {fields: order}, filter: {order: {gt: 0}})  {
       edges{
         node{
           id

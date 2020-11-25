@@ -58,16 +58,12 @@ export const queryPostBySlug = graphql`
         prepTime
         totalTime
         tool
-        nutrition{
-          calories
-          proteinContent
-          fatContent
-          carbohydrateContent
-          fiberContent
-        }
-        keywords{
-          name
-        }
+        calories
+        proteinContent
+        fatContent
+        carbohydrateContent
+        fiberContent
+        keywords
         image{
           fluid{
             aspectRatio
@@ -87,10 +83,18 @@ export const queryPostBySlug = graphql`
             }
           }
         }
+        aggregateRating{
+          internal {
+            content
+          }
+        }
       }
     }
 
-    relatedPosts: allContentfulPost(filter: {tags: {elemMatch: {name: {in: $tags}}}}) {
+    relatedPosts: allContentfulPost(
+        filter: {tags: {elemMatch: {name: {in: $tags}}}}
+        limit: 5
+      ){
       edges {
         node {
           id
@@ -191,7 +195,7 @@ const BlogPosts = ({ data, pageContext }) => {
         }
 
         <div className={styles.postEnd}>
-          <h3 style={{"width": "50%"}} className={styles.sectionSubHeading}>Thanks for reading!</h3>
+          <h3 style={{ "width": "50%" }} className={styles.sectionSubHeading}>Thanks for reading!</h3>
           <SocialShare
             text="SHARE THIS POST"
             shareTitle={post.title}
@@ -202,23 +206,27 @@ const BlogPosts = ({ data, pageContext }) => {
         <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
       </article>
 
-      {/* Sidebar with related posts */}
+      {/* Sidebar with related posts if available*/}
       <div className={styles.sidebar}>
-        <div>
-          <h4 className={styles.sidebarTitle}>Related recipes</h4>
-          {data.relatedPosts.edges.map(edge => (
-            <Link key={edge.node.id} to={`/blog/${edge.node.slug}`} className="no-underline">
-              <div className={styles.recommendedPost}>
-                <Img
-                  fluid={edge.node.image.fluid} className={styles.recommendedPostImg} />
-                <div>
-                  <h4>{edge.node.title}</h4>
-                  <p>{edge.node.previewText}</p>
+        {
+          data.relatedPosts
+          &&
+          <div>
+            <h4 className={styles.sidebarTitle}>Related recipes</h4>
+            {data.relatedPosts.edges.map(edge => (
+              <Link key={edge.node.id} to={`/blog/${edge.node.slug}`} className="no-underline">
+                <div className={styles.recommendedPost}>
+                  <Img
+                    fluid={edge.node.image.fluid} className={styles.recommendedPostImg} />
+                  <div>
+                    <h4>{edge.node.title}</h4>
+                    <p>{edge.node.previewText}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        }
       </div>
     </Layout>
   )

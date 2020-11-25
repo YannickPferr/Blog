@@ -18,11 +18,10 @@
   height: 50vh;
 
   @media screen and (max-width: 60em) {
-    height: calc(100vh - 102px);
+    height: 100vh;
   }
-  @media screen and (max-width: 30em)  {
-    height: calc(100vh - 90px);
-  }
+
+  background: linear-gradient(0deg, black, transparent);
 }
 
 .hero-section {
@@ -61,7 +60,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-75%);
+    transform: translate(-50%,-50%);
     width: 100%
 }
 
@@ -74,7 +73,7 @@
 }
 
 .hero-subtitle {
-  @extend .lh-copy, .ph4, .white;
+  @extend .lh-copy, .ph4;//, .white;
 
   font-family: "Open Sans", sans-serif;
 }

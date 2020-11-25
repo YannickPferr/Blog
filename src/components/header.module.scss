@@ -1,9 +1,9 @@
 @import "../styles/main.scss";
 
 .sticky-header {
-  position: fixed;
+  position: absolute;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 100;
 }
 
@@ -11,18 +11,12 @@
   @extend .sticky-header;
 
   @extend .bg-white;
+  
+  border-bottom: 1px solid $color-secondary; 
+}
 
-  // Header is fixed at 66px on large screens, and 102px on smaller screens
-  // If this changes, change the layout margin as well to match
-  height: 66px;
-  @media screen and (max-width: 60em) {
-    height: 102px;
-  }
-  @media screen and(max-width: 30em)  {
-    height: 90px;
-  }
-
-  border-bottom: 1px solid $color-secondary;
+.header-wrapper-index{
+  @extend .sticky-header;
 }
 
 .header {

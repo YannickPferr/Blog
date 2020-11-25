@@ -10,7 +10,7 @@ import styles from "./layout.module.scss"
 import { Link } from "gatsby";
 
 const Layout = props => {
-  const { children, layoutFullWidth, blogPost, recipe, title, description, image, author, pathName } = props
+  const { children, layoutFullWidth, indexPage, blogPost, recipe, title, description, image, author, pathName } = props
 
   return (
     <>
@@ -36,7 +36,7 @@ const Layout = props => {
         }}>
         This site uses cookies, including from our partners, to enhance and personalise your experience. Learn more about our cookie policy <Link to="/privacy-policy" className={styles.cookiePolicyText}>here</Link>.
       </CookieConsent>
-      <Header />
+      <Header indexPage={indexPage}/>
       {layoutFullWidth ? (
         <section className={styles.layout}>{children}</section>
       ) : (

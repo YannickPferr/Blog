@@ -5,7 +5,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 
 import styles from "./header.module.scss"
 
-const Header = () => {
+const Header = ({ indexPage }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -20,59 +20,65 @@ const Header = () => {
     }
   `)
 
-  return (
-    <div className={styles.headerWrapper}>
-      <header className={styles.header}>
-        <nav className={styles.navMain}>
-          <span>
-            <Link to="/" className={styles.navHomeLink}>
-              {data.site.siteMetadata.logoTitle}
-            </Link>
-          </span>
+  const children = <header className={styles.header}>
+    <nav className={styles.navMain}>
+      <span>
+        <Link to="/" className={styles.navHomeLink}>
+          {data.site.siteMetadata.logoTitle}
+        </Link>
+      </span>
 
-          <div className={styles.navItemList}>
-            <Link
-              to="/blog"
-              className={styles.navItem}
-              activeClassName={styles.navItemActive}
-              partiallyActive={true}
-            >
-              Blog
-            </Link>
-            <Link
-              to="/about"
-              className={styles.navItem}
-              activeClassName={styles.navItemActive}
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              className={styles.navItem}
-              activeClassName={styles.navItemActive}
-            >
-              Contact
-            </Link>
-            {/*<a
-              href={`https://www.instagram.com/${data.siteMetadata.siteMetadata.social.instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml3 ml4-l"
-            >
-              <FaInstagram className="icon" alt="instagram icon link"/>
-            </a>
-            <a
-              href={`https://www.twitter.com/${data.siteMetadata.siteMetadata.social.twitter}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml3 ml4-l"
-            >
-              <FaTwitter className="icon" alt="twitter icon link"/>
-            </a>*/}
-          </div>
-        </nav>
-      </header>
-    </div>
+      <div className={styles.navItemList}>
+        <Link
+          to="/blog"
+          className={styles.navItem}
+          activeClassName={styles.navItemActive}
+          partiallyActive={true}
+        >
+          Blog
+      </Link>
+        <Link
+          to="/about"
+          className={styles.navItem}
+          activeClassName={styles.navItemActive}
+        >
+          About
+      </Link>
+        <Link
+          to="/contact"
+          className={styles.navItem}
+          activeClassName={styles.navItemActive}
+        >
+          Contact
+      </Link>
+        {/*<a
+        href={`https://www.instagram.com/${data.siteMetadata.siteMetadata.social.instagram}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ml3 ml4-l"
+      >
+        <FaInstagram className="icon" alt="instagram icon link"/>
+      </a>
+      <a
+        href={`https://www.twitter.com/${data.siteMetadata.siteMetadata.social.twitter}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ml3 ml4-l"
+      >
+        <FaTwitter className="icon" alt="twitter icon link"/>
+      </a>*/}
+      </div>
+    </nav>
+  </header>
+
+  return (
+    <>
+      {indexPage ? (
+          <div className={styles.headerWrapperIndex}>{children}</div>
+          ) : (
+          <div className={styles.headerWrapper}>{children}</div>
+        )}
+    </>
   )
 }
 

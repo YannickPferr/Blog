@@ -14,6 +14,12 @@ const BlogListItem = ({ node }) => {
         />
         <div className={styles.postContent}>
           <h2 className={styles.title}>{node.title}</h2>
+          {
+            node.recipe 
+            &&
+
+            <h3 className={styles.subtitle}>{ + " " + node.recipe.calories + " calories"}</h3>
+          }
           <h3 className={styles.subtitle}>{node.createdAt}</h3>
           <p>{node.previewText}</p>
         </div>

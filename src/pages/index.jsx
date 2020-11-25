@@ -18,7 +18,7 @@ const IndexPage = ({ data }) => {
   })
 
   return (
-    <Layout layoutFullWidth title="Home">
+    <Layout layoutFullWidth indexPage title="Home">
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroBanner}>
@@ -113,7 +113,7 @@ export const query = graphql`
             name
           }
           image {
-            fluid(maxWidth: 750, quality: 75) {
+            fluid {
               base64
               aspectRatio
               src
@@ -122,6 +122,9 @@ export const query = graphql`
               srcSetWebp
               sizes
             } 
+          }
+          recipe {
+            calories
           }
         }
       }
@@ -133,7 +136,7 @@ export const query = graphql`
         node {
           name
           featuredImage {
-            fluid(maxWidth: 800, quality: 90) {
+            fluid {
               base64
               aspectRatio
               src
@@ -153,7 +156,7 @@ export const query = graphql`
       buttonText
       buttonLink
       rightImage {
-        fluid(maxWidth: 800, quality: 90) {
+        fluid(maxWidth: 2500 quality: 100) {
           base64
           aspectRatio
           src
@@ -176,10 +179,10 @@ export const query = graphql`
       }
     }
 
-    aboutSectionMarkdown: contentfulAboutContent  {
+    aboutSectionMarkdown: contentfulAboutContent(order: {eq: 0}) {
       heading
       image{
-        fluid(maxWidth: 800, quality: 90) {
+        fluid {
           base64
           aspectRatio
           src
