@@ -20,8 +20,6 @@
   @media screen and (max-width: 60em) {
     height: 100vh;
   }
-
-  background: linear-gradient(0deg, black, transparent);
 }
 
 .hero-section {
@@ -73,7 +71,7 @@
 }
 
 .hero-subtitle {
-  @extend .lh-copy, .ph4;//, .white;
+  @extend .lh-copy, .ph4, .white;
 
   font-family: "Open Sans", sans-serif;
 }

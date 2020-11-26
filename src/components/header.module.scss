@@ -17,6 +17,10 @@
 
 .header-wrapper-index{
   @extend .sticky-header;
+
+  .nav-item{
+    @extend .white;
+  }
 }
 
 .header {

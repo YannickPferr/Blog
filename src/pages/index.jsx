@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Img from "gatsby-image"
+import BackgroundImage from 'gatsby-background-image'
 
 import Layout from "../components/layout"
 import Button from "../components/button"
@@ -17,14 +17,19 @@ const IndexPage = ({ data }) => {
     return obj.node.featuredImage
   })
 
+  const backgroundImage = [
+    `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))`,
+    data.heroSectionMarkdown.rightImage.fluid
+  ]
+
   return (
     <Layout layoutFullWidth indexPage title="Home">
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroBanner}>
           <div className={styles.heroImage}>
-            <Img
-              fluid={data.heroSectionMarkdown.rightImage.fluid}
+            <BackgroundImage
+              fluid={backgroundImage}
               className={styles.heroImage}
             />
             <div className={styles.heroTextWrap}>
@@ -113,7 +118,7 @@ export const query = graphql`
             name
           }
           image {
-            fluid {
+            fluid (maxWidth: 500) {
               base64
               aspectRatio
               src
@@ -156,14 +161,8 @@ export const query = graphql`
       buttonText
       buttonLink
       rightImage {
-        fluid(maxWidth: 2500 quality: 100) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
+        fluid(maxWidth: 2500) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
     }
@@ -183,13 +182,7 @@ export const query = graphql`
       heading
       image{
         fluid {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
+          ...GatsbyContentfulFluid_withWebp
         }
       } 
       text {

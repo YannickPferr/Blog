@@ -48,13 +48,7 @@ export const query = graphql`
           heading
           image{
             fluid(maxWidth: 900, quality: 90) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+              ...GatsbyContentfulFluid_withWebp
             }
           } 
           text {

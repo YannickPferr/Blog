@@ -152,14 +152,6 @@ module.exports = {
         precachePages: ["/blog", "/about"],
       },
     },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        custom: {
-          families: ["Open Sans, Rock Salt"],
-          urls: ["/fonts/fonts.css"],
-        },
-      },
-    },
+    `gatsby-plugin-preact`
   ],
 }

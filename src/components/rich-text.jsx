@@ -29,7 +29,7 @@ const options = {
             )
         },
         [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-            return <Link to={node.data.target}>{children}</Link>
+            return <Link to={"/blog/" + node.data.target.fields.slug["en-US"]}>{children}</Link>
         },
         [INLINES.HYPERLINK]: (node, children) => {
             return (

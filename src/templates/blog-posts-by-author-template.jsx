@@ -34,14 +34,8 @@ export const query = graphql`
             json
           }
           image {
-            fluid {
-              aspectRatio
-              base64
-              sizes
-              src
-              srcSet
-              srcSetWebp
-              srcWebp
+            fluid (maxWidth: 500) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

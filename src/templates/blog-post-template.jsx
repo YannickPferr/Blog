@@ -31,13 +31,7 @@ export const queryPostBySlug = graphql`
       }
       image {
         fluid {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-          srcSetWebp
-          srcWebp
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       recipe{
@@ -66,13 +60,7 @@ export const queryPostBySlug = graphql`
         keywords
         image{
           fluid{
-            aspectRatio
-            base64
-            sizes
-            src
-            srcSet
-            srcSetWebp
-            srcWebp
+            ...GatsbyContentfulFluid_withWebp
           }
         }
         recipeInstructions{
@@ -92,7 +80,7 @@ export const queryPostBySlug = graphql`
     }
 
     relatedPosts: allContentfulPost(
-        filter: {tags: {elemMatch: {name: {in: $tags}}}}
+        filter: {tags: {elemMatch: {name: {in: $tags}}}, slug: {ne: $slug}}
         limit: 5
       ){
       edges {
@@ -101,14 +89,8 @@ export const queryPostBySlug = graphql`
           title
           slug
           image {
-            fluid{
-              aspectRatio
-              base64
-              sizes
-              src
-              srcSet
-              srcSetWebp
-              srcWebp            
+            fluid (maxWidth: 500){
+              ...GatsbyContentfulFluid_withWebp           
             }
           }
           previewText
@@ -174,7 +156,7 @@ const BlogPosts = ({ data, pageContext }) => {
           <SocialShare
             text="SHARE THIS POST"
             shareTitle={post.title}
-            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.title}`}
+            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.slug}`}
           />
           <div className={styles.tagListContainer}>
             {post.tags.map(tag => (
@@ -199,7 +181,7 @@ const BlogPosts = ({ data, pageContext }) => {
           <SocialShare
             text="SHARE THIS POST"
             shareTitle={post.title}
-            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.title}`}
+            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${post.slug}`}
           />
         </div>
 

@@ -87,7 +87,8 @@ const Recipe = (data) => {
         </div>
         <hr></hr>
         <div><p><strong>Tools:</strong> {data.recipe.tool.join(", ")}</p></div>
-        <div><p><strong>Category:</strong> {data.recipe.recipeCategory} | Cuisine: {data.recipe.recipeCuisine}</p></div>
+        <div><p><strong>Category:</strong> {data.recipe.recipeCategory}</p></div>
+        <div><p><strong>Cusine:</strong> {data.recipe.recipeCuisine}</p></div>
         <div><p><strong>Keywords:</strong> {data.recipe.keywords.join(", ")}</p></div>
       </div>
     </section>

@@ -29,14 +29,8 @@ export const query = graphql`
             name
           }
           image {
-            fluid(maxWidth: 750, quality: 75) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+            fluid(maxWidth: 500) {
+              ...GatsbyContentfulFluid_withWebp
             } 
           }
         }
@@ -58,14 +52,8 @@ export const query = graphql`
             name
           }
           image {
-            fluid(maxWidth: 750, quality: 75) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+            fluid(maxWidth: 500) {
+              ...GatsbyContentfulFluid_withWebp
             } 
           }
         }
