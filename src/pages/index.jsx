@@ -91,7 +91,7 @@ const IndexPage = ({ data }) => {
             data.aboutSectionMarkdown.image.fluid
           }
           imageFirst={true}
-          button={{ text: "Read More", url: "/about" }}
+          button={{ text: "Learn More", url: "/about" }}
         />
       </section>
     </Layout>

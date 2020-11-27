@@ -152,6 +152,29 @@ module.exports = {
         precachePages: ["/blog", "/about"],
       },
     },
-    `gatsby-plugin-preact`
+    `gatsby-plugin-preact`,
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Open Sans",
+              variants: ["400", "700", "800"],
+              fontDisplay: 'swap',
+              strategy: 'selfHosted' 
+            },
+            {
+              family: "Rock Salt",
+              fontDisplay: 'swap',
+              strategy: 'selfHosted' 
+            }
+          ],
+        },
+        formats: ['woff2', 'woff'],
+        useMinify: true,
+        usePreload: true,
+      },
+    },
   ],
 }
