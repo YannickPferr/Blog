@@ -13,15 +13,15 @@ const AboutContent = ({
   imageFirst,
   button,
 }) => {
-  let imageClassName = imageFirst
-    ? styles.imageWrapperFirst
-    : styles.imageWrapper
+  let imageClassName = imageFirst ? styles.imageWrapperFirst : styles.imageWrapper
+
+  let contentWrapperClassName = image ? styles.contentWrapperWithImage : styles.contentWrapperWithoutImage
 
   return (
     <section className={styles.sectionWrapper}>
-      <div className={styles.copyWrapper}>
+      <div className={contentWrapperClassName}>
         <h2 className="section-heading">{heading}</h2>
-        <div
+        <div className={styles.textWrapper}
           dangerouslySetInnerHTML={{
             __html: copy,
           }}
@@ -29,7 +29,7 @@ const AboutContent = ({
         {button && <Button linkUrl={button.url} linkText={button.text} />}
       </div>
 
-      <Img fluid={image} alt={imageAlt} className={imageClassName} />
+      {image && <Img fluid={image.fluid} alt={imageAlt} className={imageClassName} />}
     </section>
   )
 }

@@ -18,7 +18,7 @@ const AboutPage = ({ data }) => {
               key={obj.node.id}
               heading={obj.node.heading}
               copy={obj.node.text.childMarkdownRemark.html}
-              image={obj.node.image.fluid}
+              image={obj.node.image}
               imageAlt={obj.node.imageAlt}
             />;
           })
@@ -28,11 +28,12 @@ const AboutPage = ({ data }) => {
       <section className={styles.finalSectionWrapper}>
         <div>
           <h2 className="section-heading">{data.aboutSectionFinal.heading}</h2>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: data.aboutSectionFinal.footerText.childMarkdownRemark.html,
-            }}
-          ></div>
+          {data.aboutSectionFinal.footerText &&
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.aboutSectionFinal.footerText.childMarkdownRemark.html,
+              }}
+            ></div>}
         </div>
       </section>
     </Layout>
@@ -47,7 +48,7 @@ export const query = graphql`
           id
           heading
           image{
-            fluid(maxWidth: 900, quality: 90) {
+            fluid(maxWidth: 900) {
               ...GatsbyContentfulFluid_withWebp
             }
           } 
@@ -62,11 +63,6 @@ export const query = graphql`
 
     aboutSectionFinal: contentfulAboutFooter  {
       heading
-      footerText {
-        childMarkdownRemark{
-          html
-        }
-      }
     }
   }
 `

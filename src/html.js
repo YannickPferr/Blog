@@ -12,7 +12,7 @@ export default function HTML(props) {
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-DP143SBMCB');
+                gtag('config', 'G-DP143SBMCB', {'anonymize_ip': true});
                 var gascript = document.createElement("script");
                 gascript.async = true;
                 gascript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP143SBMCB";

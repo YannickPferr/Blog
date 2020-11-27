@@ -7,9 +7,20 @@
   @extend .flex-row-l, .mb6-l;
 }
 
-.copy-wrapper {
+.content-wrapper-with-image {
   @extend .order-1, .pa2, .tc, .w-90;
   @extend .pa4-l, .w-50-l;
+}
+
+.content-wrapper-without-image {
+  @extend .order-1, .pa2, .tc;
+  @extend .pa4-l;
+}
+
+.text-wrapper{
+  ol, ul {
+    list-style-position: inside;
+  }
 }
 
 .image-wrapper {

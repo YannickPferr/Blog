@@ -87,9 +87,7 @@ const IndexPage = ({ data }) => {
         <AboutContent
           heading={data.aboutSectionMarkdown.heading}
           copy={data.aboutSectionMarkdown.text.childMarkdownRemark.html}
-          image={
-            data.aboutSectionMarkdown.image.fluid
-          }
+          image={data.aboutSectionMarkdown.image}
           imageFirst={true}
           button={{ text: "Learn More", url: "/about" }}
         />
