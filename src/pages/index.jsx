@@ -116,7 +116,7 @@ export const query = graphql`
             name
           }
           image {
-            fluid (maxWidth: 500) {
+            fluid (maxWidth: 500, quality: 50) {
               base64
               aspectRatio
               src
@@ -139,7 +139,7 @@ export const query = graphql`
         node {
           name
           featuredImage {
-            fluid {
+            fluid (maxWidth: 500, quality: 50){
               base64
               aspectRatio
               src
@@ -159,7 +159,7 @@ export const query = graphql`
       buttonText
       buttonLink
       rightImage {
-        fluid(maxWidth: 2500) {
+        fluid(maxWidth: 2500, quality: 50) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -179,7 +179,7 @@ export const query = graphql`
     aboutSectionMarkdown: contentfulAboutContent(order: {eq: 0}) {
       heading
       image{
-        fluid {
+        fluid (maxWidth: 500, quality: 50){
           ...GatsbyContentfulFluid_withWebp
         }
       } 

@@ -8,13 +8,13 @@ require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://fillingfoodspot.com",
+    siteUrl: "https://www.fillingfoodspot.com",
     author: "Yannick Pferr",
     publisher: "Netlify",
     title: "The Filling Food Spot ",
     logoTitle: "the FILLING FOOD spot",
     description: "The Filling Food Spot is a Blog about low calorie dense food! I want to show you the best recipes to really fill you up while also being delicious.",
-    image: "/images/logo.jpg",
+    image: "/images/logo.png",
     bannerImage: "/images/banner.png",
     blogPostsPerPage: 9,
     social: {

@@ -30,7 +30,7 @@ export const queryPostBySlug = graphql`
         json
       }
       image {
-        fluid {
+        fluid (maxWidth: 800, quality: 50){
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -59,7 +59,7 @@ export const queryPostBySlug = graphql`
         fiberContent
         keywords
         image{
-          fluid{
+          fluid(maxWidth: 400, quality: 50){
             ...GatsbyContentfulFluid_withWebp
           }
         }
@@ -89,7 +89,7 @@ export const queryPostBySlug = graphql`
           title
           slug
           image {
-            fluid (maxWidth: 500){
+            fluid (maxWidth: 500, quality: 50){
               ...GatsbyContentfulFluid_withWebp           
             }
           }

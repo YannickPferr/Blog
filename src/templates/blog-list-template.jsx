@@ -29,7 +29,7 @@ export const query = graphql`
             name
           }
           image {
-            fluid(maxWidth: 500) {
+            fluid(maxWidth: 500, quality: 50) {
               ...GatsbyContentfulFluid_withWebp
             } 
           }
@@ -52,7 +52,7 @@ export const query = graphql`
             name
           }
           image {
-            fluid(maxWidth: 500) {
+            fluid(maxWidth: 500, quality: 50) {
               ...GatsbyContentfulFluid_withWebp
             } 
           }

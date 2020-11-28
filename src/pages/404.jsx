@@ -20,7 +20,7 @@ const NotFound = ({ data }) => {
 export const query = graphql`
   query {
     photo404: contentfulAsset(title: {eq: "404"}) {
-      fluid {
+      fluid (maxWidth: 800, quality: 50){
         aspectRatio
         base64
         sizes
