@@ -40,7 +40,7 @@ module.exports = {
           // gatsby-remark-relative-images must
           // go before gatsby-remark-images
           {
-            resolve: `gatsby-remark-relative-images`,
+            resolve: "gatsby-remark-relative-images",
           },
           {
             resolve: "gatsby-remark-images",
@@ -127,7 +127,7 @@ module.exports = {
       },
     },*/
     {
-      resolve: `gatsby-plugin-sitemap`,
+      resolve: "gatsby-plugin-sitemap",
     },
     "gatsby-plugin-robots-txt",
     "gatsby-plugin-react-helmet",
@@ -146,13 +146,8 @@ module.exports = {
         include_favicon: false,
       },
     },
-    {
-      resolve: "gatsby-plugin-offline",
-      options: {
-        precachePages: ["/blog", "/about"],
-      },
-    },
-    `gatsby-plugin-preact`,
+    "gatsby-plugin-offline",
+    "gatsby-plugin-preact",
     {
       resolve: `gatsby-plugin-webfonts`,
       options: {
@@ -162,12 +157,12 @@ module.exports = {
               family: "Open Sans",
               variants: ["400", "700", "800"],
               fontDisplay: 'swap',
-              strategy: 'selfHosted' 
+              strategy: 'selfHosted'
             },
             {
               family: "Rock Salt",
               fontDisplay: 'swap',
-              strategy: 'selfHosted' 
+              strategy: 'selfHosted'
             }
           ],
         },
