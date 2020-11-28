@@ -142,7 +142,7 @@ module.exports = {
         theme_color: "#ee6f57",
         display: "minimal-ui",
         // optional
-        icon: "static/images/logo.jpg",
+        icon: "static/images/logo.png",
         include_favicon: false,
       },
     },
