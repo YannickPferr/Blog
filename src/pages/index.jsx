@@ -117,13 +117,7 @@ export const query = graphql`
           }
           image {
             fluid (maxWidth: 500, quality: 50) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+              ...GatsbyContentfulFluid_withWebp
             } 
           }
           recipe {
@@ -140,13 +134,7 @@ export const query = graphql`
           name
           featuredImage {
             fluid (maxWidth: 500, quality: 50){
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+              ...GatsbyContentfulFluid_withWebp
             } 
           }
         }
