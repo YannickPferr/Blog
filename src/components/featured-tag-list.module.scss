@@ -1,6 +1,8 @@
 @import "../styles/main.scss";
 
 .featured-tag-items-container {
-  @extend .flex, .flex-wrap, .tc;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
   justify-content: center;
 }

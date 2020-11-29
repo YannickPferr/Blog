@@ -60,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.footerRow}>
-          <div>
+          <div className={styles.metaLinks}>
             {/*<a
               href={data.site.siteMetadata.mailchimpUrl}
               target="__blank"
@@ -73,15 +73,15 @@ const Footer = () => {
               RSS
             </a>
             | */}
-            <a href="/sitemap.xml" className="nav-link mh3">
+            <a href="/sitemap.xml">
               Sitemap
             </a>
             |
-            <a href="/legal-notice" className="nav-link mh3">
+            <a href="/legal-notice">
               Legal Notice
             </a>
             |
-            <a href="/privacy-policy" className="nav-link mh3">
+            <a href="/privacy-policy">
               Privacy Policy
             </a>
           </div>

@@ -1,45 +1,95 @@
 @import "../styles/main.scss";
 
 .signup-section {
-  @extend .pa4;
-  @extend .pa5-l;
+  padding: $spacing4;
+
+  @media screen and (min-width: 60em) {
+    padding: $spacing5;
+  }
 }
 
 .form {
-  @extend .center, .mw7, .pa4, .tc;
-  @extend .br2-ns;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-width7;
+  padding: $spacing4;
+  text-align: center;
+
+  @media screen and (max-width: 30em) {
+    border-radius: $border-radius2;
+  }
 }
 
 .form-fieldset {
-  @extend .cf, .bn, .ma0, .pa0;
+  *zoom: 1;
+  border: none;
+  margin: $spacing0;
+  padding: $spacing0;
 }
 
 .form-input-email {
-  @extend .bg-white,
-    .black-80,
-    .bn,
-    .f6,
-    .fl,
-    .input-reset,
-    .lh-solid,
-    .pa3,
-    .w-100,
-    .outline-0;
-  @extend .w-75-m;
-  @extend .f5-l, .w-80-l;
-  @extend .br2-ns, .br--left-ns;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+  font-size: $font-size6;
+  float: left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  line-height: 1;
+  padding: $spacing3;
+  width: 100%;
+  outline: 0;
+
+  @media screen and (min-width: 60em) {
+    font-size: $font-size5;
+    width: 80%;
+  }
+
+  @media screen and (min-width: 30em) and (max-width: 60em) {
+    width: 75%;
+  }
+
+  @media screen and (max-width: 30em) {
+    border-radius: $border-radius2;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .form-submit {
   @extend .button-base;
 
-  @extend .f6, .bn, .bg-animate, .button-reset, .dim, .fl, .pointer, .tc, .w-100;
-  @extend .w-25-m;
-  @extend .f5-l, .w-20-l;
-  @extend .br2-ns, .br--right-ns;
+  font-size: $font-size6;
+  border: none;
+  float: left;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+
+  @media screen and (min-width: 60em) {
+    font-size: $font-size5;
+    width: 20%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @media screen and (min-width: 30em) and (max-width: 60em) {
+    width: 25%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @media screen and (max-width: 30em) {
+    border-radius: $border-radius2;
+  }
 
   &:hover {
     border-color: $color-secondary;
     color: white;
+    transition: background-color 0.15s ease-in-out;
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in;
   }
 }

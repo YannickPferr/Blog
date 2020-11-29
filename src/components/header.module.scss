@@ -10,8 +10,7 @@
 .header-wrapper {
   @extend .sticky-header;
 
-  @extend .bg-white;
-  
+  background-color: white;
   border-bottom: 1px solid $color-secondary; 
 }
 
@@ -19,19 +18,24 @@
   @extend .sticky-header;
 
   .nav-item{
-    @extend .white;
+    color: white;
   }
 }
 
 .header {
-  @extend .center;
+  margin-right: auto;
+  margin-left: auto;
 
   @extend .standard-page-width;
 }
 
 .nav-main {
-  @extend .border-box, .db, .pa3;
-  @extend .dt-l;
+  box-sizing: border-box;
+  display: block;
+  padding: $spacing3;
+  @media screen and (min-width: 60em) {
+    display: table;
+  }
 }
 
 .rwd-line{
@@ -44,27 +48,58 @@
 .nav-home-link {
   @extend .text-color-secondary;
 
-  @extend .bb, .db, .f5, .mb2, .no-underline, .pb2, .tc, .v-mid, .lh-copy;
-  @extend .f3-m;
-  @extend .bb-0-l, .dtc-l, .pb0-l, .tl-l, .nowrap-l, .lh-solid-l, .f3-l;
+  border-bottom: solid 1px; 
+  display: block;
+  font-size: $font-size5;
+  text-decoration: none;
+  margin-bottom: $spacing2;
+  padding-bottom: $spacing2;
+  text-align: center;
+  line-height: 1.5;
+  font-family: "Rock Salt";
 
   &:hover {
     @extend .text-color-secondary;
   }
 
-  font-family: "Rock Salt";
+  @media screen and (min-width: 60em) {
+    border-bottom: none;
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: $spacing0;
+    text-align: left;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: $font-size3;
+  }
+
+  @media screen and (min-width: 30em) and (max-width: 60em) {
+    font-size: $font-size3;
+  }
 }
 
 .nav-item-list {
-  @extend .db, .tc, .v-mid, .w-100;
-  @extend .dtc-l, .tr-l, .w-75-l;
+  display: block;
+  text-align: center;
+  width: 100%;
+
+  @media screen and (min-width: 60em) {
+    display: table-cell;
+    text-align: right;
+    width: 75%;
+    vertical-align: middle;
+  }
 }
 
 .nav-item {
   @extend .nav-link;
 
-  @extend .dib, .ml3;
-  @extend .ml4-l;
+  display: inline-block;
+  margin-left: $spacing3;
+
+  @media screen and (min-width: 60em) {
+    margin-left: $spacing4;
+  }
 }
 
 .nav-item-active {

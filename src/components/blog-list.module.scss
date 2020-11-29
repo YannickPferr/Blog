@@ -1,7 +1,10 @@
 @import "../styles/main.scss";
 
 .container {
-    @extend .flex, .flex-wrap, .tc, .mh2;
-
-    justify-content: start;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-left: $spacing2;
+    margin-right: $spacing2;
+    justify-content: flex-start;
 }

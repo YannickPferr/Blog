@@ -1,16 +1,24 @@
 @import "../styles/main.scss";
 
 .container{
-    @extend .tc;
+    text-align: center;
     margin-top: auto;
     margin-bottom: auto;
 }
 
 .container div{
-    @extend .di;
+    display: inline;
+
+    a {
+        margin-left: $spacing3;
+    }
 }
 
 .container span{
-    @extend .db;
-    @extend .di-l;
+    font-size: $font-size6;
+    color: #777777;
+    display: block;
+    @media screen and (min-width: 60em){
+        display: inline;
+    }
 }

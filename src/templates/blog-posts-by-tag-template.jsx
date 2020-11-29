@@ -6,6 +6,8 @@ import Button from "../components/button"
 import BlogList from "../components/blog-list"
 import PrevNext from "../components/prev-next"
 
+import styles from "./blog-posts-by-tag-template.module.scss"
+
 export const query = graphql`
   query($tag: String!, $skip: Int!, $limit: Int!) {
     tag: contentfulTag(name: {eq: $tag}) {
@@ -77,17 +79,17 @@ const Tags = ({ data, pageContext }) => {
       title={`Articles tagged ${tag} - Page ${currentPage}`}
       pathName={`/blog/tags/${tag}`}
     >
-      <header className="tc">
+      <header>
         <h1 className="page-heading">Articles Tagged "{tag}"</h1>
       </header>
 
       {data.tag.name && data.tag.description && (
-        <div className="mh6-l mt4 ph4 tc">
+        <div className={styles.descriptionContainer}>
           <p>{data.tag.description}</p>
         </div>
       )}
 
-      <div className="mv5">
+      <div className={styles.buttonContainer}>
         <Button linkUrl="/blog/tags" linkText="All Tags" />
       </div>
 

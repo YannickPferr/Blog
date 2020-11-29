@@ -2,58 +2,75 @@
 
 .post {
   @extend .bg-very-light-gray;
-  @extend .br4, .dark-gray, .flex, .flex-column, .items-center, .mv2;
 
-  @media screen and (min-width: 60em){
+  border-radius: $border-radius4;
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $spacing2;
+  margin-bottom: $spacing2;
+
+  @media screen and (min-width: 60em) {
     flex: 0 1 32%;
     margin-left: 0.66%;
     margin-right: 0.66%;
   }
-  @media screen and (min-width: 30em) and (max-width: 60em){
+  @media screen and (min-width: 30em) and (max-width: 60em) {
     flex: 0 1 49%;
     margin-left: 0.5%;
     margin-right: 0.5%;
   }
-  @media screen and (max-width: 30em){
+  @media screen and (max-width: 30em) {
     flex: 0 1 99%;
     margin-left: 0.5%;
     margin-right: 0.5%;
   }
 }
 
-.post a{
+.post a {
   height: 100%;
   width: 100%;
 }
 
-.post:hover {
-  @extend .text-color-secondary;
+@media (hover: hover) {
+  .post:hover {
+    background: $color-primary;
+    
+    a {
+      color: $color-secondary;
+    }
 
-  background: $color-primary;
-
-  .subtitle{
-    @extend .text-color-secondary;
+    .subtitle {
+      color: $color-secondary;
+    }
   }
 }
 
 .post-content {
-  @extend .w-100, .tl, .pa3;
+  width: 100%;
+  text-align: left;
+  padding: $spacing3;
 }
 
 .post-img {
-  
-  @extend .br4, .br--top;
+  border-radius: $border-radius4;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   height: 0px;
   padding-bottom: 75%;
-  //@extend .br--right-l;
 }
 
 .title {
-  @extend .f4, .lh-copy, .ma0;
-
   font-family: "Open Sans", sans-serif;
+  font-size: $font-size4;
+  line-height: 1.5;
+  margin: $spacing0;
 }
 
 .subtitle {
-  @extend .f6, .ma0, .text-color-gray;
+  @extend .text-color-gray;
+
+  font-size: $font-size6;
+  margin: $spacing0;
 }

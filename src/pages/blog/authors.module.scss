@@ -1,16 +1,27 @@
 @import "../../styles/main.scss";
 
 .author-section {
-  @extend .flex, .flex-wrap, .justify-center, .mb4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: $spacing4;
 }
 
 .author-wrapper {
   @extend .bg-very-light-gray;
-  @extend .br4, .dark-gray, .ma3, .pa3;
-  @extend .ma4-l, .pa4-l;
+  border-radius: $border-radius4;
+  color: #333333;
+  margin: $spacing3;
+  padding: $spacing3;
+
+  @media screen and (min-width: 60em) {
+    margin: $spacing4;
+    padding: $spacing4;
+  }
 
   h2 {
-    @extend .ma0, .pa0;
+    margin: $spacing0;
+    padding: $spacing0;
   }
 
   &:hover {

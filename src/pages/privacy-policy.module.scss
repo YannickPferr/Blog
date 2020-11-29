@@ -1,8 +1,15 @@
 @import "../styles/main.scss";
 
 .privacy-policy{
-  @extend .mh2, .mb5, .pa5, .tc, .br4;
-  @extend .mb6-l;
-
+  margin-left: $spacing2;
+  margin-right: $spacing2;
+  margin-bottom: $spacing5;
+  padding: $spacing5;
+  text-align: center;
+  border-radius: $border-radius4;
   background-color: $color-primary;
+
+  @media screen and (min-width: 60em) {
+    margin-bottom: $spacing6;
+  }
 }

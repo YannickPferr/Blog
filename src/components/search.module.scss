@@ -1,18 +1,22 @@
 @import "../styles/main.scss";
 
 .search-section {
-    @extend .tc, .mh2;
+    text-align: center;
+    margin-left: $spacing2;
+    margin-right: $spacing2;
 }
 
-.search-container{
-    @extend .bg-primary,
-    .tc,
-    .br-pill,
-    .bw0,
-    .outline-0,
-    .f4,
-    .input-reset,
-    .lh-solid,
-    .pa3,
-    .w-100;
+.search-container {
+    @extend .bg-primary;
+
+    text-align: center;
+    border-radius: $border-radius-pill;
+    border-width: 0;
+    outline: 0;
+    font-size: $font-size4;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    line-height: 1;
+    padding: $spacing3;
+    width: 100%;
 }

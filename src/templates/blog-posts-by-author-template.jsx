@@ -6,6 +6,8 @@ import Button from "../components/button"
 import BlogList from "../components/blog-list"
 import PrevNext from "../components/prev-next"
 
+import styles from "./blog-posts-by-author-template.module.scss"
+
 export const query = graphql`
   query($author: String!, $skip: Int!, $limit: Int!) {
     allContentfulPost(
@@ -73,9 +75,9 @@ const Authors = ({ data, pageContext }) => {
       title={`Articles by ${author} - Page ${currentPage}`}
       pathName={`/blog/authors/${author}`}
     >
-      <header className="tc">
+      <header>
         <h1 className="page-heading">Articles by {author}</h1>
-        <div className="mt5">
+        <div className={styles.buttonContainer}>
           <Button linkUrl="/blog/authors" linkText="All Authors" />
         </div>
       </header>

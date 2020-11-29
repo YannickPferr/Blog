@@ -9,63 +9,107 @@
 .footer {
   @extend .standard-page-width;
 
-  @extend .center, .db, .pv5;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: $spacing5;
+  padding-bottom: $spacing5;
 }
 
 .footer-column {
-  @extend .center, .w-100;
-  @extend .w-third-l;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  @media screen and (min-width: 60em) {
+    width: 33.33333%;
+  }
 }
 
 .footer-row {
-  @extend .center, .h-50, .w-100, .tc;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50%;
+  width: 100%;
+  text-align: center;
 }
 
-.footer-row-content{
+.footer-row-content {
   @extend .footer-row;
 
-  @extend .center, .flex, .flex-column, .items-baseline, .ph2;
-  @extend .flex-row-l, .justify-between-l;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding-left: $spacing2;
+  padding-right: $spacing2;
+
+  @media screen and (min-width: 60em) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
-.footer-row-meta{
+.footer-row-meta {
   @extend .footer-row;
 }
 
 .footer-column-name {
   @extend .footer-column;
 
-  @extend .tc;
-  @extend .tl-l;
+  text-align: center;
+
+  @media screen and (min-width: 60em) {
+    text-align: left;
+  }
 }
 
 .footer-column-links {
   @extend .footer-column;
 
-  @extend .mt3, .tc;
+  margin-top: $spacing3;
+  text-align: center;
 }
 
 .nav-item {
   @extend .nav-link;
 
-  @extend .db, .mb3;
+  display: block;
+  margin-bottom: $spacing3;
 }
 
 .footer-column-social {
   @extend .footer-column;
 
-  @extend .tc, .mb3;
-  @extend .tr-l;
+  text-align: center;
+  margin-bottom: $spacing3;
+
+  @media screen and (min-width: 60em) {
+    text-align: right;
+  }
 
   a {
-    @extend .mh2, .ml4-l, .mr0-l;
+    margin-left: $spacing2;
+    margin-right: $spacing2;
+
+    @media screen and (min-width: 60em) {
+      margin-left: $spacing4;
+      margin-right: $spacing0;
+    }
   }
 }
 
 .name {
   @extend .text-color-secondary;
 
-  @extend .f4;
-
   font-family: "Rock Salt";
+  font-size: $font-size4;
+}
+
+.meta-links a{
+  @extend .nav-link;
+
+  margin-left: $spacing3;
+  margin-right: $spacing3;
 }

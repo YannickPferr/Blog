@@ -1,15 +1,20 @@
 @import "../styles/main.scss";
 
 .container {
-  @extend .flex, .justify-between, .mt5, .mb5;
+  display: flex;
+  justify-content: space-between;
+  margin-top: $spacing5;
+  margin-bottom: $spacing5;
 }
 
 .title-text {
-  @extend .gray;
+  color: #777777;
 }
 
 .link {
-  @extend .dark-gray, .f4;
+  font-size: $font-size4;
+  color: #333333;
+  text-decoration: none;
 
   &:hover {
     @extend .text-color-secondary;
@@ -17,5 +22,7 @@
 }
 
 .link-arrow-icon {
-  @extend .mh1, .v-mid;
+  margin-left: $spacing1;
+  margin-right: $spacing1;
+  vertical-align: middle;
 }

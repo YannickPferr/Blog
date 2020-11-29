@@ -1,13 +1,45 @@
-// ********** Tachyons -this includes normalize.css
-
-@import "../../node_modules/tachyons-sass/tachyons.scss";
-
 // ********** Colors
 
 $color-primary: #e6eaf3;
 $color-secondary: #ee6f57;
 $color-tertiary: #1f3c88;
 $color-tertiary-light: #44588a;
+$color-tertiary-dark: #14285a;
+
+$font-size1: 3rem;
+$font-size2: 2.25rem;
+$font-size3: 1.5rem;
+$font-size4: 1.25rem;
+$font-size5: 1rem;
+$font-size6: 0.875rem;
+$font-size7: 0.75rem;
+
+$spacing0: 0;
+$spacing1: 0.25rem;
+$spacing2: 0.5rem;
+$spacing3: 1rem;
+$spacing4: 2rem;
+$spacing5: 4rem;
+$spacing6: 8rem;
+$spacing7: 16rem;
+
+$border-radius0: 0;
+$border-radius1: 0.125rem;
+$border-radius2: 0.25rem;
+$border-radius3: 0.5rem;
+$border-radius4: 1rem;
+$border-radius-100: 100%;
+$border-radius-pill: 9999px;
+
+$max-width1: 1rem;
+$max-width2: 2rem;
+$max-width3: 4rem;
+$max-width4: 8rem;
+$max-width5: 16rem;
+$max-width6: 32rem;
+$max-width7: 48rem;
+$max-width8: 64rem;
+$max-width9: 96rem;
 
 // ********** Fonts
 
@@ -25,67 +57,41 @@ $color-tertiary-light: #44588a;
 
 // ********** Customise Standard Elements
 
-body {
-  @extend .bg-white, .dark-gray, .f4;
+// ********** Custom Classes
 
-  font-family: "Open Sans", sans-serif;
-  word-break: break-word;
+//hide element but make it accessible
+.clip {
+  position: fixed !important;
+  _position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
-p {
-  @extend .lh-copy;
+.dim {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
 }
-
-li {
-  @extend .lh-copy;
-}
-
-a {
-  @extend .dark-gray, .dim;
-
-  &:hover {
-    @extend .text-color-secondary;
+@media (hover: hover){
+  .dim:hover {
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in;
   }
 }
 
-blockquote {
-  @extend .text-color-secondary;
-
-  @extend .ma0, .pt2, .ph3, .pb2, .relative;
-  @extend .pt3-m, .ph4-m, .pb3-m;
-  @extend .pt4-l, .ph5-l, .pb4-l;
-  @extend .mh3-ns, .mv2-ns;
+.no-underline {
+  text-decoration: none;
 }
 
-blockquote p {
-  @extend .f2, .tc;
-}
-
-blockquote cite {
-  @extend .f5, .fs-normal, .tracked, .ttu;
-}
-
-blockquote:before {
-  content: '"';
-  color: rgba(0, 0, 0, 0.1);
-  font-family: "Lily Script One", cursive;
-  font-size: 260px;
-  left: 0;
-  position: absolute;
-}
-
-// ********** Standard Page Width
+// Standard Page Width
 
 .standard-page-width {
-  @extend .w-100;
-  
-  @extend .mw8-l;
+  width: 100%;
+  @media screen and (min-width: 60em) {
+    max-width: $max-width8;
+  }
 }
 
-// ********** Custom Classes
-
 // background colors
-
 .bg-primary {
   background-color: $color-primary;
 }
@@ -107,14 +113,17 @@ blockquote:before {
 // custom headings
 
 h1.page-heading {
-  @extend .mb4, .mt6, .tc;
- 
+  margin-bottom: $spacing4;
+  margin-top: $spacing6;
+  text-align: center;
   font-family: "Open Sans", sans-serif;
 }
 
 h2.section-heading {
-  @extend .db, .lh-copy, .mb3, .tc;
-
+  display: block;
+  line-height: 1.5;
+  margin-bottom: $spacing3;
+  text-align: center;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -125,16 +134,26 @@ h3.section-sub-heading {
 // links and buttons
 
 .nav-link {
-  @extend .f5, .no-underline;
+  font-size: $font-size5;
+  text-decoration: none;
 }
 
 .button-base {
-  @extend .br2, .f5, .pa3, .white;
+  @extend .dim;
+
+  font-size: $font-size5;
+  color: white;
+  padding: $spacing3;
+  border-radius: $border-radius2;
   background-color: $color-tertiary;
+  outline: none;
 }
 
 .icon-base {
-  @extend .dark-gray, .dim, .v-mid;
+  color: #333333;
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+  vertical-align: middle;
 
   &:hover {
     @extend .text-color-secondary;
@@ -144,11 +163,11 @@ h3.section-sub-heading {
 .icon {
   @extend .icon-base;
 
-  @extend .f4;
+  font-size: $font-size4;
 }
 
 .icon-large {
   @extend .icon-base;
 
-  @extend .f3;
+  font-size: $font-size3;
 }

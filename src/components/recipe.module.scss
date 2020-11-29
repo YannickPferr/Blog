@@ -1,7 +1,7 @@
 @import "../styles/main.scss";
 
 .recipe-section {
-  @extend .pa2;
+  padding: $spacing2;
   background-color: $color-tertiary-light;
 }
 
@@ -15,12 +15,12 @@
 }
 
 .recipe-header{
-  @extend .tc;
+  text-align: center;
   color: white;
 }
 
 .recipe-main-section{
-  @extend .pa4;
+  padding: $spacing4;
   background-color: white;
 }
 
@@ -36,7 +36,8 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  @extend .mv2;
+  margin-top: $spacing2;
+  margin-bottom: $spacing2;
 }
 
 .info-container div p{
@@ -45,11 +46,14 @@
 }
 
 .recipe-header h2{
-  @extend .mv4;
+  margin-top: $spacing4;
+  margin-bottom: $spacing4;
 }
 
 .recipe-header p{
-  @extend .ml1, .mr2, .dib;
+  margin-left: $spacing1;
+  margin-right: $spacing2;
+  display: inline-block;
   vertical-align: middle;
 }
 

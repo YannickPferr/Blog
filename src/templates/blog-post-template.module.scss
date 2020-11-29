@@ -1,7 +1,7 @@
 @import "../styles/main.scss";
 
 .header {
-  @extend .tc;
+  text-align: center;
 }
 
 .title {
@@ -9,46 +9,60 @@
 }
 
 .subtitle {
-  @extend .gray;
+  color: #777777;
 }
 
 .draft {
   background-color: $color-tertiary-light;
-
-  @extend .ma3, .pa3;
+  margin: $spacing3;
+  padding: $spacing3;
 
   span {
-    @extend .f5;
+    font-size: $font-size5;
   }
 }
 
 .article{
-  @extend .ph2, .w-100;
-  @extend .w-75-l;
+  padding-left: $spacing2;
+  padding-right: $spacing2;
+  width: 100%;
+
+  @media screen and (min-width: 60em) {
+    width: 75%;
+  }
 }
 
 .tag-list-container {
-  @extend .flex, .flex-wrap, .justify-center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   div {
-    @extend .mh2;
+    margin-left: $spacing2;
+    margin-right: $spacing2;
   }
 }
 
 .post-content {
-  @extend .mv4;
+  margin-top: $spacing4;
+  margin-bottom: $spacing4;
 }
 
 .post-end {
-  @extend .flex, .flex-row, .justify-between, .mb4, .mt6, .pt3;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: $spacing4;
+  margin-top: $spacing6;
+  padding-top: $spacing3;
   border-bottom: 3px solid $color-secondary;
 }
 
 .sidebar{
-  @extend .dt, .tc, .mv4;
-  @extend .tl-m;
-  @extend .tl-l;
+  display: table;
+  text-align: center;
+  margin-top: $spacing4;
+  margin-bottom: $spacing4;
   width: 100%;
   position: relative;
 
@@ -58,55 +72,82 @@
     right: 0;
     width: 25%;
     margin-top: 132px;
+    text-align: left;
   }
 
   @media screen and (min-width: 30em) and (max-width: 60em) {
     border-spacing: 1em;
+    text-align: left;
   }
 }
 
 .sidebar-title{
-  @extend .ph4;
-  @extend .ph0-l;
+  padding-left: $spacing4;
+  padding-right: $spacing4;
   white-space: nowrap;
+
+  @media screen and (min-width: 60em) {
+    padding-left: $spacing0;
+    padding-right: $spacing0;
+  }
 }
 
 .recommended-post{
-  @extend .dib, .mb4, .w-90, .tl;
-  @extend .dt-row-m;
-  @extend .db-l;
+  display: inline-block;
+  margin-bottom: $spacing4;
+  width: 90%;
+  text-align: left;
+
+  @media screen and (min-width: 60em) {
+    display: block;
+  }
+  @media screen and (min-width: 30em) and (max-width: 60em){
+    display: table-row;
+  }
 }
 
 .recommended-post-img{
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
   max-width: 100%;
   max-height: 300px;
 
   @media screen and (min-width: 60em) {
     width: 20vw;
     height: 15vw;
+    display: block;
   }
 
   @media screen and (min-width: 30em) and (max-width: 60em) {
     width: 40vw;
     height: 30vw;
+    display: table-cell;
   }
 
   @media screen and (max-width: 30em) {
     width: 100vw;
     height: 50vw;
   }
-  
-  @extend .w-100, .dib, .tl, .v-mid;
-  @extend .w-50-m, .dtc-m;
-  @extend .w5-l, .db-l;
 }
 
 .recommended-post div{
-  @extend .dib, .tl, .v-mid;
-  @extend .dtc-m;
-  @extend .db-l;
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+
+  @media screen and (min-width: 60em) {
+    display: block;
+  }
+
+  @media screen and (min-width: 30em) and (max-width: 60em) {
+    display: table-cell;
+  }
 }
 
 .recommended-post h4, .recommended-post p{
-  @extend .mv1, .f5;
+  margin-top: $spacing1;
+  margin-bottom: $spacing1;
+  font-size: $font-size5;
 }

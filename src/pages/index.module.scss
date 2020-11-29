@@ -2,14 +2,14 @@
 
 // Hero section
 
-.hero-banner{
-  @extend .center;
-  @extend .w-100;
+.hero-banner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 /* The hero image */
-.hero-image{
-
+.hero-image {
   /* Position and center the image to scale nicely on all screens */
   background-position: center;
   background-repeat: no-repeat;
@@ -25,109 +25,124 @@
 .hero-section {
   @extend .bg-very-light-gray;
 
-  @extend .flex, .flex-wrap, .items-center, .tc;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-column {
-  @extend .center;
-  @extend .w-third-l;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 60em) {
+    width: 33%;
+  }
 }
 
-.hero-column-first {
-  @extend .hero-column;
-
-  @extend .dn, .w-100;
-  @extend .db-l, .order-1-l;
-}
-
-.hero-column-second {
-  @extend .hero-column;
-
-  @extend .w-100;
-  @extend .order-1, .order-2-l;
-}
-
-.hero-column-third {
-  @extend .hero-column;
-
-  @extend .order-2, .pb4, .w-75;
-  @extend .order-3-l, .pb0-l;
-}
-
-.hero-text-wrap{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%
+.hero-text-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .hero-title {
   @extend .text-color-secondary;
 
-  @extend .db, .lh-copy, .ph4, .ttu;
-
+  display: block;
+  line-height: 1.5;
+  padding-left: $spacing4;
+  padding-right: $spacing4;
+  text-transform: uppercase;
   font-family: "Open Sans", sans-serif;
 }
 
 .hero-subtitle {
-  @extend .lh-copy, .ph4, .white;
-
+  line-height: 1.5;
+  padding-left: $spacing4;
+  padding-right: $spacing4;
+  color: white;
   font-family: "Open Sans", sans-serif;
 }
 
 // Main feature section
 
 .main-feature-section {
-  @extend .center, .mt5, .ph4, .tc;
-  @extend .mt6-l, .ph5-l;
-
   @extend .standard-page-width;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: $spacing4;
+  padding-left: $spacing4;
+  padding-right: $spacing4;
+  text-align: center;
+
+  @media screen and (min-width: 60em) {
+    margin-top: $spacing6;
+    padding-left: $spacing5;
+    padding-right: $spacing5;
+  }
 }
 
 // Latest posts section
 
 .latest-posts-section {
-  @extend .center, .tc, .mt4;
   @extend .standard-page-width;
+
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: $spacing4;
 }
 
-.latest-posts-section hr{
-  @extend .mt5;
+.latest-posts-section hr {
+  margin-top: $spacing5;
   border-style: solid;
   border-color: lightgray;
   border-bottom: 1px;
+
   @media screen and (max-width: 60em) {
-    width: 90%
+    width: 90%;
   }
 }
 
 // Feature tags sections
 
 .featured-tags-section {
-  @extend .mh2, .mt5;
+  margin-left: $spacing2;
+  margin-right: $spacing2;
+  margin-top: $spacing5;
 }
 
 // Subscribe section
 
 .subscribe-section {
-  @extend .mt5;
-  @extend .mt6-l;
-
   @extend .bg-primary;
+
+  margin-top: $spacing5;
+  @media screen and (min-width: 60em) {
+    margin-top: $spacing6;
+  }
 }
 
 // About me section
 
 .about-me-section {
-  @extend .center, .mv5, .ph2;
-  @extend .mv6-l;
-
   @extend .standard-page-width;
+
+  margin: $spacing5 auto;
+  padding-left: $spacing2;
+  padding-right: $spacing2;
+
+  @media screen and (min-width: 60em) {
+    margin: $spacing6 auto;
+  }
 }
 
 // Link style
 
 .show-all-link {
-  @extend .underline, .ttu;
+  text-decoration: underline;
+  text-transform: uppercase;
 }

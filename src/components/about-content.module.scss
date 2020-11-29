@@ -3,32 +3,64 @@
 .section-wrapper {
   @extend .bg-primary;
 
-  @extend .center, .flex, .flex-column, .items-center, .mb5, .br4;
-  @extend .flex-row-l, .mb6-l;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: $spacing5;
+  border-radius: $border-radius4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: 60em) {
+    flex-direction: row;
+    margin-bottom: $spacing6;
+  }
 }
 
 .content-wrapper-with-image {
-  @extend .order-1, .pa2, .tc, .w-90;
-  @extend .pa4-l, .w-50-l;
+  order: 1;
+  padding: $spacing2;
+  text-align: center;
+  width: 90%;
+
+  @media screen and (min-width: 60em) {
+    padding: $spacing4;
+    width: 50%;
+  }
 }
 
 .content-wrapper-without-image {
-  @extend .order-1, .pa2, .tc;
-  @extend .pa4-l;
+  order: 1;
+  padding: $spacing2;
+  text-align: center;
+
+  @media screen and (min-width: 60em) {
+    padding: $spacing4;
+  }
 }
 
-.text-wrapper{
-  ol, ul {
+.text-wrapper {
+  ol,
+  ul {
     list-style-position: inside;
   }
 }
 
 .image-wrapper {
-  @extend .order-5, .w-100;//, .br4, .br--bottom;
-  @extend .w-50-l;//, .br--right-l, .br4-l;
+  order: 5;
+  width: 100%;
+
+  @media screen and (min-width: 60em) {
+    width: 50%;
+  }
 }
 
 .image-wrapper-first {
-  @extend .order-5, .w-100;//, .br4, .br--bottom;
-  @extend .w-50-l, .order-0-l;//, .br--left-l, .br4-l;
+  order: 5;
+  width: 100%;
+
+  @media screen and (min-width: 60em) {
+    order: 0;
+    width: 50%;
+  }
 }

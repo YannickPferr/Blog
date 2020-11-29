@@ -1,9 +1,12 @@
 @import "../styles/main.scss";
 
 div.wrapper {
-  @extend .mv4, .tc;
+  margin-top: $spacing4;
+  margin-bottom: $spacing4;
+  text-align: center;
 }
 
 .link {
   @extend .button-base;
+  text-decoration: none;
 }

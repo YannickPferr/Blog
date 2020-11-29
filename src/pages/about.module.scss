@@ -1,19 +1,34 @@
 @import "../styles/main.scss";
 
-.main-section-wrapper{
-  @extend .center, .mv5, .ph2;
-  @extend .mv6-l;
-
+.main-section-wrapper {
   @extend .standard-page-width;
+
+  margin: $spacing5 auto;
+  padding-left: $spacing2;
+  padding-right: $spacing2;
+
+  @media screen and (min-width: 60em) {
+    margin-top: $spacing6;
+    margin-bottom: $spacing6;
+  }
 }
 
 .final-section-wrapper {
   background-color: $color-tertiary-light;
+  margin-left: $spacing2;
+  margin-right: $spacing2;
+  margin-bottom: $spacing5;
+  padding: $spacing5;
+  border-radius: $border-radius4;
 
-  @extend .mh2, .mb5, .pa5, .br4;
-  @extend .mb6-l;
+  @media screen and (min-width: 60em) {
+    margin-bottom: $spacing6;
+  }
 
   p {
-    @extend .center, .measure, .tc;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 30em;
   }
 }
