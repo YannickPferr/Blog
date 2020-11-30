@@ -159,12 +159,6 @@ module.exports = {
         fonts: {
           google: [
             {
-              family: "Open Sans",
-              variants: ["400", "700", "800"],
-              fontDisplay: 'swap',
-              strategy: 'selfHosted'
-            },
-            {
               family: "Rock Salt",
               fontDisplay: 'swap',
               strategy: 'selfHosted'

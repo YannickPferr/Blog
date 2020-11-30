@@ -11,10 +11,10 @@ const Recipe = (data) => {
   return (
     <section id="recipe" className={styles.recipeSection}>
       <header className={styles.recipeHeader}>
-        <Img 
-          fluid={data.recipe.image.fluid} 
-          className={styles.recipeImg} 
-          
+        <Img
+          fluid={data.recipe.image.fluid}
+          className={styles.recipeImg}
+
         />
         <div><h2 className={styles.pageHeading}>{data.recipe.name}</h2></div>
         {
@@ -25,13 +25,13 @@ const Recipe = (data) => {
         <div className={styles.infoContainer}>
           <div>
             <FaClock className="icon-medium" />
-            <p><strong>Prep time</strong></p>
-            <p>{duration.toMinutes(duration.parse(data.recipe.prepTime)) + " min"}</p>
+            <p><strong>Time</strong></p>
+            <p>{duration.toMinutes(duration.parse(data.recipe.totalTime)) + " min"}</p>
           </div>
           <div>
-            <FaClock className="icon-medium" />
-            <p><strong>Cook time</strong></p>
-            <p>{duration.toMinutes(duration.parse(data.recipe.cookTime)) + " min"}</p>
+            <FaFire className="icon-medium" />
+            <p><strong>Calories</strong></p>
+            <p>{data.recipe.calories}</p>
           </div>
           <div>
             <FaUtensils className="icon-medium" />
@@ -41,11 +41,6 @@ const Recipe = (data) => {
         </div>
         <hr style={{ "width": "90%" }}></hr>
         <div className={styles.infoContainer}>
-          <div>
-            <FaFire className="icon-medium" />
-            <p><strong>Calories</strong></p>
-            <p>{data.recipe.calories}</p>
-          </div>
           <div>
             <FaDrumstickBite className="icon-medium" />
             <p><strong>Protein</strong></p>
@@ -69,14 +64,18 @@ const Recipe = (data) => {
         <hr></hr>
         <div>
           <h3>Ingredients:</h3>
-          <ul>
-            {data.recipe.recipeIngredient.map(ingredient => <li key={ingredient}>{ingredient}</li>)}
-          </ul>
+          <div className={styles.ingredients}>
+            {data.recipe.recipeIngredient.map(ingredient =>
+              <div key={ingredient} className={styles.ingredientsRow}>
+                <div><strong>{ingredient.substr(0, ingredient.indexOf(' '))}</strong></div>
+                <div>{ingredient.substr(ingredient.indexOf(' ') + 1)}</div>
+              </div>)}
+          </div>
         </div>
         <hr></hr>
         <div>
           <h3>Instructions:</h3>
-          <ol>
+          <ol className={styles.instructionsList}>
             {data.recipe.recipeInstructions.map(obj =>
               <li key={obj.name}>
                 <h4>{obj.name}</h4>
@@ -89,7 +88,6 @@ const Recipe = (data) => {
         <div><p><strong>Tools:</strong> {data.recipe.tool.join(", ")}</p></div>
         <div><p><strong>Category:</strong> {data.recipe.recipeCategory}</p></div>
         <div><p><strong>Cusine:</strong> {data.recipe.recipeCuisine}</p></div>
-        <div><p><strong>Keywords:</strong> {data.recipe.keywords.join(", ")}</p></div>
       </div>
     </section>
   )

@@ -61,3 +61,26 @@
   vertical-align: middle;
   margin: 0 auto;
 }
+
+.instructions-list{
+  padding-left: 1em;
+}
+
+.ingredients{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ingredients-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: $spacing1;
+  margin-bottom: $spacing1;
+}
+
+.ingredients-row div{
+  flex-basis: 48%;
+  margin: 1%;
+}
