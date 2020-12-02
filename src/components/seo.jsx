@@ -120,15 +120,17 @@ const SEO = ({
             recipeInstructions.push({
               "@type": "HowToStep",
               name: howToStep.name,
-              text: howToStep.text.childMarkdownRemark.html,
+              text: howToStep.text.text,
             })
           })
+
+          const img = blogPost ? blogPost.image.fluid.src : recipe.image.fluid.src;
 
           schemaOrgRecipe = {
             "@context": "https://schema.org",
             "@type": "Recipe",
             name: recipe.name,
-            description: recipe.description.childMarkdownRemark.html,
+            description: recipe.description.description,
             cookTime: recipe.cookTime,
             nutrition: {
               "@type": "NutritionInformation",
@@ -139,7 +141,7 @@ const SEO = ({
               fiberContent: recipe.fiberContent,
               servingSize: recipe.servingSize,
             },
-            image: recipe.image.fluid.src,
+            image: img,
             recipeCategory: recipe.recipeCategory,
             recipeCuisine: recipe.recipeCuisine,
             recipeIngredient: recipe.recipeIngredient,
@@ -147,7 +149,7 @@ const SEO = ({
             recipeYield: recipe.recipeYield,
             prepTime: recipe.prepTime,
             totalTime: recipe.totalTime,
-            keywords: recipe.keywords.map(keyword => keyword.name),
+            keywords: recipe.keywords.join(","),
             author: {
               "@type": "Person",
               name: recipe.author.name,

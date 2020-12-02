@@ -40,6 +40,7 @@ export const queryPostBySlug = graphql`
           childMarkdownRemark {
             html
           }
+          description
         }
         author {
           name
@@ -69,6 +70,7 @@ export const queryPostBySlug = graphql`
             childMarkdownRemark {
               html
             }
+            text
           }
         }
         aggregateRating{

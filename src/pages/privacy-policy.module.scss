@@ -4,12 +4,12 @@
   margin-left: $spacing2;
   margin-right: $spacing2;
   margin-bottom: $spacing5;
-  padding: $spacing5;
-  text-align: center;
+  padding: $spacing3;
+  text-align: left;
   border-radius: $border-radius4;
   background-color: $color-primary;
 
   @media screen and (min-width: 60em) {
-    margin-bottom: $spacing6;
+    margin-bottom: $spacing4;
   }
 }

@@ -2,11 +2,33 @@ import React from "react"
 import Img from "gatsby-image"
 import * as duration from 'duration-fns'
 
-import { FaClock, FaUtensils, FaFire, FaDrumstickBite, FaTint, FaBreadSlice } from "react-icons/fa"
+import { FaRegStar, FaStar, FaStarHalfAlt, FaClock, FaUtensils, FaFire, FaDrumstickBite, FaTint, FaBreadSlice } from "react-icons/fa"
 
 import styles from "./recipe.module.scss"
 
 const Recipe = (data) => {
+
+  const round = Math.round(data.recipe.aggregateRating.ratingValue) || 0;
+  const floor = Math.floor(data.recipe.aggregateRating.ratingValue) || 0;
+  const isHalfStar = ((data.recipe.aggregateRating.ratingValue - floor) || 0) < 0.5 ? false : true;
+
+  function renderStars() {
+    let stars = []
+    for (let i = 0; i < floor; i++) 
+      stars.push(<FaStar className={styles.iconMedium} />)
+
+    if (isHalfStar) 
+      stars.push(<FaStarHalfAlt className={styles.iconMedium} />);
+
+    for (let i = 0; i < 5 - round; i++) 
+      stars.push(<FaRegStar className={styles.iconMedium} />)
+
+    let ratingDesc = <p>No ratings yet!</p>;
+    if (data.recipe.aggregateRating.ratingCount)
+      ratingDesc = <p>{data.recipe.aggregateRating.ratingValue + " (" + data.recipe.aggregateRating.ratingCount + " ratings)"}</p>;
+
+    return (<div><div className={styles.starsContainer}>{stars}</div>{ratingDesc}</div>)
+  }
 
   return (
     <section id="recipe" className={styles.recipeSection}>
@@ -18,43 +40,43 @@ const Recipe = (data) => {
         />
         <div><h2 className={styles.pageHeading}>{data.recipe.name}</h2></div>
         {
-          data.recipe.aggregateRating.ratingValue
-          &&
-          <div><p>{data.recipe.aggregateRating.ratingValue + " (" + data.recipe.aggregateRating.ratingCount + " ratings)"}</p></div>
+         renderStars()
         }
+        <button onClick={() => window.print()}>Print recipe</button>
         <div className={styles.infoContainer}>
           <div>
-            <FaClock className="icon-medium" />
-            <p><strong>Time</strong></p>
-            <p>{duration.toMinutes(duration.parse(data.recipe.totalTime)) + " min"}</p>
+            <FaClock className={styles.iconMedium} />
+            <p>Time</p>
+            <strong>{duration.toMinutes(duration.parse(data.recipe.totalTime)) + " min"}</strong>
           </div>
           <div>
-            <FaFire className="icon-medium" />
-            <p><strong>Calories</strong></p>
-            <p>{data.recipe.calories}</p>
+            <FaFire className={styles.iconMedium} />
+            <p>Calories</p>
+            <strong>{data.recipe.calories}</strong>
           </div>
           <div>
-            <FaUtensils className="icon-medium" />
-            <p><strong>Yields</strong></p>
-            <p>{data.recipe.recipeYield}</p>
+            <FaUtensils className={styles.iconMedium} />
+            <p>Yields</p>
+            <strong>{data.recipe.recipeYield}</strong>
           </div>
         </div>
         <hr style={{ "width": "90%" }}></hr>
+
         <div className={styles.infoContainer}>
           <div>
-            <FaDrumstickBite className="icon-medium" />
-            <p><strong>Protein</strong></p>
-            <p>{data.recipe.proteinContent}g</p>
+            <FaDrumstickBite className={styles.iconMedium} />
+            <p>Protein</p>
+            <strong>{data.recipe.proteinContent}g</strong>
           </div>
           <div>
-            <FaTint className="icon-medium" />
-            <p><strong>Fat</strong></p>
-            <p>{data.recipe.fatContent}g</p>
+            <FaTint className={styles.iconMedium} />
+            <p>Fat</p>
+            <strong>{data.recipe.fatContent}g</strong>
           </div>
           <div>
-            <FaBreadSlice className="icon-medium" />
-            <p><strong>Carbs</strong></p>
-            <p>{data.recipe.carbohydrateContent}g</p>
+            <FaBreadSlice className={styles.iconMedium} />
+            <p>Carbs</p>
+            <strong>{data.recipe.carbohydrateContent}g</strong>
           </div>
         </div>
       </header>
@@ -62,13 +84,13 @@ const Recipe = (data) => {
         <h3>Description:</h3>
         <div dangerouslySetInnerHTML={{ __html: data.recipe.description.childMarkdownRemark.html }}></div>
         <hr></hr>
-        <div>
+        <div className={styles.ingredients}>
           <h3>Ingredients:</h3>
-          <div className={styles.ingredients}>
+          <div className={styles.ingredientsList}>
             {data.recipe.recipeIngredient.map(ingredient =>
               <div key={ingredient} className={styles.ingredientsRow}>
-                <div><strong>{ingredient.substr(0, ingredient.indexOf(' '))}</strong></div>
-                <div>{ingredient.substr(ingredient.indexOf(' ') + 1)}</div>
+                <div className={styles.ingredientValue}><strong>{ingredient.substr(0, ingredient.indexOf(' '))}</strong></div>
+                <div className={styles.ingredientName}>{ingredient.substr(ingredient.indexOf(' ') + 1)}</div>
               </div>)}
           </div>
         </div>

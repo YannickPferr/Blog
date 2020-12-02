@@ -33,6 +33,9 @@ export const query = graphql`
               ...GatsbyContentfulFluid_withWebp
             } 
           }
+          recipe {
+            calories
+          }
         }
       }
     }
@@ -81,7 +84,7 @@ const BlogListTemplate = ({ data, pageContext }) => {
   const handleInputChange = event => {
     const query = event.target.value.toLowerCase()
 
-    const filteredArr = data.index.edges.filter(edge => 
+    const filteredArr = data.index.edges.filter(edge =>
       edge.node.title.toLowerCase().includes(query) || edge.node.previewText.toLowerCase().includes(query)
     )
 
@@ -99,22 +102,22 @@ const BlogListTemplate = ({ data, pageContext }) => {
 
   const prevDetails = isFirst
     ? null
-    : hasSearchResults 
-    ? null
-    : {
-      linkPath: prevPage,
-      linkText: "Previous Page",
-    }
+    : hasSearchResults
+      ? null
+      : {
+        linkPath: prevPage,
+        linkText: "Previous Page",
+      }
 
   const nextDetails = isLast
     ? null
     : hasSearchResults
-    ? null
-    : {
-      linkPath: nextPage,
-      linkText: "Next Page",
-    }
- 
+      ? null
+      : {
+        linkPath: nextPage,
+        linkText: "Next Page",
+      }
+
   return (
     <Layout title={`Blog - Page ${currentPage}`} pathName="/blog">
       <header className={styles.header}>

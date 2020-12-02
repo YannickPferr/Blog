@@ -44,6 +44,9 @@ export const query = graphql`
               ...GatsbyContentfulFluid_withWebp         
             }
           }
+          recipe {
+            calories
+          }
         }
       }
     }

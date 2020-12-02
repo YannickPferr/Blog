@@ -19,8 +19,8 @@
 
 .content-wrapper-with-image {
   order: 1;
-  padding: $spacing2;
-  text-align: center;
+  padding: $spacing3;
+  text-align: left;
   width: 90%;
 
   @media screen and (min-width: 60em) {
@@ -31,7 +31,7 @@
 
 .content-wrapper-without-image {
   order: 1;
-  padding: $spacing2;
+  padding: $spacing3;
   text-align: center;
 
   @media screen and (min-width: 60em) {
@@ -42,6 +42,7 @@
 .text-wrapper {
   ol,
   ul {
+    padding-left: 0;
     list-style-position: inside;
   }
 }

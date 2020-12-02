@@ -151,6 +151,7 @@ h2.section-heading {
 
   &:hover {
     @extend .text-color-secondary;
+    cursor: pointer;
   }
 }
 
