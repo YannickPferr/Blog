@@ -31,7 +31,7 @@
     width: 75%;
   }
 
-  @media screen and (min-width: 30em) and (max-width: 60em){
+  @media screen and (min-width: 30em) and (max-width: 60em) {
     width: 100%;
   }
 }
@@ -92,6 +92,8 @@
     text-align: left;
     position: relative;
     width: 100%;
+    margin-top: $spacing4;
+    margin-bottom: $spacing4;
   }
 }
 
@@ -111,7 +113,7 @@
   margin-bottom: $spacing4;
   text-align: left;
   //overflow: hidden;
-  
+
   @media screen and (min-width: 30em) {
     flex-direction: column;
   }
@@ -133,7 +135,7 @@
   padding-bottom: 30%;
   object-fit: cover;
   max-height: 200px;
-  
+
   @media screen and (min-width: 30em) and (max-width: 60em) {
     margin-right: $spacing2;
   }
