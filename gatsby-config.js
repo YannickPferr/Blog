@@ -146,12 +146,6 @@ module.exports = {
         include_favicon: false,
       },
     },
-    {
-      resolve: "gatsby-plugin-offline",
-      options: {
-        precachePages: ["/", "/blog/*", "/about", "/contact", "/legal-notice", "/privacy-policy"],
-      },
-    },
     "gatsby-plugin-preact",
     {
       resolve: `gatsby-plugin-webfonts`,

@@ -189,12 +189,16 @@ const BlogPosts = ({ data, pageContext }) => {
 
         <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
       </article>
+      <section className={styles.comments}>
+        <h2>Comments</h2>
+        <p>Coming soon!</p>
+      </section>
 
       {/* Sidebar with related posts if available*/}
-      <div className={styles.sidebar}>
-        {
-          data.relatedPosts
-          &&
+      {
+        data.relatedPosts
+        &&
+        <div className={styles.sidebar}>
           <div>
             <h4 className={styles.sidebarTitle}>Related recipes</h4>
             {data.relatedPosts.edges.map(edge => (
@@ -202,7 +206,7 @@ const BlogPosts = ({ data, pageContext }) => {
                 <div className={styles.recommendedPost}>
                   <Img
                     fluid={edge.node.image.fluid} className={styles.recommendedPostImg} />
-                  <div>
+                  <div className={styles.recommendedPostText}>
                     <h4>{edge.node.title}</h4>
                     <p>{edge.node.previewText}</p>
                   </div>
@@ -210,8 +214,8 @@ const BlogPosts = ({ data, pageContext }) => {
               </Link>
             ))}
           </div>
-        }
-      </div>
+        </div>
+      }
     </Layout>
   )
 }

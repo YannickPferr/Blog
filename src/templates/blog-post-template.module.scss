@@ -64,8 +64,10 @@
 }
 
 .sidebar {
-  display: table;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  padding: $spacing3;
   margin-top: $spacing4;
   margin-bottom: $spacing4;
   width: 100%;
@@ -80,15 +82,14 @@
     text-align: left;
   }
 
-  @media screen and (min-width: 30em) and (max-width: 60em) {
+  @media screen and (min-width: 25em) and (max-width: 60em) {
     border-spacing: 1em;
     text-align: left;
+    position: relative;
   }
 }
 
 .sidebar-title {
-  padding-left: $spacing4;
-  padding-right: $spacing4;
   white-space: nowrap;
 
   @media screen and (min-width: 60em) {
@@ -98,56 +99,48 @@
 }
 
 .recommended-post {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: $spacing4;
-  width: 90%;
   text-align: left;
-
-  @media screen and (min-width: 60em) {
-    display: block;
+  //overflow: hidden;
+  
+  @media screen and (min-width: 25em) {
+    flex-direction: column;
   }
-  @media screen and (min-width: 30em) and (max-width: 60em) {
-    display: table-row;
+
+  @media screen and (min-width: 25em) and (max-width: 60em) {
+    flex-direction: row;
+  }
+
+  @media screen and (max-width: 25em) {
+    flex-direction: column;
   }
 }
 
 .recommended-post-img {
-  width: 100%;
-  display: inline-block;
+  flex-basis: 48%;
+  margin: 1%;
   text-align: left;
-  vertical-align: middle;
-  max-width: 100%;
-  max-height: 300px;
-
-  @media screen and (min-width: 60em) {
-    width: 20vw;
-    height: 15vw;
-    display: block;
-  }
-
-  @media screen and (min-width: 30em) and (max-width: 60em) {
-    width: 40vw;
-    height: 30vw;
-    display: table-cell;
-  }
-
-  @media screen and (max-width: 30em) {
-    width: 100vw;
-    height: 50vw;
+  width: 100%;
+  height: 0px;
+  padding-bottom: 30%;
+  object-fit: cover;
+  max-height: 200px;
+  
+  @media screen and (max-width: 25em) {
+    flex-basis: 23%;
   }
 }
 
-.recommended-post div {
-  display: inline-block;
+.recommended-post-text {
+  flex-basis: 48%;
+  margin: 1%;
   text-align: left;
-  vertical-align: middle;
 
-  @media screen and (min-width: 60em) {
-    display: block;
-  }
-
-  @media screen and (min-width: 30em) and (max-width: 60em) {
-    display: table-cell;
+  @media screen and (max-width: 25em) {
+    flex-basis: 73%;
   }
 }
 
@@ -156,4 +149,19 @@
   margin-top: $spacing1;
   margin-bottom: $spacing1;
   font-size: $font-size5;
+}
+
+.comments {
+  padding-left: $spacing2;
+  padding-right: $spacing2;
+  margin-bottom: $spacing4;
+  text-align: center;
+
+  @media screen and (min-width: 60em) {
+    text-align: left;
+  }
+
+  @media screen and (min-width: 25em) and (max-width: 60em) {
+    text-align: left;
+  }
 }
