@@ -30,6 +30,10 @@
   @media screen and (min-width: 60em) {
     width: 75%;
   }
+
+  @media screen and (min-width: 30em) and (max-width: 60em){
+    width: 100%;
+  }
 }
 
 .tag-list-container {
@@ -67,7 +71,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: $spacing3;
+  padding: $spacing2;
   margin-top: $spacing4;
   margin-bottom: $spacing4;
   width: 100%;
@@ -80,12 +84,14 @@
     width: 25%;
     margin-top: 132px;
     text-align: left;
+    padding: $spacing3;
   }
 
-  @media screen and (min-width: 25em) and (max-width: 60em) {
+  @media screen and (min-width: 30em) and (max-width: 60em) {
     border-spacing: 1em;
     text-align: left;
     position: relative;
+    width: 100%;
   }
 }
 
@@ -106,22 +112,21 @@
   text-align: left;
   //overflow: hidden;
   
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 30em) {
     flex-direction: column;
   }
 
-  @media screen and (min-width: 25em) and (max-width: 60em) {
+  @media screen and (min-width: 30em) and (max-width: 60em) {
     flex-direction: row;
   }
 
-  @media screen and (max-width: 25em) {
+  @media screen and (max-width: 30em) {
     flex-direction: column;
   }
 }
 
 .recommended-post-img {
   flex-basis: 48%;
-  margin: 1%;
   text-align: left;
   width: 100%;
   height: 0px;
@@ -129,17 +134,20 @@
   object-fit: cover;
   max-height: 200px;
   
-  @media screen and (max-width: 25em) {
+  @media screen and (min-width: 30em) and (max-width: 60em) {
+    margin-right: $spacing2;
+  }
+
+  @media screen and (max-width: 30em) {
     flex-basis: 23%;
   }
 }
 
 .recommended-post-text {
   flex-basis: 48%;
-  margin: 1%;
   text-align: left;
 
-  @media screen and (max-width: 25em) {
+  @media screen and (max-width: 30em) {
     flex-basis: 73%;
   }
 }
@@ -161,7 +169,7 @@
     text-align: left;
   }
 
-  @media screen and (min-width: 25em) and (max-width: 60em) {
+  @media screen and (min-width: 30em) and (max-width: 60em) {
     text-align: left;
   }
 }

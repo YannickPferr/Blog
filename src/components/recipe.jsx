@@ -14,13 +14,13 @@ const Recipe = (data) => {
 
   function renderStars() {
     let stars = []
-    for (let i = 0; i < floor; i++) 
+    for (let i = 0; i < floor; i++)
       stars.push(<FaStar className={styles.iconMedium} />)
 
-    if (isHalfStar) 
+    if (isHalfStar)
       stars.push(<FaStarHalfAlt className={styles.iconMedium} />);
 
-    for (let i = 0; i < 5 - round; i++) 
+    for (let i = 0; i < 5 - round; i++)
       stars.push(<FaRegStar className={styles.iconMedium} />)
 
     let ratingDesc = <p>No ratings yet!</p>;
@@ -40,7 +40,7 @@ const Recipe = (data) => {
         />
         <div><h2 className={styles.pageHeading}>{data.recipe.name}</h2></div>
         {
-         renderStars()
+          renderStars()
         }
         <button onClick={() => window.print()}>Print recipe</button>
         <div className={styles.infoContainer}>
@@ -101,7 +101,7 @@ const Recipe = (data) => {
             {data.recipe.recipeInstructions.map(obj =>
               <li key={obj.name}>
                 <h4>{obj.name}</h4>
-                <p dangerouslySetInnerHTML={{ __html: obj.text.childMarkdownRemark.html }}></p>
+                <div dangerouslySetInnerHTML={{ __html: obj.text.childMarkdownRemark.html }}></div>
               </li>
             )}
           </ol>
