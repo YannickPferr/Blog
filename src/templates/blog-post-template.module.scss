@@ -131,9 +131,8 @@
   flex-basis: 48%;
   text-align: left;
   width: 100%;
-  height: 0px;
-  padding-bottom: 30%;
   object-fit: cover;
+  min-height: 200px;
   max-height: 200px;
 
   @media screen and (min-width: 30em) and (max-width: 60em) {
