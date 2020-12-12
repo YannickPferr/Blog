@@ -70,7 +70,6 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  text-align: center;
   padding: $spacing2;
   margin-top: $spacing4;
   margin-bottom: $spacing4;
@@ -83,13 +82,11 @@
     right: 0;
     width: 25%;
     margin-top: 132px;
-    text-align: left;
     padding: $spacing3;
   }
 
   @media screen and (min-width: 30em) and (max-width: 60em) {
     border-spacing: 1em;
-    text-align: left;
     position: relative;
     width: 100%;
     margin-top: $spacing4;
@@ -158,19 +155,4 @@
   margin-top: $spacing1;
   margin-bottom: $spacing1;
   font-size: $font-size5;
-}
-
-.comments {
-  padding-left: $spacing2;
-  padding-right: $spacing2;
-  margin-bottom: $spacing4;
-  text-align: center;
-
-  @media screen and (min-width: 60em) {
-    text-align: left;
-  }
-
-  @media screen and (min-width: 30em) and (max-width: 60em) {
-    text-align: left;
-  }
 }

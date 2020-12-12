@@ -8,9 +8,9 @@ import styles from "./recipe.module.scss"
 
 const Recipe = (data) => {
 
-  const round = Math.round(data.recipe.aggregateRating.ratingValue) || 0;
-  const floor = Math.floor(data.recipe.aggregateRating.ratingValue) || 0;
-  const isHalfStar = ((data.recipe.aggregateRating.ratingValue - floor) || 0) < 0.5 ? false : true;
+  const round = Math.round(data.ratingValue) || 0;
+  const floor = Math.floor(data.ratingValue) || 0;
+  const isHalfStar = ((data.ratingValue - floor) || 0) < 0.5 ? false : true;
 
   function renderStars() {
     let stars = []
@@ -24,8 +24,8 @@ const Recipe = (data) => {
       stars.push(<FaRegStar className={styles.iconMedium} />)
 
     let ratingDesc = <p>No ratings yet!</p>;
-    if (data.recipe.aggregateRating.ratingCount)
-      ratingDesc = <p>{data.recipe.aggregateRating.ratingValue + " (" + data.recipe.aggregateRating.ratingCount + " ratings)"}</p>;
+    if (data.ratingCount)
+      ratingDesc = <p>{data.ratingValue + " (" + data.ratingCount + " ratings)"}</p>;
 
     return (<div><div className={styles.starsContainer}>{stars}</div>{ratingDesc}</div>)
   }
@@ -99,7 +99,7 @@ const Recipe = (data) => {
           <h3>Instructions:</h3>
           <ol className={styles.instructionsList}>
             {data.recipe.recipeInstructions.map(obj =>
-              <li key={obj.name}>
+              <li id={obj.name}>
                 <h4>{obj.name}</h4>
                 <div dangerouslySetInnerHTML={{ __html: obj.text.childMarkdownRemark.html }}></div>
               </li>

@@ -14,11 +14,7 @@ body {
   margin: $spacing0;
 }
 
-p {
-  line-height: 1.5;
-}
-
-li {
+li, p, strong {
   line-height: 1.5;
 }
 

@@ -1,0 +1,157 @@
+@import "../styles/main.scss";
+
+p {
+  margin: 0;
+}
+
+a {
+  line-height: 1.5;
+}
+
+.comments-section {
+  display: flex;
+  flex-direction: column;
+  padding-left: $spacing2;
+  padding-right: $spacing2;
+  margin-bottom: $spacing4;
+}
+
+.comment {
+  margin: 0 $spacing2;
+}
+
+.comment:last-child {
+  .main-comment {
+    border-bottom: none;
+  }
+}
+
+.main-comment {
+  padding: $spacing3 0;
+  padding-bottom: $spacing2;
+  border-bottom: solid 1px gray;
+
+  a {
+    @extend .text-color-gray;
+
+    margin-top: $spacing2;
+    font-size: $font-size5;
+    cursor: pointer;
+  }
+}
+
+.comment-replies {
+  margin-left: $spacing4;
+}
+
+.reply {
+  padding: $spacing3 0;
+  border-bottom: solid 1px gray;
+}
+
+.comment-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+
+  p {
+    @extend .text-color-gray;
+
+    margin-left: $spacing2;
+  }
+}
+
+.form-container {
+  text-align: center;
+  max-width: $max-width7;
+  margin-top: $spacing4;
+  margin-bottom: $spacing4;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.stars-container {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  color: $color-secondary;
+  font-size: $font-size2;
+}
+
+.filled {
+  &:before {
+    content: "\2605";
+    position: absolute;
+  }
+}
+
+.stars-container span:hover:before,
+.stars-container > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 30em) {
+    border-radius: $border-radius2;
+  }
+}
+
+.error-message{
+  color: red;
+}
+
+.form div {
+  text-align: left;
+}
+
+.form-input {
+  border-radius: $border-radius2;
+  border: solid gray;
+  border-width: 0.125rem;
+  outline: 0;
+  font-size: $font-size4;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  line-height: 1;
+  padding: $spacing3;
+  margin-top: $spacing2;
+  margin-bottom: $spacing2;
+  width: 100%;
+  background-color: white;
+  resize: none;
+}
+
+.form-input-error {
+  @extend .form-input;
+
+  border-color: red;
+}
+
+.form-submit {
+  @extend .button-base;
+
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+
+  &:hover {
+    border-color: $color-secondary;
+    color: white;
+    transition: background-color 0.15s ease-in-out;
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in;
+  }
+
+  &:active {
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in;
+  }
+}

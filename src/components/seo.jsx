@@ -121,6 +121,7 @@ const SEO = ({
               "@type": "HowToStep",
               name: howToStep.name,
               text: howToStep.text.text,
+              url: seo.url + "#" + howToStep.name
             })
           })
 
@@ -142,10 +143,13 @@ const SEO = ({
               servingSize: recipe.servingSize,
             },
             image: img,
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: recipe.ratingValue,
+              ratingCount: recipe.ratingCount
+            },
             recipeCategory: recipe.recipeCategory,
             recipeCuisine: recipe.recipeCuisine,
-            recipeIngredient: recipe.recipeIngredient,
-            recipeInstructions: recipeInstructions,
             recipeYield: recipe.recipeYield,
             prepTime: recipe.prepTime,
             totalTime: recipe.totalTime,
@@ -154,6 +158,8 @@ const SEO = ({
               "@type": "Person",
               name: recipe.author.name,
             },
+            recipeIngredient: recipe.recipeIngredient,
+            recipeInstructions: recipeInstructions
           }
         }
 

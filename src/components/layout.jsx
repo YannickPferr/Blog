@@ -18,12 +18,12 @@ const Layout = props => {
       <CookieConsent
         location="bottom"
         buttonText="Accept"
-        style={{"alignItems": "center"}}
-        contentStyle={{"flex": "auto", "width": "80%"}}
-        buttonStyle={{"backgroundColor": "#1f3c88", "color": "white", "borderRadius": "0.25em", "padding": "0.5em"}}
+        style={{ "alignItems": "center" }}
+        contentStyle={{ "flex": "auto", "width": "80%" }}
+        buttonStyle={{ "backgroundColor": "#1f3c88", "color": "white", "borderRadius": "0.25em", "padding": "0.5em" }}
         cookieName="gatsby-gdpr-google-analytics"
         onAccept={() => {
-          if (parseInt(navigator.doNotTrack) !== 1 && parseInt(window.doNotTrack) !== 1 && parseInt(navigator.msDoNotTrack) !== 1){
+          if (parseInt(navigator.doNotTrack) !== 1 && parseInt(window.doNotTrack) !== 1 && parseInt(navigator.msDoNotTrack) !== 1) {
             window.dataLayer = window.dataLayer || [];
             function gtag() { window.dataLayer.push(arguments); }
             gtag('js', new Date());
@@ -36,7 +36,7 @@ const Layout = props => {
         }}>
         This site uses cookies, including from our partners, to enhance and personalise your experience. Learn more about our cookie policy <Link to="/privacy-policy" className={styles.cookiePolicyText}>here</Link>.
       </CookieConsent>
-      <Header indexPage={indexPage}/>
+      <Header indexPage={indexPage} />
       {layoutFullWidth ? (
         <section className={styles.layout}>{children}</section>
       ) : (
