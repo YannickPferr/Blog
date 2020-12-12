@@ -22,7 +22,7 @@ module.exports = {
       twitter: "",
     },
     mailchimpUrl: "https://gmail.us2.list-manage.com/subscribe/post?u=4496257eb2519fb7538da613f&amp;id=3811aa9127",
-    commentsServerUrl: "https://17qsr498s8.execute-api.us-east-1.amazonaws.com/dev"
+    commentsServerUrl: "https://oydzowvwze.execute-api.eu-central-1.amazonaws.com/dev"
   },
   plugins: [
     {

@@ -4,7 +4,11 @@ import { format, parseISO } from "date-fns"
 import styles from "./comments.module.scss"
 
 const Comments = (data) => {
- // const { addToast } = useToasts()
+
+  const validateEmail = (email) => {
+    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return re.test(String(email).toLowerCase());
+  }
 
   //state variables for form input errors
   const [commentTextOrRatingError, setCommentTextOrRatingError] = useState(false)
@@ -30,7 +34,7 @@ const Comments = (data) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (comment.name && comment.name !== "" && comment.handle && comment.handle !== "" && (rating || (comment.text && comment.text !== ""))) {
+    if (comment.name && comment.name !== "" && comment.handle && comment.handle !== "" && validateEmail(comment.handle) && (rating || (comment.text && comment.text !== ""))) {
       e.target.reset()
 
       if (rating) {
@@ -57,7 +61,7 @@ const Comments = (data) => {
       else
         setCommentNameFieldError(false)
 
-      if (!comment.handle || comment.handle === "")
+      if (!comment.handle || comment.handle === "" || !validateEmail(comment.handle))
         setCommentHandleFieldError(true)
       else
         setCommentHandleFieldError(false)
@@ -89,7 +93,7 @@ const Comments = (data) => {
   const handleReplySubmit = (e) => {
     e.preventDefault();
 
-    if (reply.name && reply.name !== "" && reply.handle && reply.handle !== "" && reply.text && reply.text !== "") {
+    if (reply.name && reply.name !== "" && reply.handle && reply.handle !== "" && validateEmail(reply.handle) && reply.text && reply.text !== "") {
       reply.date = new Date().toISOString()
       data.handleRepliesUpdate(e.target.id, reply)
 
@@ -108,7 +112,7 @@ const Comments = (data) => {
       else
         setReplyNameFieldError(false)
 
-      if (!reply.handle || reply.handle === "")
+      if (!reply.handle || reply.handle === "" || !validateEmail(reply.handle))
         setReplyHandleFieldError(true)
       else
         setReplyHandleFieldError(false)
@@ -131,7 +135,7 @@ const Comments = (data) => {
       <h2>Comments {data.comments && "(" + data.comments.length + ")"}</h2>
       <div className={styles.formContainer}>
         {commentNameFieldError && <p className={styles.errorMessage}>Please provide a name</p>}
-        {commentHandleFieldError && <p className={styles.errorMessage}>Please provide a handle</p>}
+        {commentHandleFieldError && <p className={styles.errorMessage}>Please provide a valid email</p>}
         {commentTextOrRatingError && <p className={styles.errorMessage}>Please submit a comment and/or a rating</p>}
         <p>Rate this recipe!</p>
         <div className={styles.starsContainer}>
@@ -144,12 +148,12 @@ const Comments = (data) => {
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className="clip" htmlFor="name">Your Name*</label>
           <input onChange={handleChange} className={commentNameFieldError ? styles.formInputError : styles.formInput} type="text" name="name" id="name" placeholder="Your Name*" />
-          <label className="clip" htmlFor="handle">Your Handle*</label>
-          <input onChange={handleChange} className={commentHandleFieldError ? styles.formInputError : styles.formInput} type="text" name="handle" id="handle" placeholder="Your Handle*" />
+          <label className="clip" htmlFor="handle">Your Email*</label>
+          <input onChange={handleChange} className={commentHandleFieldError ? styles.formInputError : styles.formInput} type="email" name="handle" id="handle" placeholder="Your Email*" />
           <label className="clip" htmlFor="text">Your Message</label>
           <textarea onChange={handleChange} className={styles.formInput} type="text" name="text" id="text" placeholder="Your Message" rows="5" />
           <input className={styles.formSubmit} type="submit" name="submit" id="submit" value="Submit" />
-          
+
         </form>
       </div>
       {
@@ -189,14 +193,14 @@ const Comments = (data) => {
                 &&
                 <div className={styles.formContainer}>
                   {replyNameFieldError && <p className={styles.errorMessage}>Please provide a name</p>}
-                  {replyHandleFieldError && <p className={styles.errorMessage}>Please provide a handle</p>}
+                  {replyHandleFieldError && <p className={styles.errorMessage}>Please provide a valid email</p>}
                   {replyTextError && <p className={styles.errorMessage}>Please submit a reply</p>}
                   <a href="/#" onClick={handleCancel}>Cancel reply</a>
                   <form id={form} className={styles.form} onSubmit={handleReplySubmit}>
                     <label className="clip" htmlFor="name">Your Name</label>
                     <input onChange={handleReplyChange} className={replyNameFieldError ? styles.formInputError : styles.formInput} type="text" name="name" id="name" placeholder="Your Name*" />
-                    <label className="clip" htmlFor="handle">Your Handle</label>
-                    <input onChange={handleReplyChange} className={replyHandleFieldError ? styles.formInputError : styles.formInput} type="text" name="handle" id="handle" placeholder="Your Handle*" />
+                    <label className="clip" htmlFor="handle">Your Email</label>
+                    <input onChange={handleReplyChange} className={replyHandleFieldError ? styles.formInputError : styles.formInput} type="email" name="handle" id="handle" placeholder="Your Email*" />
                     <label className="clip" htmlFor="text">Your Message</label>
                     <textarea onChange={handleReplyChange} className={replyTextError ? styles.formInputError : styles.formInput} type="text" name="text" id="text" placeholder="Your Message*" rows="5" />
                     <input className={styles.formSubmit} type="submit" name="submit" id="submit" value="Reply" />
