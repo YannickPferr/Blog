@@ -165,5 +165,6 @@ module.exports = {
         usePreload: true,
       },
     },
+    `gatsby-plugin-netlify`
   ],
 }
