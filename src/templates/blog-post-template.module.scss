@@ -1,5 +1,18 @@
 @import "../styles/main.scss";
 
+.container {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 60em) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 30em) and (max-width: 60em) {
+    flex-direction: column;
+  }
+}
+
 .header {
   text-align: center;
 }
@@ -25,10 +38,11 @@
 .article {
   padding-left: $spacing2;
   padding-right: $spacing2;
+  margin: 0 auto;
   width: 100%;
 
   @media screen and (min-width: 60em) {
-    width: 75%;
+    width: 65%;
   }
 
   @media screen and (min-width: 30em) and (max-width: 60em) {
@@ -53,8 +67,11 @@
 }
 
 .post-content p {
-  padding-left: $spacing2;
-  padding-right: $spacing2;
+  padding: $spacing2 0;
+}
+
+.post-content img {
+  margin: $spacing4 0;
 }
 
 .post-end {
@@ -77,12 +94,10 @@
   position: relative;
 
   @media screen and (min-width: 60em) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 25%;
-    margin-top: 132px;
-    padding: $spacing3;
+    width: 35%;
+    padding: 0 $spacing1;
+    margin-top: $spacing6;
+    margin-left: $spacing5;
   }
 
   @media screen and (min-width: 30em) and (max-width: 60em) {
@@ -96,6 +111,7 @@
 
 .sidebar-title {
   white-space: nowrap;
+  margin-top: 0;
 
   @media screen and (min-width: 60em) {
     padding-left: $spacing0;

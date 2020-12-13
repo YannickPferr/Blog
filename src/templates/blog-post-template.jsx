@@ -226,82 +226,86 @@ const BlogPosts = ({ data, pageContext }) => {
       author={data.post.author.name}
       pathName={`/blog/${data.post.slug}`}
     >
-      <article className={styles.article}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>{data.post.title}</h1>
-          <div>
-            <span className={styles.subtitle}>
-              by{" "}
-              <Link to={`/blog/authors/${data.post.author.name}`}>
-                {data.post.author.name}
-              </Link>{" "}
+      <section className={styles.container}>
+        <article className={styles.article}>
+          <header className={styles.header}>
+            <h1 className={styles.title}>{data.post.title}</h1>
+            <div>
+              <span className={styles.subtitle}>
+                by{" "}
+                <Link to={`/blog/authors/${data.post.author.name}`}>
+                  {data.post.author.name}
+                </Link>{" "}
               on {format(parseISO(data.post.createdAt), "MMMM do, yyyy")}
-            </span>
-          </div>
-          <SocialShare
-            text="SHARE THIS POST"
-            shareTitle={data.post.title}
-            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${data.post.slug}`}
-          />
-          <div className={styles.tagListContainer}>
-            {data.post.tags.map(tag => (
-              <Button key={tag.name} linkUrl={`/blog/tags/${tag.name}`} linkText={tag.name} />
-            ))}
-          </div>
-        </header>
-        <Img fluid={data.post.image.fluid} />
+              </span>
+            </div>
+            <SocialShare
+              text="SHARE THIS POST"
+              shareTitle={data.post.title}
+              shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${data.post.slug}`}
+            />
+            <div className={styles.tagListContainer}>
+              {data.post.tags.map(tag => (
+                <Button key={tag.name} linkUrl={`/blog/tags/${tag.name}`} linkText={tag.name} />
+              ))}
+            </div>
+          </header>
+          <Img fluid={data.post.image.fluid} />
 
-        <div className={styles.postContent}>
-          <RichText input={data.post.content} />
-        </div>
+          <div className={styles.postContent}>
+            <RichText input={data.post.content} />
+          </div>
 
-        {/* Recipe if available */}
-        {data.post.recipe
+          {/* Recipe if available */}
+          {data.post.recipe
+            &&
+            <Recipe recipe={data.post.recipe} ratingValue={ratingValue} ratingCount={ratingCount} />
+          }
+
+          <div className={styles.postEnd}>
+            <h3 style={{ "width": "50%" }} className={styles.sectionSubHeading}>Thanks for reading!</h3>
+            <SocialShare
+              text="SHARE THIS POST"
+              shareTitle={data.post.title}
+              shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${data.post.slug}`}
+            />
+          </div>
+
+          <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
+
+          {/* Comment sections if comments enabled*/}
+          {
+            data.post.enableComments
+            &&
+            <Comments id={data.post.contentful_id} handleCommentsUpdate={handleCommentsUpdate} handleRatingsUpdate={handleRatingsUpdate} handleRepliesUpdate={handleRepliesUpdate} comments={comments}></Comments>
+          }
+        </article>
+
+        {/* Sidebar with related posts if available*/}
+        {
+          data.relatedPosts.edges
           &&
-          <Recipe recipe={data.post.recipe} ratingValue={ratingValue} ratingCount={ratingCount} />
-        }
-
-        <div className={styles.postEnd}>
-          <h3 style={{ "width": "50%" }} className={styles.sectionSubHeading}>Thanks for reading!</h3>
-          <SocialShare
-            text="SHARE THIS POST"
-            shareTitle={data.post.title}
-            shareUrl={`${data.site.siteMetadata.siteUrl}/blog/${data.post.slug}`}
-          />
-        </div>
-
-        <PrevNext prevDetails={prevDetails} nextDetails={nextDetails} />
-      </article>
-
-      {/* Comment sections if comments enabled*/}
-      {
-        data.post.enableComments
-        &&
-        <Comments id={data.post.contentful_id} handleCommentsUpdate={handleCommentsUpdate} handleRatingsUpdate={handleRatingsUpdate} handleRepliesUpdate={handleRepliesUpdate} comments={comments}></Comments>
-      }
-
-      {/* Sidebar with related posts if available*/}
-      {
-        data.relatedPosts
-        &&
-        <div className={styles.sidebar}>
-          <div>
-            <h2 className={styles.sidebarTitle}>Related recipes</h2>
-            {data.relatedPosts.edges.map(edge => (
-              <Link key={edge.node.id} to={`/blog/${edge.node.slug}`} className="no-underline">
-                <div className={styles.recommendedPost}>
-                  <Img
-                    fluid={edge.node.image.fluid} className={styles.recommendedPostImg} />
-                  <div className={styles.recommendedPostText}>
-                    <h4>{edge.node.title}</h4>
-                    <p>{edge.node.previewText}</p>
+          data.relatedPosts.edges.length > 0
+          &&
+          <div className={styles.sidebar}>
+            <div>
+              <h2 className={styles.sidebarTitle}>Related recipes</h2>
+              {data.relatedPosts.edges.map(edge => (
+                <Link key={edge.node.id} to={`/blog/${edge.node.slug}`} className="no-underline">
+                  <div className={styles.recommendedPost}>
+                    <Img
+                      fluid={edge.node.image.fluid} className={styles.recommendedPostImg} />
+                    <div className={styles.recommendedPostText}>
+                      <h4>{edge.node.title}</h4>
+                      <p>{edge.node.previewText}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      }
+        }
+      </section>
     </Layout>
   )
 }

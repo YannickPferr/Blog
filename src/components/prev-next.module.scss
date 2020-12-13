@@ -26,3 +26,15 @@
   margin-right: $spacing1;
   vertical-align: middle;
 }
+
+.prev{
+  text-align: left;
+  margin-right: $spacing1;
+  width: 50%;
+}
+
+.next{
+  text-align: right;
+  margin-left: $spacing1;
+  width: 50%;
+}

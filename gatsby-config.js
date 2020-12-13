@@ -22,14 +22,15 @@ module.exports = {
       twitter: "",
     },
     mailchimpUrl: "https://gmail.us2.list-manage.com/subscribe/post?u=4496257eb2519fb7538da613f&amp;id=3811aa9127",
-    commentsServerUrl: "https://oydzowvwze.execute-api.eu-central-1.amazonaws.com/dev"
+    commentsServerUrl: process.env.ENV && process.env.ENV == "DEV" ? "http://localhost:3000" : "https://oydzowvwze.execute-api.eu-central-1.amazonaws.com/dev"
   },
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        accessToken: process.env.ENV && process.env.ENV == "DEV" ? process.env.CONTENTFUL_PREVIEW_TOKEN : process.env.CONTENTFUL_DELIVERY_TOKEN,
+        host: process.env.ENV && process.env.ENV == "DEV" ? "preview.contentful.com" : "cdn.contentful.com"
       },
     },
     "gatsby-plugin-sass",

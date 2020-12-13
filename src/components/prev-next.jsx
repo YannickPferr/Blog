@@ -7,7 +7,7 @@ import styles from "./prev-next.module.scss"
 const PrevNext = ({ prevDetails, nextDetails }) => {
   return (
     <div className={styles.container}>
-      <div className="tl">
+      <div className={styles.prev}>
         {prevDetails && (
           <>
             {prevDetails.titleText && (
@@ -20,7 +20,7 @@ const PrevNext = ({ prevDetails, nextDetails }) => {
           </>
         )}
       </div>
-      <div className="tr">
+      <div className={styles.next}>
         {nextDetails && (
           <>
             {nextDetails.titleText && (
