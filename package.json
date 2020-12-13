@@ -23,7 +23,6 @@
     "gatsby-plugin-catch-links": "^2.5.0",
     "gatsby-plugin-feed": "^2.8.0",
     "gatsby-plugin-manifest": "^2.7.0",
-    "gatsby-plugin-netlify": "^2.7.0",
     "gatsby-plugin-offline": "^3.5.0",
     "gatsby-plugin-preact": "^4.2.0",
     "gatsby-plugin-purgecss": "^5.0.0",

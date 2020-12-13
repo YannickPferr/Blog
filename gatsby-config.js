@@ -166,7 +166,6 @@ module.exports = {
         usePreload: true,
       },
     },
-    `gatsby-plugin-netlify`,
-    'gatsby-plugin-remove-serviceworker'
+    "gatsby-plugin-remove-serviceworker"
   ],
 }
