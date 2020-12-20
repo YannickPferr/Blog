@@ -89,8 +89,8 @@ const Recipe = (data) => {
           <div className={styles.ingredientsList}>
             {data.recipe.recipeIngredient.map(ingredient =>
               <div key={ingredient} className={styles.ingredientsRow}>
-                <div className={styles.ingredientValue}><strong>{ingredient.substr(0, ingredient.indexOf(' '))}</strong></div>
-                <div className={styles.ingredientName}>{ingredient.substr(ingredient.indexOf(' ') + 1)}</div>
+                <div className={styles.ingredientValue}><strong>{ingredient.substr(0, ingredient.indexOf('_'))}</strong></div>
+                <div className={styles.ingredientName}>{ingredient.substr(ingredient.indexOf('_') + 1)}</div>
               </div>)}
           </div>
         </div>
