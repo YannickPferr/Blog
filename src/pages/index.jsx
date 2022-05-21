@@ -44,24 +44,6 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
-      {/* Main Feature*/}
-      {/*
-      <section className={styles.mainFeatureSection}>
-        <h2 className="section-heading">
-          {data.mainFeatureSectionMarkdown.heading}
-        </h2>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data.mainFeatureSectionMarkdown.content.childMarkdownRemark.html,
-          }}
-        ></div>
-        <Button
-          linkUrl={data.mainFeatureSectionMarkdown.linkUrl}
-          linkText={data.mainFeatureSectionMarkdown.linkText}
-        />
-      </section>
-      */}
-
       {/* Latest Posts */}
       <section className={styles.latestPostsSection}>
         <h2 className="section-heading">Latest Posts</h2>
@@ -153,24 +135,8 @@ export const query = graphql`
       }
     }
 
-    mainFeatureSectionMarkdown: contentfulFeature{
-      heading
-      linkUrl
-      linkText 
-      content {
-        childMarkdownRemark {
-          html
-        }
-      }
-    }
-
     aboutSectionMarkdown: contentfulAboutContent(order: {eq: 0}) {
       heading
-      image{
-        fluid (maxWidth: 500, quality: 50){
-          ...GatsbyContentfulFluid_withWebp
-        }
-      } 
       text {
         childMarkdownRemark {
           html

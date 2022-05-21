@@ -47,11 +47,6 @@ export const query = graphql`
         node{
           id
           heading
-          image{
-            fluid(maxWidth: 500, quality: 50) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          } 
           text {
             childMarkdownRemark {
               html
